@@ -107,9 +107,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     String[] perms =
             {
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.CAMERA,
-            Manifest.permission.CALL_PHONE
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.CAMERA,
+                    Manifest.permission.CALL_PHONE
             };
     private static final String TAG = "MainActivity";
 
@@ -121,11 +121,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         trimCache(ctx);
 //        repeat();
         //loadStudentData();
-        final SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
-        s_id = mPrefs.getString("stu_id", "none");
+
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+        stu_id = mPrefs.getString("stu_id", "none");
         sc_id = mPrefs.getString("sc_id", "none");
         number = mPrefs.getString("number", "none");
-        if (s_id.equalsIgnoreCase("none") && sc_id.equalsIgnoreCase("none"))
+        if (stu_id.equalsIgnoreCase("none") && sc_id.equalsIgnoreCase("none"))
         {
             loadStudentData();
         }
@@ -250,7 +251,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void loadStudentData() {
         final SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
-        s_id = mPrefs.getString("stu_id", "none");
+        stu_id = mPrefs.getString("stu_id", "none");
         sc_id = mPrefs.getString("sc_id", "none");
         String STUDENT_PROFILE_URL = Common.GetWebServiceURL() + "student_profile.php";
         Log.v("profile", STUDENT_PROFILE_URL);
@@ -332,7 +333,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("stu_id", s_id);
+                params.put("stu_id", stu_id);
                 params.put("sc_id", sc_id);
                 return params;
             }
@@ -467,7 +468,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 //                intent = new Intent(ctx, StudentProfile.class);
                 intent = new Intent(ctx, ProfileMainActivity.class);
-
+                intent.putExtra("number", number);
+                intent.putExtra("stu_id", stu_id);
+                intent.putExtra("sc_id", sc_id);
                 startActivity(intent);
             }
         });
@@ -541,7 +544,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void SendAppVersion()
     {
         String url = Common.GetWebServiceURL() + "request_update.php";
-       // String url = Common.GetWebServiceURL() + "text/request_update.php";
+        // String url = Common.GetWebServiceURL() + "text/request_update.php";
         StringRequest sr = new StringRequest(StringRequest.Method.POST, url, new Response.Listener<String>()
         {
             @Override
@@ -645,7 +648,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     {
         Common.progressDialogShow(MainActivity.this);
         final SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
-        s_id = mPrefs.getString("stu_id", "none");
+        stu_id = mPrefs.getString("stu_id", "none");
         sc_id = mPrefs.getString("sc_id", "none");
         String Webserviceurl = Common.GetWebServiceURL() + "Logoutdeviceid.php";
         StringRequest request = new StringRequest(StringRequest.Method.POST, Webserviceurl, new Response.Listener<String>()
@@ -661,7 +664,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     String messsage = object.getString("message");
                     if (messsage.equals("Submitted"))
                     {
-                        startActivity(new Intent(MainActivity.this, Login.class));
+                        startActivity(new Intent(MainActivity.this, OTPLogin.class));
                         finish();
                         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
                         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -700,7 +703,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> data = new HashMap<>();
                 data.put("sc_id", sc_id);
-                data.put("stu_id", s_id);
+                data.put("stu_id", stu_id);
                 return data;
             }
         };

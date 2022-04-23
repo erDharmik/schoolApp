@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
@@ -17,6 +18,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.Looper;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +34,7 @@ import com.android.volley.toolbox.Volley;
 import com.aspirepublicschool.gyanmanjari.Common;
 import com.aspirepublicschool.gyanmanjari.EmptyActivity;
 import com.aspirepublicschool.gyanmanjari.Profile.Update.AddressUpdateActivity;
+import com.aspirepublicschool.gyanmanjari.Profile.Update.NewAddressUpdateActivity;
 import com.aspirepublicschool.gyanmanjari.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -53,6 +56,7 @@ public class AddressFragment extends Fragment {
     TextView address, landmark, city, state, pincode;
     ImageButton location;
     Button btncontinue;
+    Context ctx;
 
     //GMAP
     String latitude, longit, lat = null , lon = null;
@@ -60,13 +64,22 @@ public class AddressFragment extends Fragment {
     FusedLocationProviderClient mFusedLocationClient;
     Context context;
     String addressString,landmarkString,CityString, stateString ,pinString;
-
+    String number, stu_id, sc_id;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_address, container, false);
+
+        stu_id = getArguments().getString("stu_id");
+        sc_id = getArguments().getString("sc_id");
+        number = getArguments().getString("number");
+
+//        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+//        stu_id = mPrefs.getString("stu_id", "none");
+//        sc_id = mPrefs.getString("sc_id", "none");
+//        number = mPrefs.getString("number", "none");
 
         address = view.findViewById(R.id.address);
         landmark = view.findViewById(R.id.landmark);
@@ -109,8 +122,8 @@ public class AddressFragment extends Fragment {
         pincode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    Gmapfunction();
-                }
+                Gmapfunction();
+            }
         });
         location.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,7 +136,7 @@ public class AddressFragment extends Fragment {
     }
 
     private void Gmapfunction() {
-        Intent intent = new Intent(getContext(), AddressUpdateActivity.class);
+        Intent intent = new Intent(getContext(), NewAddressUpdateActivity.class);
         intent.putExtra("address", addressString);
         intent.putExtra("state", stateString);
         intent.putExtra("pin", pinString);
@@ -189,7 +202,7 @@ public class AddressFragment extends Fragment {
             getLastLocation();
         }
     }
-//
+    //
     @SuppressLint("MissingPermission")
     private void getLastLocation() {
         // check if permissions are given
@@ -198,23 +211,23 @@ public class AddressFragment extends Fragment {
             // check if location is enabled
 //            if (isLocationEnabled()) {
 
-                // getting last
-                // location from
-                // FusedLocationClient
-                // object
-                mFusedLocationClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Location> task) {
-                        Location location = task.getResult();
-                        if (location == null) {
-                            requestNewLocationData();
-                        } else {
-                            String longi = String.valueOf(location.getLongitude());
-                            latitude = (location.getLatitude() + "");
-                            longit = (location.getLongitude() + "");
-                        }
+            // getting last
+            // location from
+            // FusedLocationClient
+            // object
+            mFusedLocationClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+                @Override
+                public void onComplete(@NonNull Task<Location> task) {
+                    Location location = task.getResult();
+                    if (location == null) {
+                        requestNewLocationData();
+                    } else {
+                        String longi = String.valueOf(location.getLongitude());
+                        latitude = (location.getLatitude() + "");
+                        longit = (location.getLongitude() + "");
                     }
-                });
+                }
+            });
 //            } else {
 //                Toast.makeText(getContext(), "Please turn on" + " your location...", Toast.LENGTH_LONG).show();
 //                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
@@ -274,7 +287,9 @@ public class AddressFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> data=new HashMap<>();
-                data.put("number", "9586417374");
+                data.put("stu_id", stu_id);
+                data.put("sc_id", sc_id);
+                data.put("number", number);
                 return data;
             }
         };

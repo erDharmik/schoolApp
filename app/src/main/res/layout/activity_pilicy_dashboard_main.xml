@@ -218,24 +218,24 @@
                         android:id="@+id/lnrSpinner"
                         android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Number of Friends for Tuition"
-                        android:textStyle="bold"
-                        android:layout_marginTop="10dp"
-                        android:textSize="15sp" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="Number of Friends for Tuition"
+                            android:textStyle="bold"
+                            android:layout_marginTop="10dp"
+                            android:textSize="15sp" />
 
-                    <Spinner
-                        android:id="@+id/policySpinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@drawable/edittext_shape"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:padding="8dp"
-                        android:layout_marginTop="20dp" />
+                        <Spinner
+                            android:id="@+id/policySpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@drawable/edittext_shape"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:padding="8dp"
+                            android:layout_marginTop="20dp" />
 
 
                     </LinearLayout>
@@ -283,9 +283,9 @@
                     <Button
                         android:id="@+id/demoBtn"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_weight="2"
                         android:layout_height="wrap_content"
-                        android:text="Demo"
+                        android:text="Demo Request"
                         android:textColor="@color/white"
                         android:textStyle="bold"
                         android:layout_marginEnd="15dp"
@@ -298,11 +298,12 @@
                     <Button
                         android:id="@+id/paymentBtn"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_weight="0"
                         android:layout_height="wrap_content"
                         android:text="Pay Now"
                         android:textColor="@color/white"
                         android:textStyle="bold"
+                        android:visibility="gone"
                         android:layout_marginEnd="15dp"
                         android:clickable="true"
                         android:background="@drawable/edittext_shape"

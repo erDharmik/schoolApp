@@ -18,9 +18,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.aspirepublicschool.gyanmanjari.ConfirmAddress;
 import com.aspirepublicschool.gyanmanjari.OTPLogin;
 import com.aspirepublicschool.gyanmanjari.R;
 import com.google.android.gms.maps.CameraUpdate;
@@ -48,10 +50,15 @@ public class AddressConfirmAddress extends DialogFragment implements
     Double Lat;
     Double Long, latitude, longitude;
     String Address;
-    TextView myAddress;
+    EditText myAddress;
     Button SelectBtn;
     Button ChangeBtn;
-    String status, pin, city, state;
+    String status;
+
+    public interface OnInputListener {
+        void sendInput(String input);
+    }
+    public AddressConfirmAddress.OnInputListener mOnInputListener;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,9 +66,7 @@ public class AddressConfirmAddress extends DialogFragment implements
         Lat = getArguments().getDouble("lat");
         Long = getArguments().getDouble("long");
         Address = getArguments().getString("address");
-        pin = getArguments().getString("pin");
-        city = getArguments().getString("city");
-        state = getArguments().getString("state");
+        status = getArguments().getString("status");
 
     }
     MapFragment mapFragment;
@@ -69,6 +74,7 @@ public class AddressConfirmAddress extends DialogFragment implements
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.custom_confirm_address, container, false);
 //        myAddress=(TextView)v.findViewById(R.id.editTextAddress);
+        myAddress=(EditText)v.findViewById(R.id.editTextAddress);
         SelectBtn=(Button) v.findViewById(R.id.Select);
         ChangeBtn=(Button) v.findViewById(R.id.Change);
 
@@ -81,8 +87,9 @@ public class AddressConfirmAddress extends DialogFragment implements
             @Override
             public void onClick(View v) {
 
-                    Intent intent = new Intent(context, AddressActivity.class);
-                    startActivity(intent);
+                String finalAddress = myAddress.getText().toString().trim();
+                mOnInputListener.sendInput(finalAddress);
+                getDialog().dismiss();
 
             }
         });
@@ -96,6 +103,19 @@ public class AddressConfirmAddress extends DialogFragment implements
         getDialog().setCanceledOnTouchOutside(true);
         return v;
 
+    }
+
+    @Override
+    public void onAttach(Context context)
+    {
+        super.onAttach(context);
+        try {
+            mOnInputListener
+                    = (AddressConfirmAddress.OnInputListener)getActivity();
+        }
+        catch (ClassCastException e) {
+            Toast.makeText(context, "Enter Address Manually", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -134,6 +154,4 @@ public class AddressConfirmAddress extends DialogFragment implements
         mMap.addMarker(markerOptions);
         Log.d("status","success");
     }
-
-
 }

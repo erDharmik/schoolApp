@@ -28,11 +28,17 @@ import java.util.Map;
 public class TutionDetailsFragment extends Fragment {
 
     TextView boardtxt, mediumtxt, standardtxt,timetxt;
+    String stu_id, sc_id, number;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tution_details, container, false);
+
+        stu_id = getArguments().getString("stu_id");
+        sc_id = getArguments().getString("sc_id");
+        number = getArguments().getString("number");
 
         boardtxt = view.findViewById(R.id.boardtxt);
         mediumtxt = view.findViewById(R.id.mediumtxt);
@@ -60,7 +66,7 @@ public class TutionDetailsFragment extends Fragment {
                     String time = jsonArray.getJSONObject(0).getString("timeslot");
 
 
-                     String temp = jsonArray.getJSONObject(0).getString("stream");
+                    String temp = jsonArray.getJSONObject(0).getString("stream");
                     if (!temp.equals("Not set")){
                         standard = standard + jsonArray.getJSONObject(0).getString("stream") ;
                         String temp12 = jsonArray.getJSONObject(0).getString("st_group");
@@ -92,7 +98,9 @@ public class TutionDetailsFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> data=new HashMap<>();
-                data.put("number", "9586417374");
+                data.put("stu_id", stu_id);
+                data.put("sc_id", sc_id);
+                data.put("number", number);
                 return data;
             }
         };

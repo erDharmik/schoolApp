@@ -37,7 +37,8 @@ import java.util.Map;
 
 public class StudentRegActivity1 extends AppCompatActivity {
 
-    EditText editFirstName,editLastName,editEmail,editMobile;
+    EditText editFirstName,editLastName,editMobile;
+    //    EditText editEmail;
     TextView txtSignIn, text_status,text_termsandcondition;
     Button btnGetOtp;
     CheckBox checkbox_TandC;
@@ -52,7 +53,7 @@ public class StudentRegActivity1 extends AppCompatActivity {
         editFirstName = findViewById(R.id.editFName);
         editLastName = findViewById(R.id.editLName);
         editMobile = findViewById(R.id.editMobileNumber);
-        editEmail = findViewById(R.id.editEmail);
+//        editEmail = findViewById(R.id.editEmail);
         txtSignIn = findViewById(R.id.txtSignIn);
         btnGetOtp = findViewById(R.id.btnVerifyOtp);
         checkbox_TandC = findViewById(R.id.checkbox_TandC);
@@ -68,7 +69,7 @@ public class StudentRegActivity1 extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), OTPVerificationActivity.class).
                         putExtra("number", editMobile.getText().toString().trim()).
                         putExtra("next", "register"));
-                getOTP();
+//                getOTP();
             }
         });
 
@@ -98,13 +99,13 @@ public class StudentRegActivity1 extends AppCompatActivity {
     }
 
     private void getOTP() {
-            if (checkbox_TandC.isChecked()) {
-                text_status.setVisibility(View.INVISIBLE);
-                basicRegister();
+        if (checkbox_TandC.isChecked()) {
+            text_status.setVisibility(View.INVISIBLE);
+            basicRegister();
 
-            } else {
-                text_status.setVisibility(View.VISIBLE);
-            }
+        } else {
+            text_status.setVisibility(View.VISIBLE);
+        }
     }
 
 
@@ -113,7 +114,7 @@ public class StudentRegActivity1 extends AppCompatActivity {
         final String fname = editFirstName.getText().toString().trim();
         final String lname = editLastName.getText().toString().trim();
         final String m_no = editMobile.getText().toString().trim();
-        final String email = editEmail.getText().toString().trim();
+//        final String email = editEmail.getText().toString().trim();
 
         String WebserviceURL = Common.GetWebServiceURL() + "tempRegister.php";
         StringRequest stringRequest = new StringRequest(StringRequest.Method.POST, WebserviceURL, new Response.Listener<String>() {
@@ -131,7 +132,7 @@ public class StudentRegActivity1 extends AppCompatActivity {
                         editor.putString("number", m_no);
                         editor.commit();
 
-                        Intent intent = new Intent(getApplicationContext(), StudentRegOtpActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), OTPVerificationActivity.class);
                         intent.putExtra("m_no", m_no);
                         startActivity(intent);
 
@@ -158,8 +159,7 @@ public class StudentRegActivity1 extends AppCompatActivity {
                 params.put("fname", fname);
                 params.put("lname", lname);
                 params.put("m_no", m_no);
-                params.put("email", email);
-
+//                params.put("email", email);
                 return params;
             }
         };

@@ -49,6 +49,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -65,6 +66,7 @@ public class PersonalDetails extends Fragment {
     private final int PICK_IMAGE_REQUEST = 71;
     ImageView dpPreview;
     Button upload;
+    RequestQueue requestQueue;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,11 +74,16 @@ public class PersonalDetails extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_personal_details, container, false);
 
-//        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
-//        number = preferences.getString("number", "6355574383");
-//        stu_id = preferences.getString("stu_id", "SCIDN2STIDN10");
-//        sc_id = preferences.getString("sc_id", "SCIDN1");
+        stu_id = getArguments().getString("stu_id");
+        sc_id = getArguments().getString("sc_id");
+        number = getArguments().getString("number");
 
+//        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+//        stu_id = mPrefs.getString("stu_id", "none");
+//        sc_id = mPrefs.getString("sc_id", "none");
+//        number = mPrefs.getString("number", "none");
+
+//        Toast.makeText(ctx, number + stu_id + sc_id, Toast.LENGTH_SHORT).show();
 //        number = "6355574383";
 //        stu_id = "SCIDN2STIDN10";
 //        sc_id = "SCIDN1";
@@ -102,10 +109,10 @@ public class PersonalDetails extends Fragment {
         dpUpdateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+//                Intent intent = new Intent();
+//                intent.setType("image/*");
+//                intent.setAction(Intent.ACTION_GET_CONTENT);
+//                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
             }
         });
 
@@ -154,109 +161,98 @@ public class PersonalDetails extends Fragment {
         fname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar mcurrentTime = Calendar.getInstance();
-                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-                int minute = mcurrentTime.get(Calendar.MINUTE);
-                TimePickerDialog mTimePicker;
-                mTimePicker = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        fname.setText( selectedHour + ":" + selectedMinute);
-                    }
-                }, hour, minute,false);//Yes 24 hour time
-                mTimePicker.setTitle("Select Time");
-                mTimePicker.show();
+                goToUpdateActivity();
             }
         });
 
         return view;
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
-                && data != null && data.getData() != null) {
-            Uri filePath = data.getData();
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(ctx.getContentResolver(), filePath);
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
+//                && data != null && data.getData() != null) {
+//            Uri filePath = data.getData();
+//            try {
+//                Bitmap bitmap = MediaStore.Images.Media.getBitmap(ctx.getContentResolver(), filePath);
+//
+//                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+//                byte[] imageBytes = baos.toByteArray();
+//                selectedPicture = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+//
+//                byte[] bytesImage = Base64.decode(selectedPicture, Base64.DEFAULT);
+//
+//                Dialog dialog = new Dialog(getContext());
+//                dialog.setContentView(R.layout.dp_review);
+//                dpPreview = dialog.findViewById(R.id.imagePreview);
+//                upload = dialog.findViewById(R.id.dpUpload);
+//
+//                Glide.with(ctx)
+//                        .asBitmap()
+//                        .load(bytesImage)
+//                        .into(dpPreview);
+//
+//                upload.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        uploadImage();
+//                    }
+//                });
+//
+//            } catch (IOException e) {
+//                Toast.makeText(ctx, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                byte[] imageBytes = baos.toByteArray();
-                selectedPicture = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-
-                byte[] bytesImage = Base64.decode(selectedPicture, Base64.DEFAULT);
-
-                Dialog dialog = new Dialog(getContext());
-                dialog.setContentView(R.layout.dp_review);
-                dpPreview = dialog.findViewById(R.id.imagePreview);
-                upload = dialog.findViewById(R.id.dpUpload);
-
-                Glide.with(ctx)
-                        .asBitmap()
-                        .load(bytesImage)
-                        .into(dpPreview);
-
-                upload.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        uploadImage();
-                    }
-                });
-
-            } catch (IOException e) {
-                Toast.makeText(ctx, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private void uploadImage() {
-
-        String url = Common.GetWebServiceURL() + "updateProfilePic.php";
-        // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(ctx);
-
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Toast.makeText(ctx, "Profile Picture has been updated", Toast.LENGTH_LONG).show();
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("stu_id", stu_id);
-                params.put("picture", selectedPicture);
-                params.put("sc_id", sc_id);
-
-                return params;
-            }
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("Content-Type", "application/x-www-form-urlencoded");
-                return params;
-            }
-        };
-
-        // To prevent timeout error
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(50000, 5, 3));
-
-        // Add the request to the RequestQueue.
-        stringRequest.setShouldCache(false);
-        ((RequestQueue) queue).add(stringRequest);
-
-    }
+//    private void uploadImage() {
+//
+//        String url = Common.GetWebServiceURL() + "updateProfilePic.php";
+//        // Instantiate the RequestQueue.
+//        RequestQueue queue = Volley.newRequestQueue(ctx);
+//
+//        // Request a string response from the provided URL.
+//        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        Toast.makeText(ctx, "Profile Picture has been updated", Toast.LENGTH_LONG).show();
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                error.printStackTrace();
+//            }
+//        }) {
+//            @Override
+//            protected Map<String, String> getParams() {
+//                Map<String, String> params = new HashMap<>();
+//                params.put("stu_id", stu_id);
+//                params.put("picture", selectedPicture);
+//                params.put("sc_id", sc_id);
+//
+//                return params;
+//            }
+//
+//            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<>();
+//                params.put("Content-Type", "application/x-www-form-urlencoded");
+//                return params;
+//            }
+//        };
+//
+//        // To prevent timeout error
+//        stringRequest.setRetryPolicy(new DefaultRetryPolicy(50000, 5, 3));
+//
+//        // Add the request to the RequestQueue.
+//        stringRequest.setShouldCache(false);
+//        ((RequestQueue) queue).add(stringRequest);
+//
+//    }
 
     private void goToUpdateActivity() {
         Intent intent = new Intent(getContext(), PersonalDetailsActivity.class);
@@ -281,18 +277,21 @@ public class PersonalDetails extends Fragment {
         dialog.setContentView(R.layout.profile_pic_dialog_layout);
         dialog.show();
 
-        dp = dialog.findViewById(R.id.profilePicDialog);
-
-        Picasso.get().load(dp_url).placeholder(R.mipmap.ic_launcher_round).into(dp);
+//        dp = dialog.findViewById(R.id.profilePicDialog);
+//
+//        Picasso.get().load(dp_url).placeholder(R.mipmap.ic_launcher_round).into(dp);
 
     }
 
-    protected void fetchPersonalData() {
+    public void fetchPersonalData() {
 
         String WebServiceUrl = Common.GetWebServiceURL() + "personalDetails.php";
-        StringRequest request=new StringRequest(StringRequest.Method.POST, WebServiceUrl, new com.android.volley.Response.Listener<String>() {
+//        String WebServiceUrl = "https://mrawideveloper.com/gyanmanfarividyapith.net/zocarro_mobile_app/ws/personalDetails.php";
+        StringRequest trequest=new StringRequest(Request.Method.POST, WebServiceUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+
+                Toast.makeText(getContext(), "response", Toast.LENGTH_SHORT).show();
 
                 try {
 
@@ -314,13 +313,13 @@ public class PersonalDetails extends Fragment {
                     email.setText(email12);
                     gender.setText(gender1);
 
-                    dp_url= "https://mrawideveloper.com/gyanmanfarividyapith.net/zocarro/image/image/profilePic/" + jsonArray.getJSONObject(0).getString("stu_img");
-                    Glide.with(getContext()).load(dp_url).into(profilePic);
+//                    dp_url= jsonArray.getJSONObject(0).getString("stu_img");
+//                    Glide.with(ctx).load(dp_url).into(profilePic);
 
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), e.getMessage() + "Catch Block", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -335,11 +334,14 @@ public class PersonalDetails extends Fragment {
                 Map<String,String> data=new HashMap<>();
                 data.put("number", number);
                 data.put("stu_id", stu_id);
-                data.put("sc_id", sc_id.toLowerCase());
+                data.put("sc_id", sc_id);
                 return data;
             }
         };
-        Volley.newRequestQueue(getContext()).add(request);
+        requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.add(trequest);
+//        requestQueue.start();
+//        Volley.newRequestQueue(ctx).add(request);
     }
 
 }

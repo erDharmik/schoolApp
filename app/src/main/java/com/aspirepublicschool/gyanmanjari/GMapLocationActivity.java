@@ -1,22 +1,25 @@
-package com.aspirepublicschool.gyanmanjari.NewRegister.Address;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
+package com.aspirepublicschool.gyanmanjari;
 
 import android.Manifest;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.aspirepublicschool.gyanmanjari.ConfirmAddress;
-import com.aspirepublicschool.gyanmanjari.R;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
+import com.aspirepublicschool.gyanmanjari.NewRegister.Address.AddressActivity;
+import com.aspirepublicschool.gyanmanjari.NewRegister.Address.AddressConfirmAddress;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -29,18 +32,30 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class GMapLocationActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class GMapLocationActivity extends AppCompatActivity implements OnMapReadyCallback , AddressConfirmAddress.OnInputListener {
 
     private GoogleMap mMap;
     Button btn;
     String status;
     private final static int PLACE_PICKER_REQUEST = 999;
     private final static int LOCATION_REQUEST_CODE = 23;
+    public String finalAddress;
+
+    @Override
+    public void sendInput(String input)
+    {
+        finalAddress = input;
+        startActivity(new Intent(getApplicationContext(), AddressActivity.class).
+                putExtra("address", finalAddress).
+                setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gmap_location);
+
+        getSupportActionBar().hide();
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -49,6 +64,7 @@ public class GMapLocationActivity extends AppCompatActivity implements OnMapRead
         ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_REQUEST_CODE);
 
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -100,7 +116,6 @@ public class GMapLocationActivity extends AppCompatActivity implements OnMapRead
                 } else {
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
-                    Toast.makeText(getApplicationContext(), "Enable Location First", Toast.LENGTH_SHORT).show();
                 }
                 return;
             }
@@ -135,16 +150,32 @@ public class GMapLocationActivity extends AppCompatActivity implements OnMapRead
                 ft.remove(prev);
             }
             ft.addToBackStack(null);
+
+//            DialogFragment dialogFragment = new AddressConfirmAddress();
+//
+//            Bundle args = new Bundle();
+//            args.putDouble("lat", latLng.latitude);
+//            args.putDouble("long", latLng.longitude);
+//            args.putString("city", city);
+//            args.putString("pin", postalCode);
+//            args.putString("state", state);
+//            args.putString("address", address);
+//            dialogFragment.setArguments(args);
+//            dialogFragment.show(ft, "dialog");
+//            return address;
+
+//            }else{
             DialogFragment dialogFragment = new AddressConfirmAddress();
 
             Bundle args = new Bundle();
             args.putDouble("lat", latLng.latitude);
             args.putDouble("long", latLng.longitude);
-            args.putString("status", status);
             args.putString("address", address);
             dialogFragment.setArguments(args);
             dialogFragment.show(ft, "dialog");
             return address;
+//            }
+
         } catch (IOException e) {
             e.printStackTrace();
             return "No Address Found";
@@ -153,5 +184,4 @@ public class GMapLocationActivity extends AppCompatActivity implements OnMapRead
 
 
     }
-
 }
