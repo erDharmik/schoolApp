@@ -72,7 +72,7 @@ public class AddressConfirmAddress extends DialogFragment implements
     MapFragment mapFragment;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.custom_confirm_address, container, false);
+        View v = inflater.inflate(R.layout.address_custom_confirm_address, container, false);
 //        myAddress=(TextView)v.findViewById(R.id.editTextAddress);
         myAddress=(EditText)v.findViewById(R.id.editTextAddress);
         SelectBtn=(Button) v.findViewById(R.id.Select);

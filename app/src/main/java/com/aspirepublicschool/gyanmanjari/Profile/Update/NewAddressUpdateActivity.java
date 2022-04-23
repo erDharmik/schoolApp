@@ -26,11 +26,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.aspirepublicschool.gyanmanjari.Common;
-import com.aspirepublicschool.gyanmanjari.GmapActivity;
-import com.aspirepublicschool.gyanmanjari.MainActivity;
-import com.aspirepublicschool.gyanmanjari.NewRegister.Address.AddressActivity;
 import com.aspirepublicschool.gyanmanjari.GMapLocationActivity;
-import com.aspirepublicschool.gyanmanjari.PolicyDashboard.PolicyDashboardMainActivity;
+import com.aspirepublicschool.gyanmanjari.MainActivity;
 import com.aspirepublicschool.gyanmanjari.Profile.ProfileMainActivity;
 import com.aspirepublicschool.gyanmanjari.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -48,7 +45,8 @@ public class NewAddressUpdateActivity extends AppCompatActivity {
 
 
     Spinner cityEdit;
-    Spinner stateEdit, landmarkEdit;
+    Spinner stateEdit;
+    EditText landmarkEdit;
     EditText pinEdit, addressEdit;
     String address, city, pin, state,templandmark, landmark,number, latitude, longitude;
     ImageView locationImg;
@@ -97,6 +95,7 @@ public class NewAddressUpdateActivity extends AppCompatActivity {
         changeLocation = findViewById(R.id.changeLocation);
         lnrAddress = findViewById(R.id.lnrAddress);
 
+        landmarkEdit.setText(templandmark);
         landmarkEdit.setEnabled(false);
 
 //        landmarkEdit.setOnClickListener(new View.OnClickListener() {
@@ -143,7 +142,7 @@ public class NewAddressUpdateActivity extends AppCompatActivity {
         cityEdit.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                landmarkFilter();
+//                landmarkFilter();
             }
 
             @Override
@@ -192,7 +191,7 @@ public class NewAddressUpdateActivity extends AppCompatActivity {
                 data.put("pin", pinEdit.getText().toString().trim());
                 data.put("state", stateEdit.getSelectedItem().toString());
                 data.put("city", cityEdit.getSelectedItem().toString());
-                data.put("landmark", landmarkEdit.getSelectedItem().toString());
+                data.put("landmark", landmarkEdit.getText().toString());
                 data.put("number", number);
                 return data;
             }
@@ -202,65 +201,11 @@ public class NewAddressUpdateActivity extends AppCompatActivity {
 
     }
 
-    private void landmarkFilter() {
-        String Webserviceurl= Common.GetWebServiceURL()+"landmarkFilter.php";
-        //String Webserviceurl= "https://www.zocarro.net/zocarro_mobile_app/ws/"+"gethwid.php";
-        Request request=new StringRequest(StringRequest.Method.POST,Webserviceurl, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    Log.d("$$$", response);
-                    landmarkList.clear();
-                    JSONArray array=new JSONArray(response);
-
-                    String error=array.getJSONObject(0).getString("error");
-
-                    if(error.equals("no error")) {
-                        int total = array.getJSONObject(1).getInt("total");
-                        if (total != 0) {
-                            for (int i = 2; i < array.length(); i++) {
-                                JSONObject object = array.getJSONObject(i);
-                                landmarkList.add(object.getString("landmark"));
-                            }
-
-                            landmarkEdit.setAdapter(new ArrayAdapter<String>(NewAddressUpdateActivity.this, android.R.layout.simple_spinner_dropdown_item, landmarkList));
-
-                            int position = landmarkList.indexOf(templandmark);
-                            landmarkEdit.setSelection(position);
-
-                        }
-                    }else{
-                        Toast.makeText(getApplicationContext(), R.string.no_connection_toast, Toast.LENGTH_SHORT).show();
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), R.string.no_connection_toast, Toast.LENGTH_SHORT).show();
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> data=new HashMap<>();
-                data.put("state", stateEdit.getSelectedItem().toString());
-                data.put("city", cityEdit.getSelectedItem().toString());
-                return data;
-            }
-        };
-        request.setRetryPolicy(new DefaultRetryPolicy(2000,3,1));
-        Volley.newRequestQueue(NewAddressUpdateActivity.this).add(request);
-
-    }
 
     private void updateInfo() {
 
         final String addressfinal = addressEdit.getText().toString().trim();
-        final String landmarkfinal = landmarkEdit.getSelectedItem().toString();
+        final String landmarkfinal = landmarkEdit.getText().toString();
         final String cityfinal = cityEdit.getSelectedItem().toString().trim();
         final String statefinal = stateEdit.getSelectedItem().toString();
         final String pinfinal = pinEdit.getText().toString().trim();
@@ -281,7 +226,7 @@ public class NewAddressUpdateActivity extends AppCompatActivity {
                 cityEdit.getSelectedItem().toString().trim().equals(city) &&
                 pinEdit.getText().toString().trim().equals(pin) &&
                 stateEdit.getSelectedItem().toString().trim().equals(state) &&
-                landmarkEdit.getSelectedItem().toString().equals(landmark)){
+                landmarkEdit.getText().toString().equals(landmark)){
             Toast.makeText(getApplicationContext(), "You have no changes to made", Toast.LENGTH_SHORT).show();
         }
         else{

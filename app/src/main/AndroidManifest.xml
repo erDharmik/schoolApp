@@ -40,6 +40,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".GMapLocationActivity"
+            android:exported="false" />
+        <activity
             android:name=".Profile.Update.NewAddressUpdateActivity"
             android:exported="false" />
         <activity

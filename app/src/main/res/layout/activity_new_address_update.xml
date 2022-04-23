@@ -88,6 +88,7 @@
                     android:background="@drawable/edittext_shape"
                     android:layout_margin="10dp"
                     android:layout_gravity="center"
+                    android:padding="6dp"
                     android:minHeight="70dp"
                     android:textSize="16sp" />
 
@@ -161,7 +162,7 @@
                 app:boxStrokeWidth="2dp"
                 style="@style/Widget.AppCompat.Light.DropDownItem.Spinner">
 
-                <Spinner
+                <EditText
                     android:id="@+id/landmarkEdit"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
@@ -169,7 +170,6 @@
                     android:layout_height="40dp"
                     android:background="@drawable/edittext_shape"
                     android:layout_margin="10dp"
-                    android:hint="Landmark"
                     android:padding="6dp" />
 
             </com.google.android.material.textfield.TextInputLayout>

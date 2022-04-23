@@ -20,6 +20,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.aspirepublicschool.gyanmanjari.NewRegister.Address.AddressActivity;
 import com.aspirepublicschool.gyanmanjari.NewRegister.Address.AddressConfirmAddress;
+import com.aspirepublicschool.gyanmanjari.Profile.Update.NewAddressUpdateActivity;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -45,7 +46,7 @@ public class GMapLocationActivity extends AppCompatActivity implements OnMapRead
     public void sendInput(String input)
     {
         finalAddress = input;
-        startActivity(new Intent(getApplicationContext(), AddressActivity.class).
+        startActivity(new Intent(getApplicationContext(), NewAddressUpdateActivity.class).
                 putExtra("address", finalAddress).
                 setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
     }
@@ -165,6 +166,7 @@ public class GMapLocationActivity extends AppCompatActivity implements OnMapRead
 //            return address;
 
 //            }else{
+
             DialogFragment dialogFragment = new AddressConfirmAddress();
 
             Bundle args = new Bundle();
