@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.aspirepublicschool.gyanmanjari.uniform.ShopList">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewUniform"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <LinearLayout
+
+            android:id="@+id/SliderDots"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="horizontal" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recsub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/SliderDots"
+            android:layout_marginTop="3dp" />
+        <RelativeLayout
+            android:id="@+id/lnrdetails"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/recsub"
+            android:orientation="vertical"
+            android:padding="5dp"
+            tools:ignore="UnknownId">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recproduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="horizontal"
+                android:layout_marginTop="5dp"
+                android:nestedScrollingEnabled="false" />
+
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Top Rated"
+            android:fontFamily="@font/metropolis"
+            android:textSize="15sp"
+            android:layout_marginLeft="2dp"
+            android:textStyle="bold"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/primary_text"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fragmentadvertise"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:layout_marginTop="10dp">
+            <fragment
+                android:id="@+id/adv_fragment"
+                android:layout_weight="4"
+                android:layout_height="match_parent"
+                class="com.aspirepublicschool.gyanmanjari.uniform.AdvertiseFragmentCollabration"
+                tools:layout="@layout/fragment_advertise_fragment_collabration"
+                android:layout_width="0dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

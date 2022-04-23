@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+   <!-- <color name="colorPrimary">#F44336</color>
+    <color name="colorPrimaryDark">#D32F2F</color>
+    <color name="colorPrimaryLight">#FFCDD2</color>
+    <color name="colorAccent">#F44336</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#BDBDBD</color>
+    <color name="buttoncolor">#63C775</color>
+    <color name="heading">#E02525</color>
+    <color name="black_alpha_40">#66000000</color>-->
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#BDBDBD</color>
+    <color name="buttoncolor">#63C775</color>
+    <color name="heading">#E02525</color>
+    <color name="black_alpha_40">#66000000</color>
+    <color name="colorPrimary">#0086de</color>
+    <color name="colorAccent">#61b5ff</color>
+    <color name="colorPrimaryDark">#005aac</color>
+    <color name="secondaryColor">#0086de</color>
+    <color name="secondaryLightColor">#61b5ff</color>
+    <color name="secondaryDarkColor">#005aac</color>
+    <color name="primary_text">#000000</color>
+    <color name="secondary_text">#000000</color>
+    <color name="black">#000</color>
+ <color name="gray">#4E4545</color>
+    <color name="red">#F40606</color>
+    <color name="green">#118F02</color>
+    <color name="white">#ffffff</color>
+    <color name="my_statusbar_color">#0086de</color>
+</resources>

@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.aspirepublicschool.gyanmanjari"
+    android:versionCode="42"
+    android:versionName="5.0">
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.webkit.permission.PLUGIN" />
+    <uses-permission
+        android:name="android.permission.WRITE_SECURE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission
+        android:name="android.permission.READ_PHONE_STATE"
+        tools:node="remove" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
+    <application
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".SimpleDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NewRegister.NewTutionDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OTPVerificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PayTM.DuePaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DoubtSolving.NewChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NewSplashScreen"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".NewRegister.StudentRegActivity1"
+            android:exported="true" />
+        <activity
+            android:name=".NewFeedback.NewFeedbackActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PayTM.TestCheckSumActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InvoiceWebActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PayTM.checkSumActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NewRegister.Address.AddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NewRegister.DemoRequestDashboard.demoActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PolicyDashboard.PolicyDashboardMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NewRegister.NewTimePrefActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GmapActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NewLogin.StudentLoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Profile.Update.TutionDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Profile.Update.PersonalDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Profile.Update.AddressUpdateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EmptyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CreateNewPassword"
+            android:exported="false" />
+        <activity
+            android:name=".OTPLogin"
+            android:exported="false" />
+        <activity
+            android:name=".Profile.ProfileMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".NewRegister.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".NewRegister.PrefFacultyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NewRegister.PrefSubjectActivityArts"
+            android:exported="false" />
+        <activity
+            android:name=".NewRegister.PrefSubjectActivityCommerce"
+            android:exported="false" />
+        <activity
+            android:name=".NewRegister.PrefSubjectActivityScience"
+            android:exported="false" />
+        <activity
+            android:name=".NewRegister.PrefTimeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NewRegister.PrefSubjectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NewRegister.TuitionDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NewRegister.StudentRegOtpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="true" />
+        <activity
+            android:name=".OfflineTestResult.OfflineTestResultActivity"
+            android:label="Offline Test Result Display" />
+        <activity android:name=".NewTest.NewTestTab" />
+        <activity android:name=".NewTest.NewTestDescription" />
+        <activity
+            android:name=".NewTest.ViewNewTestToday"
+            android:label="Online/Offline Test"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".internet.TransparentActivity" />
+        <activity
+            android:name=".WRT_Test.WRTResult"
+            android:label="WRT Result"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ImageToPdf.ImagePDFActivity"
+            android:label="Image to pdf"
+            android:parentActivityName=".Homework.HomeworkActivity" />
+        <activity
+            android:name=".ImageToPdf.ImageToPdf"
+            android:label="ImageToPdf"
+            android:parentActivityName=".Homework.HomeworkActivity" />
+        <activity
+            android:name=".VerifyAccount"
+            android:label="Verify Your Account" />
+        <!--
+          <receiver android:name="com.zocarro.gyanmanjari.TimeChangedReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.TIME_SET"/>
+                <action android:name="android.intent.action.DATE_CHANGED"/>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        -->
+        <activity
+            android:name=".WRT_Test.WRT_TEST"
+            android:label="WRT TEST"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".WRT_Test.SubmitTestPdf"
+            android:label="Submit Test PDF"
+            android:parentActivityName=".WRT_Test.WRT_TEST" />
+        <activity
+            android:name=".Test.NEET.Neet"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Test.JEE.Jee"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Homework.InsertImageHomework"
+            android:label="Submit Homework"
+            android:parentActivityName=".Homework.HomeworkActivity" />
+        <activity
+            android:name=".Test.NEET.Biology"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".Test.NEET.NeetTest"
+            android:label="NEET Test" />
+        <activity
+            android:name=".Test.JEE.Maths"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".Test.NEET.Chemistry"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".Test.NEET.Physics"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".Test.JEE.Chemistry"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".Test.JEE.Physics"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".Test.JEE.JeeTest"
+            android:label="JEE Test" />
+        <activity
+            android:name=".Doubt.DoubtTopics"
+            android:label="Subjectwise Doubts"
+            android:parentActivityName=".Doubt.DoubtSubject" />
+        <activity
+            android:name=".Doubt.DoubtSubject"
+            android:label="Doubt Solving"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".DoubtSolving.ChatActivity"
+            android:parentActivityName=".DoubtSolving.ChatDoubt" />
+        <activity
+            android:name=".DoubtSolving.ChatDoubt"
+            android:label="Doubt Solving"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".StudyMaterialView"
+            android:label="Study Material"
+            android:parentActivityName=".HomeWorkAssignment" />
+        <activity
+            android:name=".Result.ViewTestAnswer"
+            android:label="View Answer"
+            android:parentActivityName=".Result.ClassResult" />
+        <activity
+            android:name=".Test.TestActivity"
+            android:label="Test"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Test.TestWeb"
+            android:label="Test"
+            android:parentActivityName=".Test.ViewTestToday" />
+        <activity
+            android:name=".Test.DownloadTestKey"
+            android:label="Downlaod Test Key"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".Test.TestTabbedActivity" />
+
+        <meta-data
+            android:name="android.webkit.WebView.EnableSafeBrowsing"
+            android:value="false" />
+
+        <activity android:name=".Test.TestWebview" />
+        <activity
+            android:name=".Test.TestPdfWise"
+            android:label="Test/Key"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Test.TestDescription"
+            android:label="Test Description"
+            android:parentActivityName=".Test.ViewTestToday" />
+        <activity
+            android:name=".Result.ClassResult"
+            android:label="Test Result"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Test.TestTine"
+            android:label="Test/Key" />
+        <activity
+            android:name=".Test.ViewTestToday"
+            android:label="Test/Key"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Homework.InsertHomeWork"
+            android:label="Submit Homework"
+            android:parentActivityName=".Homework.HomeworkActivity" />
+        <activity
+            android:name=".Homework.HomeworkActivity"
+            android:label="Homework Submission"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".DoubtSolving.UpdateDoubt"
+            android:label="Update Doubt"
+            android:parentActivityName=".DoubtSolving.DoubtSolving" />
+        <activity
+            android:name=".DoubtSolving.Insert_Doubt"
+            android:label="Insert Attachment"
+            android:parentActivityName=".DoubtSolving.DoubtSolving" />
+        <activity
+            android:name=".VideoLectures.VideoPlaying"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:parentActivityName=".VideoLectures.VideoTabbed"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".Register.RegisterActivity" />
+        <activity
+            android:name=".DoubtSolving.DoubtSolving"
+            android:label="Doubt Solving"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".VideoLectures.VideoTabbed"
+            android:label="Video Lectures"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".VideoLectures.VideoLectures"
+            android:label="Video Learning"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Stationery.ReturnReplace.ReturnedStatus"
+            android:label="Returned And Replaced Status" />
+        <activity
+            android:name=".Stationery.ReturnReplace.ReasonReplace"
+            android:label="Reaturn and Replce" />
+        <activity
+            android:name=".Stationery.ReturnReplace.ReturnedProduct"
+            android:label="Returned And Replaced Product" />
+        <activity android:name=".uniform.ReturnReplace.ReturnedStatus" />
+        <activity
+            android:name=".uniform.ReturnReplace.ReturnedProduct"
+            android:label="Returned And Replaced Product" />
+        <activity
+            android:name=".Stationery.Address"
+            android:label="Address"
+            android:parentActivityName=".Stationery.Delivery.DeliveryDetails" />
+        <activity
+            android:name=".uniform.CategorieWiseShop.CategoryDetails"
+            android:label="@string/title_activity_category_details"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".uniform.CategorieWiseShop.CategoryWiseShop"
+            android:label="Category Wise Shops"
+            android:parentActivityName=".uniform.MainActivity" />
+        <activity
+            android:name=".Stationery.Delivery.DeliveryDetails"
+            android:label="Delivery Details"
+            android:parentActivityName=".Stationery.StationeryPackage" />
+        <activity
+            android:name=".Stationery.MyOrder.OrderDetails"
+            android:label="Order Details"
+            android:parentActivityName=".Stationery.StationeryPackage" />
+        <activity android:name=".Login2" />
+        <activity android:name=".uniform.Promocode.Promocode" />
+        <activity
+            android:name=".Stationery.FullPackage"
+            android:label="Stationery"
+            android:parentActivityName=".Stationery.StationeryPackage" />
+        <activity
+            android:name=".Stationery.StationeryPackage"
+            android:label="Stationery Package"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".uniform.Delivery.PinRequestVerification" />
+        <activity
+            android:name=".Stationery.MyOrder.MyOrder"
+            android:label="My Orders"
+            android:parentActivityName=".Stationery.FullPackage" />
+        <activity
+            android:name=".UpdatePassword"
+            android:label="Change Password"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Lunch.Lunch_Activity"
+            android:label="Menu Details"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Feedback.Feedback"
+            android:label="Feedback"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Feedback.FeedbackActivity"
+            android:label="Feedback"
+            android:parentActivityName=".Feedback.Feedback" />
+        <activity
+            android:name=".uniform.Shops.AllShopDetails"
+            android:label="@string/title_activity_all_shop_details"
+            android:parentActivityName=".uniform.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".uniform.SelectShopTypes"
+            android:label="Uniform"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".uniform.Address" />
+        <activity android:name=".uniform.clothes.UniformList" />
+        <activity
+            android:name=".uniform.Cart.Cart"
+            android:label="My Cart"
+            android:parentActivityName=".uniform.SelectShopTypes" />
+        <activity
+            android:name=".uniform.MyOrder.OrderDetails"
+            android:label="Order Summary"
+            android:parentActivityName=".uniform.MyOrder.MyOrder" />
+        <activity android:name=".uniform.ReturnReplace.CancelOrder" />
+        <activity android:name=".uniform.ReturnReplace.ReasonReplace" />
+        <activity
+            android:name=".uniform.Delivery.DeliveryDetails"
+            android:label="Delivery"
+            android:parentActivityName=".uniform.SelectShopTypes" />
+        <activity android:name=".uniform.Reviews.ProductReview" />
+        <activity
+            android:name=".uniform.MyOrder.MyOrder"
+            android:label="My Orders"
+            android:parentActivityName=".uniform.SelectShopTypes" />
+        <activity
+            android:name=".uniform.clothes.ProductDetails"
+            android:label="Product Details"
+            android:parentActivityName=".uniform.Shops.ShopDetails" />
+        <activity
+            android:name=".uniform.Shops.ShopDetails"
+            android:label="@string/title_activity_shop_details"
+            android:parentActivityName=".uniform.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".uniform.ShopList"
+            android:label="Uniform"
+            android:parentActivityName=".uniform.MainActivity" />
+        <activity
+            android:name=".uniform.MainActivity"
+            android:label="Uniform"
+            android:parentActivityName=".uniform.SelectShopTypes" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".MapsActivity"
+            android:label="Transportation"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Transportation"
+            android:label="Transportation"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".AskQuery"
+            android:label="Ask Query"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".HolidayEvents"
+            android:label="Holiday"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".SplashScreen"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
+        <activity
+            android:name=".DailyTimeTable"
+            android:label="Time Table"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".HomeWorkAssignment"
+            android:label="Homework "
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Message"
+            android:label="Send Message"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Attendance_Activity"
+            android:label="Attendance"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".AcademicCalendar"
+            android:label="Academic Calendar"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".StudentProfile"
+            android:label="Student Profile"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".StaffDetails"
+            android:label="Teacher Details"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Announcement"
+            android:label="Noticeboard"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Gallery"
+            android:label="Gallery"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Payment.PayTMActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".Result_Activity"
+            android:label="Result"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ViewSentMessage"
+            android:label="Sent"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ImageContainers"
+            android:label="Gallery"
+            android:parentActivityName=".Gallery" />
+        <activity
+            android:name=".ViewMessage"
+            android:label="Inbox"
+            android:parentActivityName=".Message" />
+        <activity
+            android:name=".Fees_Activity"
+            android:label="Fees"
+            android:parentActivityName=".MainActivity" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:enabled="true"
+            android:exported="true"
+            android:stopWithTask="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/gm" />
+        <!--
+ Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+        <meta-data
+            android:name="firebase_messaging_auto_init_enabled"
+            android:value="false" />
+        <meta-data
+            android:name="firebase_analytics_collection_enabled"
+            android:value="false" />
+    </application>
+
+</manifest>

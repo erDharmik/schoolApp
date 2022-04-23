@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e2e2e2"
+    tools:context="com.aspirepublicschool.gyanmanjari.Homework.HomeworkActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/rechomework"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+    <LinearLayout
+        android:id="@+id/lnrHomework"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="200dp"
+        android:layout_marginEnd="16dp"
+        android:visibility="invisible"
+        >
+        <TextView
+            android:id="@+id/homeworkFabTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Homework"
+            android:textColor="@color/primary_text"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_gravity="center"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabHomework"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_homework"
+            android:onClick="homeworkFabClick"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lnrPdf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="100dp"
+        android:layout_marginEnd="16dp"
+        android:visibility="invisible"
+
+        >
+        <TextView
+            android:id="@+id/pdfFabTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Image to pdf"
+            android:textColor="@color/primary_text"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_gravity="center"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabPdf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_pdf"
+            android:onClick="pdfFabClick"
+            />
+
+
+    </LinearLayout>
+
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatadd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:onClick="baseFabClick"
+        android:src="@android:drawable/ic_input_add"
+        android:tint="#FFFFFF"
+        app:rippleColor="@color/colorAccent" />
+   <!-- <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatadd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:src="@android:drawable/ic_input_add"
+        android:tint="#FFFFFF"
+        app:rippleColor="@color/colorAccent"
+        tools:ignore="MissingConstraints" />-->
+
+
+</FrameLayout>

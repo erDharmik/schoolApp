@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eaeaea"
+    android:orientation="vertical"
+    tools:context="com.aspirepublicschool.gyanmanjari.StaffDetails">
+
+ <!--   <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/metropolis"
+        android:paddingLeft="10dp"
+        android:text="Teacher's Details"
+        android:textColor="@color/primary_text"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
+-->
+    <!--<androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:background="@android:color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            &lt;!&ndash;<TextView
+                android:fontFamily="@font/metropolis"
+                android:id="@+id/txtteacdetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Class Teacher's Details"
+                android:textAlignment="textStart"
+                android:textColor="@color/primary_text"
+                android:textSize="18sp" />&ndash;&gt;
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgclassteach"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+
+                android:src="@color/colorPrimary" />
+
+            <LinearLayout
+                android:id="@+id/lnrperteacher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/imgclassteach"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:weightSum="4">
+
+                &lt;!&ndash; <TextView
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_weight="2"
+                     android:fontFamily="@font/metropolis"
+                     android:text="Teacher's Name:"
+                     android:textColor="@color/primary_text"
+                     android:textSize="15sp" />&ndash;&gt;
+
+                <TextView
+                    android:id="@+id/txtteacher"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/metropolis"
+                    android:text="28/12/2019"
+                    android:textColor="@color/primary_text"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lnrpertcno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lnrperteacher"
+                android:layout_marginTop="3dp"
+                android:layout_toRightOf="@+id/imgclassteach"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:weightSum="4">
+
+                &lt;!&ndash; <TextView
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_weight="2"
+                     android:fontFamily="@font/metropolis"
+                     android:text=" Teacher's Contact:"
+                     android:textColor="@color/primary_text"
+                     android:textSize="15sp" />&ndash;&gt;
+
+              &lt;!&ndash;  <TextView
+                    android:id="@+id/txttcno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:drawableRight="@drawable/ic_call"
+                    android:fontFamily="@font/metropolis"
+                    android:text="1234567890"
+                    android:textSize="12sp" />&ndash;&gt;
+
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="5dp"
+        android:id="@+id/recteacherdetils"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

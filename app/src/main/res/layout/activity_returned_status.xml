@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.aspirepublicschool.gyanmanjari.uniform.ReturnReplace.ReturnedStatus">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardproduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:elevation="5dp"
+        app:cardElevation="3dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgproduct"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                />
+
+            <TextView
+                android:id="@+id/txtproductname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/imgproduct"
+                android:fontFamily="@font/metropolis"
+                android:padding="10dp"
+                android:text="Product Name"
+                android:textColor="@color/primary_text"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/txtshopname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtproductname"
+                android:layout_toRightOf="@id/imgproduct"
+                android:fontFamily="@font/metropolis"
+                android:padding="10dp"
+                android:text="Shop Name"
+                android:textColor="@color/primary_text"
+                android:textSize="15sp" />
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <LinearLayout
+        android:id="@+id/lnrorder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cardproduct"
+        android:layout_marginTop="5dp"
+        android:background="@color/icons"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.3"
+                android:fontFamily="@font/metropolis"
+                android:text="Order Id :-"
+                android:textColor="@color/primary_text"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/txtorderid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:fontFamily="@font/metropolis"
+                android:text="OID4566275666"
+                android:textColor="@color/primary_text"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.3"
+                android:fontFamily="@font/metropolis"
+                android:text="Order Date :-"
+                android:textColor="@color/primary_text"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/txtorderdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:fontFamily="@font/metropolis"
+                android:text="OID4566275666"
+                android:textColor="@color/primary_text"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lnrorder"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/metropolis"
+            android:text="Status :"
+            android:textColor="@color/primary_text"
+            android:textSize="15sp" />
+
+
+        <com.vinay.stepview.VerticalStepView
+            android:id="@+id/step_view0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</RelativeLayout>

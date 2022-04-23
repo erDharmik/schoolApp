@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReturnReplace.CancelOrder">
+
+    <LinearLayout
+        android:id="@+id/lnrreturn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/metropolis"
+            android:text="Cancel Order"
+            android:textColor="@color/primary_text"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lnrreason"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lnrreturn"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/metropolis"
+            android:text="Reason for Cancel :-"
+            android:textColor="@color/primary_text"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/edtresons"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="@drawable/roundededittext"
+            android:fontFamily="@font/metropolis"
+            android:hint="Resons here"
+            android:maxLines="10"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnsumbit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lnrreason"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/rect_gradient"
+        android:fontFamily="@font/metropolis"
+        android:text="Submit"
+        android:textColor="@color/icons"
+        android:textSize="15sp" />
+
+</RelativeLayout>

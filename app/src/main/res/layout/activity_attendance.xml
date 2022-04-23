@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.aspirepublicschool.gyanmanjari.Attendance_Activity">
+
+    <!--<CalendarView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></CalendarView>-->
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/vvv">
+
+        <sun.bob.mcalendarview.MCalendarView
+            android:id="@+id/attendance_calender"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:background="@color/icons"></sun.bob.mcalendarview.MCalendarView>
+
+    </LinearLayout>
+    <!--    <com.applandeo.materialcalendarview.CalendarView
+            android:id="@+id/attendance_calender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </com.applandeo.materialcalendarview.CalendarView>-->
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/txt_present"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/circle_green"
+            android:fontFamily="@font/metropolis"
+            android:text="Present"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"></TextView>
+
+        <TextView
+            android:id="@+id/txt_absent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_present"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/circle_red"
+            android:fontFamily="@font/metropolis"
+            android:text="Absent"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"></TextView>
+    </LinearLayout>
+    <!-- <Button
+         android:layout_marginTop="20dp"
+         android:layout_centerHorizontal="true"
+         android:layout_below="@+id/linearLayout"
+         android:textColor="@color/icons"
+         android:id="@+id/btn_attendance_report"
+         android:layout_width="match_parent"
+         android:background="@color/blue"
+         android:text="View Report"
+         android:layout_height="wrap_content"></Button>-->
+    <!-- <com.github.mikephil.charting.charts.PieChart
+         android:id="@+id/piechart"
+         android:layout_below="@+id/linearLayout"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
+     </com.github.mikephil.charting.charts.PieChart>-->
+
+</RelativeLayout>

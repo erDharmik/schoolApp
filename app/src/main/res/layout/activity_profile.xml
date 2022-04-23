@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewRegister.ProfileActivity"
+    android:orientation="vertical">
+
+    <com.google.android.material.tabs.TabLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:tabMode="scrollable">
+
+        <com.google.android.material.tabs.TabItem
+            android:text="Personal Details"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:text="Contact"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:text="Address"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:text="Tution Details"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:text="Faculty Details"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"/>
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

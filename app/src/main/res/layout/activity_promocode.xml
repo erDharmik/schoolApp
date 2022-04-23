@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.aspirepublicschool.gyanmanjari.uniform.Promocode.Promocode">
+
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_cancel_black_24dp" />
+
+
+    <!--<LinearLayout
+        android:id="@+id/lip"
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10">
+
+
+        <EditText
+            android:id="@+id/promocode_here"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:textSize="15sp"
+            android:fontFamily="@font/metropolis"
+            android:hint="Have a promocode? Enter here"
+            android:paddingTop="23dp" />
+
+        <Button
+            android:id="@+id/btnapplypromo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="3"
+            android:background="@drawable/border"
+            android:text="apply"
+            android:textSize="15sp"
+            android:fontFamily="@font/metropolis"
+            android:textColor="@color/colorPrimaryDark" />
+    </LinearLayout>-->
+
+    <!--  <TextView
+          android:id="@+id/applypromocode"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/lip"
+          android:layout_alignEnd="@id/lip"
+          android:textSize="15sp"
+          android:fontFamily="@font/metropolis"
+          android:text="Applied Successfully"
+          android:visibility="gone"
+          android:textColor="@android:color/holo_green_dark" />-->
+
+    <TextView
+        android:id="@+id/choosefrombelow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/close"
+        android:background="#48858282"
+        android:fontFamily="@font/metropolis"
+        android:padding="15dp"
+        android:paddingStart="23dp"
+        android:text="Choose from the offers below"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+
+        android:id="@+id/promocodelist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/choosefrombelow">
+
+    </androidx.recyclerview.widget.RecyclerView>
+</RelativeLayout>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.aspirepublicschool.gyanmanjari.uniform.CategorieWiseShop.CategoryDetails"
+    tools:showIn="@layout/activity_category_details">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/lnrcard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:minHeight="50dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txtcontact"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:fontFamily="@font/metropolis"
+                            android:padding="10dp"
+                            android:text="Contact Number"
+                            android:textColor="@color/secondary_text"
+                            android:textSize="12sp" />
+
+                        <!--  <TextView
+
+                              android:id="@+id/txtshopname"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_weight="2"
+                              android:fontFamily="@font/robotoo"
+                              android:padding="15dp"
+                              android:text="Shop Name"
+                              android:textColor="@color/primary_text"
+                              android:textSize="15sp" />-->
+
+
+                        <LinearLayout
+                            android:layout_width="20dp"
+                            android:layout_height="33dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="7dp"
+                            android:layout_marginBottom="7dp"
+                            android:layout_weight="2"
+                            android:background="#2E7D32"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/rating_shop"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="7dp"
+                                android:background="@drawable/rating"
+                                android:src="@drawable/ic_star" />
+
+                            <TextView
+                                android:id="@+id/total_rating"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="9dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginBottom="7dp"
+                                android:layout_toRightOf="@id/rating_shop"
+                                android:maxLength="3"
+                                android:text="3.5"
+                                android:textColor="#ffffff"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <!--<View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_below="@+id/lnrcard" />
+-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recproduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <!--  <com.google.android.material.card.MaterialCardView
+
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="2"
+                  android:minHeight="80dp">
+
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:weightSum="4">
+
+                      <LinearLayout
+                          android:padding="10dp"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="2"
+                          android:weightSum="2">
+
+                          <TextView
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_weight="1"
+                              android:fontFamily="@font/robotoo"
+                              android:text="Cart:-"
+                              android:textAlignment="textEnd"
+                              android:textColor="@color/primary_text"
+                              android:textSize="15sp" />
+
+                          <TextView
+                              android:id="@+id/txtcartcount"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_weight="1"
+                              android:fontFamily="@font/robotoo"
+                              android:text="1"
+                              android:textAlignment="textStart"
+                              android:textColor="@color/primary_text"
+                              android:textSize="15sp" />
+
+                      </LinearLayout>
+
+                      <LinearLayout
+                          android:padding="10dp"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="2"
+                          android:orientation="horizontal"
+                          android:weightSum="4">
+
+                          <TextView
+                              android:layout_width="20dp"
+                              android:layout_height="20dp"
+                              android:layout_weight="3"
+                              android:fontFamily="@font/robotoo"
+                              android:text="Total:-"
+                              android:textColor="@color/primary_text"
+                              android:textSize="15sp" />
+
+                          <TextView
+                              android:id="@+id/txtamount"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_weight="1"
+                              android:fontFamily="@font/robotoo"
+                              android:text="2000"
+                              android:textColor="@color/primary_text"
+                              android:textSize="15sp" />
+                      </LinearLayout>
+
+
+                  </LinearLayout>
+
+
+              </com.google.android.material.card.MaterialCardView>-->
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>

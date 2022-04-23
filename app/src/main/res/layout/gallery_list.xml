@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="5dp"
+    android:paddingVertical="5dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/imgcategory"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:scaleType="fitXY" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/imgcategory"
+                android:layout_alignParentLeft="true"
+                android:orientation="vertical"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:id="@+id/lblcategorytitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:fontFamily="@font/metropolis"
+                    android:gravity="center"
+                    android:shadowColor="@color/colorPrimary"
+                    android:shadowDx="3"
+                    android:shadowDy="3"
+                    android:shadowRadius="6"
+                    android:text="Styling Android"
+                    android:textColor="@color/icons"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtedate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:fontFamily="@font/opensans"
+                    android:gravity="center"
+                    android:shadowColor="@color/colorPrimary"
+                    android:shadowDx="3"
+                    android:shadowDy="3"
+                    android:shadowRadius="6"
+                    android:text="25/12/2015"
+                    android:textColor="@color/icons"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

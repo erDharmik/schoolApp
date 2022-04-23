@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.aspirepublicschool.gyanmanjari.MondayFragment">
+    <!-- <LinearLayout
+         android:id="@+id/linear"
+         android:background="@drawable/squar_background"
+         android:weightSum="3"
+         android:orientation="horizontal"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content">
+         <LinearLayout
+             android:padding="10dp"
+             android:layout_weight="1"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+         <TextView
+             android:textSize="15sp"
+             android:textColor="@color/primary_text"
+             android:text="Time"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"></TextView>
+         </LinearLayout>
+         <LinearLayout
+             android:layout_weight="1"
+             android:padding="10dp"
+             android:background="@drawable/squar_background"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+         <TextView
+             android:textColor="@color/primary_text"
+             android:textSize="15sp"
+             android:text="Subject"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"></TextView>
+         </LinearLayout>
+         <LinearLayout
+             android:layout_weight="1"
+             android:padding="10dp"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+         <TextView
+             android:textColor="@color/primary_text"
+             android:textSize="15sp"
+             android:text="Teacher Name"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"></TextView>
+         </LinearLayout>
+     </LinearLayout>-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linear"></androidx.recyclerview.widget.RecyclerView>
+
+</RelativeLayout>

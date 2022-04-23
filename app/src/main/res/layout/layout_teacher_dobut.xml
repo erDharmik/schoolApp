@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/relteacher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+
+        <!--<de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgclassteach"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+
+            android:src="@color/colorPrimary" />-->
+
+        <LinearLayout
+            android:id="@+id/lnrperteacher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@+id/imgclassteach"
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+
+            <TextView
+                android:id="@+id/txtteacher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:fontFamily="@font/metropolis"
+                android:text="28/12/2019"
+                android:textColor="@color/primary_text"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+       <!-- <LinearLayout
+            android:id="@+id/lnricons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lnrperteacher"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/imgclassteach"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+
+            <ImageView
+                android:id="@+id/imgsend"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_attachment" />
+
+            <ImageView
+                android:id="@+id/imgview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_book" />
+            <ImageView
+                android:id="@+id/imgchat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_copy" />
+            <ImageView
+                android:id="@+id/imgcall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_call" />
+
+
+        </LinearLayout>-->
+    </RelativeLayout>
+
+</RelativeLayout>

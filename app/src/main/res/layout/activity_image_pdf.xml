@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ImageToPdf.ImagePDFActivity">
+    <GridView
+        android:id="@+id/gv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:numColumns="3"></GridView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="4"
+        android:layout_below="@+id/gv"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnchoose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textColor="@color/icons"
+            android:background="@color/colorPrimaryDark"
+            android:layout_marginRight="20dp"
+            android:textSize="15sp"
+            android:text="Choose Image" />
+
+        <Button
+            android:id="@+id/btncreate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/metropolis"
+            android:textColor="@color/icons"
+            android:layout_marginLeft="20dp"
+            android:background="@color/colorPrimaryDark"
+            android:textSize="15sp"
+            android:layout_weight="2"
+            android:text="create Pdf" />
+    </LinearLayout>
+
+</LinearLayout>

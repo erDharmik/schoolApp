@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OTPLogin">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/registration">
+
+        <LinearLayout
+            android:id="@+id/imgView"
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            android:gravity="bottom|center_horizontal">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/logo" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@+id/imgView">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Log In"
+                android:textSize="23sp"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_below="@+id/name"
+            android:layout_marginTop="30dp">
+
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/ccp"
+                android:layout_width="0dp"
+                android:layout_weight=".3"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                app:ccp_autoDetectCountry="true"
+                app:ccp_showNameCode="true"
+                tools:ccp_contentColor="#fcfdfd"
+                tools:ccp_textSize="20dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/autotxt"
+                android:layout_width="0dp"
+                android:layout_weight="1.7"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/editTextMobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:hint="Enter Registered Mobile Number"
+                    android:maxLines="1"
+                    android:layout_marginRight="10dp"
+                    android:inputType="number"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnCont"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lnr"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/edittext_shape"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Continue"
+            android:textColor="@color/white" />
+
+        <LinearLayout
+            android:layout_marginTop="200dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_below="@id/btnCont">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textAlignment="textEnd"
+                android:padding="5dp"
+                android:layout_marginLeft="3dp"
+                android:fontFamily="@font/metropolis"
+                android:textColor="@color/primary_text"
+                android:text=" New Student?."
+                android:gravity="end" />
+
+            <TextView
+                android:id="@+id/txtsignin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:padding="7dp"
+                android:fontFamily="@font/metropolis"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="Register Here"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

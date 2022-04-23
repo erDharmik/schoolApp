@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardtest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:elevation="10dp"
+        app:cardCornerRadius="5dp"
+        app:cardMaxElevation="3dp"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:id="@+id/relassignment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--<LinearLayout
+                android:id="@+id/lnrtype"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:weightSum="4">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/metropolis"
+                    android:text="Test Type:"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txttype"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/metropolis"
+                    android:text=""
+                    android:textAlignment="textStart"
+                    android:textSize="15sp" />
+
+
+
+
+            </LinearLayout>-->
+
+            <LinearLayout
+                android:id="@+id/lnrsubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:weightSum="4">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/metropolis"
+                    android:text="Subject:"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtsub"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/metropolis"
+                    android:text=""
+                    android:textAlignment="textStart"
+                    android:textSize="15sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lnrdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lnrsubtitle"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:weightSum="4">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/metropolis"
+                    android:text="Date:"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtdate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/metropolis"
+                    android:text=" -"
+                    android:textSize="15sp" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/lnrLink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lnrdate"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:weightSum="4">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/metropolis"
+                    android:text="Start Time"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtstime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:clickable="true"
+                    android:fontFamily="@font/metropolis"
+                    android:text=""
+                    android:textAlignment="textStart"
+                    android:textColorLink="@color/primary_text"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lnrend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lnrLink"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:weightSum="4">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/metropolis"
+                    android:text="End Time:"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtetime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:clickable="true"
+                    android:fontFamily="@font/metropolis"
+                    android:text=""
+                    android:textAlignment="textStart"
+                    android:textColorLink="@color/primary_text"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lnrtotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lnrend"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:weightSum="4">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/metropolis"
+                    android:text="Total Mark:"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txttotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:clickable="true"
+                    android:fontFamily="@font/metropolis"
+                    android:text=""
+                    android:textAlignment="textStart"
+                    android:textColorLink="@color/primary_text"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+              <LinearLayout
+                  android:id="@+id/lnrobtained"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@id/lnrtotal"
+                  android:orientation="horizontal"
+                  android:padding="5dp"
+                  android:weightSum="4">
+
+                  <TextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="2"
+                      android:fontFamily="@font/metropolis"
+                      android:text="Obtained Mark:"
+                      android:textColor="@color/colorPrimaryDark"
+                      android:textSize="15sp"
+                      android:textStyle="bold" />
+
+                  <TextView
+                      android:id="@+id/txtobtainmark"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="2"
+                      android:fontFamily="@font/metropolis"
+                      android:text=""
+                      android:textAlignment="textStart"
+                      android:textColorLink="@color/primary_text"
+                      android:textSize="15sp" />
+
+              </LinearLayout>
+              <LinearLayout
+                 android:id="@+id/lnrremarks"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_below="@+id/lnrobtained"
+                 android:orientation="horizontal"
+                 android:padding="5dp"
+                 android:weightSum="4">
+
+                 <TextView
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_weight="2"
+                     android:fontFamily="@font/metropolis"
+                     android:text="Remark:"
+                     android:textColor="@color/colorPrimaryDark"
+                     android:textSize="15sp"
+                     android:textStyle="bold" />
+
+                 <TextView
+                     android:id="@+id/txtremark"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_weight="2"
+                     android:textColorLink="@color/primary_text"
+                     android:fontFamily="@font/metropolis"
+                     android:text=""
+                     android:textAlignment="textStart"
+                     android:textSize="15sp" />
+
+             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lnrpos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lnrremarks"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:weightSum="4">
+
+                <Button
+                    android:id="@+id/btndownload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@drawable/rect_gradient"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/metropolis"
+                    android:text="Solution Paper"
+                    android:textColor="@color/icons" />
+
+                <Button
+                    android:id="@+id/btnattempt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@drawable/rect_gradient"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/metropolis"
+                    android:text="Checked Paper"
+                    android:textColor="@color/icons" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

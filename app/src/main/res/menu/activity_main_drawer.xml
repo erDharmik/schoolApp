@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_video"
+            android:icon="@drawable/ic_elearning"
+            android:title="Video Lecture" />
+
+        <item
+            android:id="@+id/nav_doubt"
+            android:icon="@drawable/ic_question"
+            android:title="Doubt Solving Material" />
+        <item
+            android:id="@+id/nav_homework"
+            android:icon="@drawable/ic_homework"
+            android:title="Homework and Study material" />
+        <item
+            android:id="@+id/nav_submission"
+            android:icon="@drawable/ic_feedback"
+            android:title="Homework Submission" />
+        <item
+            android:id="@+id/nav_chat"
+            android:icon="@drawable/ic_chat_desktop"
+            android:title="Doubt Solving using Chat " />
+        <item
+            android:id="@+id/nav_noticeboard"
+            android:icon="@drawable/notice"
+            android:title="Notice" />
+        <item
+            android:id="@+id/nav_timetable"
+            android:icon="@drawable/ic_schedule"
+            android:title="TimeTable" />
+        <item
+            android:id="@+id/nav_staff"
+            android:icon="@drawable/ic_staff"
+            android:title="Teacher Deatils" />
+
+        <item
+            android:id="@+id/nav_test"
+            android:icon="@drawable/ic_question"
+            android:title="Test/Key" />
+        <item
+            android:id="@+id/nav_wrt"
+            android:icon="@drawable/ic_question"
+            android:title="WRT Test" />
+        <item
+            android:id="@+id/nav_exam"
+            android:icon="@drawable/ic_exam"
+            android:title="Result" />
+        <item
+            android:id="@+id/nav_wrtresult"
+            android:icon="@drawable/ic_exam"
+            android:title="WRT Result" />
+
+        <item
+            android:id="@+id/nav_newtest"
+            android:icon="@drawable/ic_question"
+            android:title="New Test" />
+
+    </group>
+
+
+</menu>

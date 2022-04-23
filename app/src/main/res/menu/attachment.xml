@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/nav_attachment"
+        app:showAsAction="always"
+        android:orderInCategory="100"
+        android:title="Add Attachment"
+        android:icon="@drawable/ic_clip"
+        />
+    <item android:id="@+id/nav_addattach"
+        app:showAsAction="always"
+        android:orderInCategory="100"
+        android:title="Send Attachment"
+        android:icon="@drawable/ic_book"
+        />
+    <item android:id="@+id/nav_call"
+        app:showAsAction="always"
+        android:orderInCategory="101"
+        android:title="call"
+        android:icon="@drawable/ic_call"
+        />
+
+</menu>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/icons"
+        android:elevation="5dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="3dp">
+
+        <RelativeLayout
+            android:id="@+id/relcart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgproduct"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+               />
+
+            <TextView
+                android:id="@+id/txtproductname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/imgproduct"
+                android:fontFamily="@font/metropolis"
+                android:text="Product Name"
+                android:textAlignment="center"
+                android:textColor="@color/primary_text"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/txtshopname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtproductname"
+                android:layout_toRightOf="@id/imgproduct"
+                android:fontFamily="@font/metropolis"
+                android:text="Shop name"
+                android:textAlignment="center"
+                android:textColor="@color/secondary_text"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/imgdelete"
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtshopname"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="214dp"
+                android:layout_toRightOf="@id/imgproduct"
+                android:src="@drawable/ic_delete_black_24dp" />
+
+            <LinearLayout
+                android:id="@+id/lnrqty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imgproduct"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:weightSum="4">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/metropolis"
+                    android:text="Quantity :-"
+                    android:textColor="@color/primary_text"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="130dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="2"
+                    android:background="@android:color/white"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <!--<Button
+
+                        android:id="@+id/decrement"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimary"
+                        android:padding="0dp"
+                        android:text="—"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold" />-->
+
+                    <TextView
+                        android:id="@+id/display"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:drawableRight="@drawable/ic_edit_black_24dp"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:text="1"
+                        android:textColor="@android:color/black" />
+
+                    <!-- <Button
+                         android:id="@+id/increment"
+                         android:layout_width="0dp"
+                         android:layout_height="match_parent"
+                         android:layout_weight="1"
+                         android:background="@color/colorPrimary"
+                         android:padding="0dp"
+                         android:text="+"
+                         android:textColor="@android:color/white"
+                         android:textSize="25sp" />-->
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lnrsize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lnrqty"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.2"
+                    android:fontFamily="@font/metropolis"
+                    android:text="Size :-"
+                    android:textColor="@color/primary_text"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtsize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.8"
+                    android:fontFamily="@font/metropolis"
+                    android:text="S"
+                    android:textColor="@color/primary_text"
+                    android:textSize="15sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lnramount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lnrsize"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.2"
+                    android:fontFamily="@font/metropolis"
+                    android:text="Amount :-"
+                    android:textColor="@color/primary_text"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtprice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.8"
+                    android:fontFamily="@font/metropolis"
+                    android:text="2000rs"
+                    android:textColor="@color/primary_text"
+                    android:textSize="15sp" />
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

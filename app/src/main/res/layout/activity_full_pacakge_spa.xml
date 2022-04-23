@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/relprostat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgproductpak"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+               />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4"
+                android:layout_toRightOf="@id/imgproductpak">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:id="@+id/lnrpackageproduct"
+               >
+
+            <TextView
+                android:id="@+id/txtproductpkg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/imgproductpak"
+                android:fontFamily="@font/metropolis"
+                android:padding="10dp"
+                android:text="Product Name"
+                android:textColor="@color/primary_text"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtproductpkg"
+                    android:layout_toRightOf="@id/imgproductpak"
+                    android:orientation="horizontal"
+                    android:layout_weight="4">
+
+                    <TextView
+                        android:id="@+id/txtpricepkg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/metropolis"
+                        android:padding="10dp"
+                        android:layout_weight="2"
+                        android:text="000"
+                        android:textColor="@color/secondary_text"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/txtoripricepkg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/txtproductpkg"
+                        android:layout_toRightOf="@id/imgproductpak"
+                        android:fontFamily="@font/metropolis"
+                        android:layout_weight="2"
+                        android:padding="10dp"
+                        android:text="000"
+                        android:textColor="@color/secondary_text"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtproductpkg"
+                    android:layout_toRightOf="@id/imgproductpak"
+                    android:orientation="horizontal"
+                    android:layout_weight="3">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/metropolis"
+                        android:padding="10dp"
+                        android:layout_weight="1.5"
+                        android:text="Quantity:-"
+                        android:textColor="@color/secondary_text"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/txtqty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/txtproductpkg"
+                        android:layout_toRightOf="@id/imgproductpak"
+                        android:fontFamily="@font/metropolis"
+                        android:layout_weight="1.5"
+                        android:padding="10dp"
+                        android:text="000"
+                        android:textColor="@color/secondary_text"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:layout_gravity="center"
+                android:id="@+id/chkbuy"
+                android:checked="false"
+                android:layout_toRightOf="@id/lnrpackageproduct"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

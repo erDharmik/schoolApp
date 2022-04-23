@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".NewTest.WrittenTestFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/wrttoolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:titleTextColor="#FFFFFF">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+<!--                <Button-->
+<!--                    android:id="@+id/wrttoolbar_overflow_abort_button"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="2"-->
+<!--                    android:background="@drawable/rect_gradient"-->
+<!--                    android:fontFamily="@font/metropolis"-->
+<!--                    android:text="Abort Test"-->
+<!--                    android:textColor="@color/icons" />-->
+
+                <Button
+                    android:id="@+id/wrttoolbar_overflow_menu_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@drawable/rect_gradient"
+                    android:fontFamily="@font/metropolis"
+                    android:text="Submit Test"
+                    android:textColor="@color/icons" />
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/wrtcardtest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            app:cardMaxElevation="3dp"
+            app:cardElevation="5dp"
+            android:padding="5dp"
+            android:layout_below="@id/wrttoolbar">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:id="@+id/wrtlnrsubjects"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:textColor="@color/primary_text"
+                        android:fontFamily="@font/metropolis"
+                        android:textSize="15sp"
+                        android:text="Subject" />
+
+                    <TextView
+                        android:id="@+id/wrttxtsub"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/metropolis"
+                        android:text="0"
+                        android:textColor="@color/primary_text"
+                        android:textSize="15sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/wrtlnrtotalquestion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/wrtlnrsubjects"
+                    android:orientation="horizontal"
+                    android:weightSum="4">
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:weightSum="4">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:textColor="@color/primary_text"
+                            android:fontFamily="@font/metropolis"
+                            android:textSize="15sp"
+                            android:text="Total  Question:" />
+
+                        <LinearLayout
+                            android:id="@+id/wrtlnrquestion"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:orientation="horizontal"
+                            android:weightSum="4">
+
+                            <TextView
+                                android:id="@+id/wrttxtquestion"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3.5"
+                                android:fontFamily="@font/metropolis"
+                                android:text="0"
+                                android:textColor="@color/primary_text"
+                                android:textSize="15sp" />
+                            <!--
+                                            <TextView
+                                                android:id="@+id/txttotal"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1.5"
+                                                android:fontFamily="@font/metropolis"
+                                                android:text="/0"
+                                                android:textColor="@color/primary_text"
+                                                android:textSize="15sp" />-->
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--  <LinearLayout
+                      android:id="@+id/lnrmarkasreview"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_below="@id/lnrtotalquestion"
+                      android:orientation="horizontal"
+                      android:padding="5dp"
+                      android:weightSum="4">
+
+                      <TextView
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="2"
+                          android:text="Mark as Review :" />
+
+                      <LinearLayout
+                          android:id="@+id/lnrunanswered"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="2"
+                          android:orientation="horizontal"
+                          android:weightSum="4">
+
+                          <TextView
+                              android:id="@+id/txtunanswered"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_weight="3.5"
+                              android:fontFamily="@font/metropolis"
+                              android:text="0"
+                              android:textColor="@color/primary_text"
+                              android:textSize="15sp" />
+
+                          <TextView
+                              android:id="@+id/txttotalunanswered"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_weight="1.5"
+                              android:fontFamily="@font/metropolis"
+                              android:text="/0"
+                              android:textColor="@color/primary_text"
+                              android:textSize="15sp" />
+
+
+                      </LinearLayout>
+
+                      &lt;!&ndash;  <LinearLayout
+                            android:id="@+id/lnrunanswered"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:orientation="horizontal"
+                            android:weightSum="4">
+
+                            <TextView
+                                android:id="@+id/txtunanswered"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2.8"
+                                android:fontFamily="@font/metropolis"
+                                android:text="0"
+                                android:textColor="@color/primary_text"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:id="@+id/txttotalunanswered"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.2"
+                                android:fontFamily="@font/metropolis"
+                                android:text="/0"
+                                android:textColor="@color/primary_text"
+                                android:textSize="15sp" />
+
+
+                        </LinearLayout>&ndash;&gt;
+                  </LinearLayout>-->
+                <LinearLayout
+                    android:id="@+id/wrtlnrposmark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/wrtlnrtotalquestion"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:textColor="@color/primary_text"
+                        android:fontFamily="@font/metropolis"
+                        android:textSize="15sp"
+                        android:text="Positive Mark" />
+
+                    <TextView
+                        android:id="@+id/wrttxtposmark"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/metropolis"
+                        android:text="0"
+                        android:textColor="@color/primary_text"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/wrtlnrnegmark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/wrtlnrposmark"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:textColor="@color/primary_text"
+                        android:fontFamily="@font/metropolis"
+                        android:textSize="15sp"
+                        android:text="Negative Mark" />
+
+                    <TextView
+                        android:id="@+id/wrttxtnegmark"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/metropolis"
+                        android:text="0"
+                        android:textColor="@color/primary_text"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/wrtlnrmaxmark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/wrtlnrnegmark"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:textColor="@color/primary_text"
+                        android:fontFamily="@font/metropolis"
+                        android:textSize="15sp"
+                        android:text="Maximum questions you can answer : " />
+
+                    <TextView
+                        android:id="@+id/wrttxtmaxmark"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/metropolis"
+                        android:text="0"
+                        android:textColor="@color/primary_text"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/wrttxttimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/wrtcardtest"
+            android:fontFamily="@font/metropolis"
+            android:textAlignment="center"
+            android:text="00:00"
+            android:textSize="20sp"
+            android:gravity="center_horizontal" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/wrttabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/wrttxttimer"
+            android:background="@color/colorPrimaryDark"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@android:color/holo_red_dark"
+            app:tabMode="scrollable"
+            app:tabTextColor="@android:color/white"/>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/wrtviewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/wrttabLayout"/>
+    </RelativeLayout>
+</FrameLayout>

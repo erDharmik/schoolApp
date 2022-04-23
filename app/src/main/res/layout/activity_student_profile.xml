@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.aspirepublicschool.gyanmanjari.StudentProfile">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/lnrimage"
+            android:layout_width="match_parent"
+            android:layout_height="215dp"
+            android:background="@drawable/background"
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgprofile"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:src="@mipmap/timetable" />
+``
+                <TextView
+                    android:id="@+id/txteditstudentprofile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/metropolis"
+                    android:linksClickable="true"
+                    android:text="Edit"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="italic" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtstname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/metropolis"
+                android:text="Student Name"
+                android:textAlignment="center"
+                android:textColor="@color/primary_text"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/txtstclass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/metropolis"
+                android:text="Class"
+                android:textAlignment="center"
+                android:textColor="@color/secondary_text"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnrpersonal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lnrimage"
+            android:layout_marginTop="5dp"
+            android:background="#eaeaea"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/txtpersonal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/metropolis"
+                        android:text="Personal Details"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/primary_text"
+                        android:textSize="15sp" />
+
+
+                    <LinearLayout
+                        android:id="@+id/lnrperdob"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txtpersonal"
+                        android:layout_marginTop="3dp"
+                        android:orientation="horizontal"
+                        android:weightSum="4">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:fontFamily="@font/metropolis"
+                            android:text="D.O.B:"
+                            android:textColor="@color/primary_text"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/txtdob"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/metropolis"
+                            android:text="28/12/2019"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lnrpergender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lnrperdob"
+                        android:layout_marginTop="3dp"
+                        android:orientation="horizontal"
+                        android:weightSum="4">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:fontFamily="@font/metropolis"
+                            android:text="Gender:"
+                            android:textColor="@color/primary_text"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/txtgender"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/metropolis"
+                            android:text="Male"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:background="@android:color/white">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <!--<TextView
+                        android:id="@+id/txtfatherdetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/metropolis"
+                        android:text="Father's Details"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/primary_text"
+                        android:textSize="15sp" />
+-->
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgfather"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@mipmap/timetable" />
+
+                    <TextView
+                        android:id="@+id/txtfatheredit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lnrperfcno"
+                        android:layout_toRightOf="@+id/imgfather"
+                        android:layout_weight="3"
+                        android:fontFamily="@font/metropolis"
+                        android:linksClickable="true"
+                        android:text="Edit"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="12sp"
+                        android:textStyle="italic" />
+
+                    <LinearLayout
+                        android:id="@+id/lnrperfather"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_toRightOf="@+id/imgfather"
+                        android:orientation="horizontal"
+                        android:weightSum="4">
+
+                        <!-- <TextView
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_weight="2"
+                             android:fontFamily="@font/metropolis"
+                             android:text="Father's Name:"
+                             android:textColor="@color/primary_text"
+                             android:textSize="15sp" />-->
+
+                        <TextView
+                            android:id="@+id/txtfathers"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="33dp"
+                            android:layout_weight="2"
+                            android:fontFamily="@font/metropolis"
+                            android:text="Mr.Abc Xyz"
+                            android:textColor="@color/primary_text"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lnrperfcno"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lnrperfather"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/imgfather"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="4">
+
+                        <!-- <TextView
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_weight="2"
+                             android:fontFamily="@font/metropolis"
+                             android:text="Father's Contact:"
+                             android:textColor="@color/primary_text"
+                             android:textSize="15sp" />-->
+
+                        <TextView
+                            android:id="@+id/txtfcno"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="33dp"
+                            android:layout_weight="2"
+                            android:fontFamily="@font/metropolis"
+                            android:text="1234567890"
+                            android:textColor="@color/secondary_text"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:background="@android:color/white">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <!-- <TextView
+                         android:id="@+id/txtmotherdetails"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:fontFamily="@font/metropolis"
+                         android:text="Mother's Details"
+                         android:textAlignment="textStart"
+                         android:textColor="@color/primary_text"
+                         android:textSize="15sp" />-->
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgmother"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@mipmap/timetable" />
+
+                    <TextView
+                        android:id="@+id/txtmotheredit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lnrpermcno"
+                        android:layout_toRightOf="@+id/imgmother"
+                        android:layout_weight="3"
+                        android:fontFamily="@font/metropolis"
+                        android:linksClickable="true"
+                        android:text="Edit"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="12sp"
+                        android:textStyle="italic" />
+
+                    <LinearLayout
+                        android:id="@+id/lnrpermother"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_toRightOf="@+id/imgmother"
+                        android:orientation="horizontal"
+                        android:weightSum="4">
+
+                        <!--<TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:fontFamily="@font/metropolis"
+                            android:text="Mother's Name:"
+                            android:textColor="@color/primary_text"
+                            android:textSize="15sp" />-->
+
+                        <TextView
+                            android:id="@+id/txtmother"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="33dp"
+                            android:layout_weight="2"
+                            android:fontFamily="@font/metropolis"
+                            android:text="Mrs.Xyz abc"
+                            android:textColor="@color/primary_text"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lnrpermcno"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lnrpermother"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/imgmother"
+                        android:orientation="horizontal"
+                        android:weightSum="4">
+
+                        <!-- <TextView
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_weight="2"
+                             android:fontFamily="@font/metropolis"
+                             android:text="Mother's Contact:"
+                             android:textColor="@color/primary_text"
+                             android:textSize="15sp" />-->
+
+                        <TextView
+                            android:id="@+id/txtmcno"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="33dp"
+                            android:layout_weight="2"
+                            android:fontFamily="@font/metropolis"
+                            android:text="1234567890"
+                            android:textColor="@color/secondary_text"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+<!--
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                app:cardBackgroundColor="@android:color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/metropolis"
+                        android:text="Class Test Result:-"
+                        android:textColor="@color/primary_text"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="10dp"
+                        android:weightSum="4">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:weightSum="4">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3"
+                                android:fontFamily="@font/metropolis"
+                                android:text="Sub:-"
+                                android:textColor="@color/primary_text"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:id="@+id/txtsub"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/metropolis"
+                                android:text="Mathematics"
+                                android:textAlignment="textStart"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:weightSum="4">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:fontFamily="@font/metropolis"
+                                android:text="Marks:-"
+                                android:textAlignment="textEnd"
+                                android:textColor="@color/primary_text"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:id="@+id/txtmarks"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:fontFamily="@font/metropolis"
+                                android:text="15"
+                                android:textAlignment="textStart"
+                                android:textSize="15sp" />
+                            &lt;!&ndash; <TextView
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:layout_weight="1"
+                                 android:text="/20"
+                                 android:textAlignment="textEnd"
+                                 />&ndash;&gt;
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/readmore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/metropolis"
+                        android:text="@string/readmore" />
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                app:cardBackgroundColor="@android:color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/metropolis"
+                        android:text="Average Grade:"
+                        android:textColor="@color/primary_text"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/txtavggrade"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/metropolis"
+                        android:text="Grades"
+                        android:textAlignment="textStart"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                app:cardBackgroundColor="@android:color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/metropolis"
+                        android:text="Public Events:"
+                        android:textColor="@color/primary_text"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/txtevents"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/metropolis"
+                        android:text="Christmas Day Celebration @Conference HALL"
+                        android:textAlignment="textEnd"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+-->
+
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

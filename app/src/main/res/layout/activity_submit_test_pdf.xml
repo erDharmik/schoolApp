@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WRT_Test.SubmitTestPdf">
+    <LinearLayout
+        android:id="@+id/lnrupload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:fontFamily="@font/metropolis"
+            android:paddingLeft="10dp"
+            android:text="Attach Document"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imgupload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:fontFamily="@font/metropolis"
+            android:padding="10dp"
+            android:src="@drawable/ic_clip"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/upimg"
+        android:layout_margin="20dp"
+        android:layout_below="@+id/lnrupload"/>
+
+    <Button
+        android:id="@+id/btnsubmit"
+        android:layout_width="match_parent"
+        android:layout_margin="8dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/upimg"
+        android:layout_marginTop="10dp"
+        android:text="Submit"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/rect_gradient"
+        android:textColor="@color/icons"
+        android:textSize="14sp"
+        android:fontFamily="@font/metropolis"
+        android:textStyle="bold"/>
+</RelativeLayout>

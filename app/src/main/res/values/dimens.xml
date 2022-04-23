@@ -1,0 +1,26 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="appbar_padding">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="root_layout_padding_top">16dp</dimen>
+    <dimen name="root_layout_padding_bottom">16dp</dimen>
+    <dimen name="answers_padding">12dp</dimen>
+    <dimen name="questions_padding">12dp</dimen>
+    <dimen name="messages_padding">12dp</dimen>
+    <dimen name="answers_margin">18dp</dimen>
+    <dimen name="messages_margin">14dp</dimen>
+    <dimen name="card_margin">8dp</dimen>
+    <dimen name="card_radius">4dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="messages_font_size">24sp</dimen>
+    <dimen name="questions_font_size">15sp</dimen>
+    <dimen name="answers_font_size">15sp</dimen>
+    <dimen name="preview_five">5dp</dimen>
+</resources>

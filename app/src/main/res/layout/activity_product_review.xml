@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.aspirepublicschool.gyanmanjari.uniform.Reviews.ProductReview">
+
+    <TextView
+        android:id="@+id/txtshopname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"
+        android:fontFamily="@font/metropolis"
+        android:text="Shop Name"
+        android:textAlignment="center"
+        android:textColor="@color/icons"
+        android:textSize="25sp" />
+
+    <!--  <LinearLayout
+          android:id="@+id/lnrdelivery"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/txtshopname"
+          android:layout_marginTop="5dp"
+          android:orientation="vertical">
+
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:padding="10dp">
+
+              <de.hdodenhof.circleimageview.CircleImageView
+                  android:id="@+id/imgdelivery"
+                  android:layout_width="90dp"
+                  android:layout_height="50dp"
+                  android:src="@drawable/flower2" />
+
+              <TextView
+                  android:id="@+id/txtdelivery"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:fontFamily="@font/metropolis"
+                  android:layout_toRightOf="@+id/imgdelivery"
+                  android:text="Delivery Name"
+                  android:textAlignment="center"
+                  android:textColor="@color/primary_text"
+                  android:textSize="18sp" />
+          </RelativeLayout>
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:padding="10dp">
+
+              <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center"
+                  android:fontFamily="@font/metropolis"
+                  android:text="Please Rate:-"
+                  android:textColor="@color/primary_text"
+                  android:textSize="15sp" />
+
+              <RatingBar
+                  android:id="@+id/ratingdelivery"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:numStars="5"
+                  android:rating="1"
+                  android:stepSize="1" />
+
+          </LinearLayout>
+
+      </LinearLayout>-->
+
+    <LinearLayout
+
+        android:id="@+id/lnrproduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtshopname"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgproduct"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                />
+
+            <TextView
+                android:id="@+id/txtproduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/imgproduct"
+                android:fontFamily="@font/metropolis"
+                android:text="Product Name"
+                android:textAlignment="center"
+                android:textColor="@color/primary_text"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/metropolis"
+                android:gravity="center"
+                android:text="Please Rate:-"
+                android:textColor="@color/primary_text"
+                android:textSize="15sp" />
+
+            <RatingBar
+                android:id="@+id/ratingproduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:numStars="5"
+                android:rating="1"
+                android:stepSize="1" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lnrproduct"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/metropolis"
+        android:gravity="center"
+        android:text="@string/rateapp"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp" />
+
+
+</RelativeLayout>

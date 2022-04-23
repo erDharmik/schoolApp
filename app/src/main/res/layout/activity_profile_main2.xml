@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Profile.ProfileMainActivity">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabhomework"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#d4d4d4"
+        app:tabIndicatorColor="@android:color/holo_red_dark"
+        app:tabSelectedTextColor="@color/design_default_color_primary"
+        app:tabMode="scrollable"
+        app:tabTextColor="#000000">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Personal Details" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Address" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tution Details" />
+
+        <!--<com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Faculty" />-->
+
+        <!--<com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Security" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Payments" />-->
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewhomework"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        tools:ignore="MissingConstraints">
+
+    </androidx.viewpager.widget.ViewPager>
+
+
+</RelativeLayout>

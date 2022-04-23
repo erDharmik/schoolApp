@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.aspirepublicschool.gyanmanjari.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewUniform"
+            android:layout_width="match_parent"
+            android:layout_height="250dp" />
+
+        <LinearLayout
+            android:id="@+id/SliderDots"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/viewUniform"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="horizontal" />
+
+        <!--  <com.viewpagerindicator.CirclePageIndicator
+              android:layout_below="@+id/viewUniform"
+              android:id="@+id/indicator"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_centerHorizontal="true"
+              android:gravity="bottom"
+              android:padding="10dip"
+              app:centered="true"
+              app:fillColor="#ff0099"
+              app:pageColor="#FF0000"
+              app:snap="false" />-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/SliderDots"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/mtrl_card_spacing"
+                    android:layout_marginTop="@dimen/mtrl_card_spacing"
+                    android:layout_marginRight="@dimen/mtrl_card_spacing"
+                    android:layout_weight="2"
+                    android:minWidth="230dp"
+                    android:minHeight="200dp"
+                    app:strokeColor="@color/colorPrimaryDark"
+                    app:strokeWidth="2dp">
+
+                    <LinearLayout
+                        android:id="@+id/lnrupper"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:src="@drawable/ic_uniform" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Upper"
+                            android:textAlignment="center"
+                            android:textColor="@color/primary_text"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/mtrl_card_spacing"
+                    android:layout_marginTop="@dimen/mtrl_card_spacing"
+                    android:layout_marginRight="@dimen/mtrl_card_spacing"
+                    android:layout_weight="2"
+                    android:minWidth="230dp"
+                    android:minHeight="200dp"
+                    app:strokeColor="@color/colorPrimaryDark"
+                    app:strokeWidth="2dp">
+
+
+                    <LinearLayout
+                        android:id="@+id/lnrlower"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:src="@drawable/ic_jeans" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Lower"
+                            android:textAlignment="center"
+                            android:textColor="@color/primary_text"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+
+
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/mtrl_card_spacing"
+                    android:layout_marginTop="@dimen/mtrl_card_spacing"
+                    android:layout_marginRight="@dimen/mtrl_card_spacing"
+                    android:layout_weight="2"
+                    android:minWidth="230dp"
+                    android:minHeight="200dp"
+                    app:strokeColor="@color/colorPrimaryDark"
+                    app:strokeWidth="2dp">
+
+                    <LinearLayout
+                        android:id="@+id/lnrwinter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:src="@drawable/ic_jacket" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Winter Wear"
+                            android:textAlignment="center"
+                            android:textColor="@color/primary_text"
+                            android:textSize="20sp" />
+
+
+                    </LinearLayout>
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/mtrl_card_spacing"
+                    android:layout_marginTop="@dimen/mtrl_card_spacing"
+                    android:layout_marginRight="@dimen/mtrl_card_spacing"
+                    android:layout_weight="2"
+                    android:minWidth="230dp"
+                    android:minHeight="200dp"
+                    app:strokeColor="@color/colorPrimaryDark"
+                    app:strokeWidth="2dp">
+
+                    <LinearLayout
+                        android:id="@+id/lnrfootwear"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:src="@drawable/ic_shoes" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Footwear"
+                            android:textAlignment="center"
+                            android:textColor="@color/primary_text"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+
+
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/mtrl_card_spacing"
+                android:layout_marginTop="@dimen/mtrl_card_spacing"
+                android:layout_marginRight="@dimen/mtrl_card_spacing"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="2"
+                android:minHeight="50dp"
+                app:strokeColor="@color/colorPrimaryDark"
+                app:strokeWidth="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="My Order"
+                        android:textAlignment="center"
+                        android:textColor="@color/primary_text"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

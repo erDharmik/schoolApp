@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.aspirepublicschool.gyanmanjari.Result_Activity">
+
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- <EditText
+             android:id="@+id/stu_id"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:hint="Enter Student ID"/>
+
+         <Button
+             android:id="@+id/btn"
+             android:layout_marginTop="10dp"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text="Show"/>-->
+
+        <!--  <com.github.mikephil.charting.charts.PieChart
+              android:id="@+id/piechart"
+              android:layout_width="match_parent"
+              android:layout_height="250dp">
+          </com.github.mikephil.charting.charts.PieChart>-->
+        <!-- <com.github.mikephil.charting.charts.BarChart
+             android:layout_width="match_parent"
+             android:id="@+id/barChart"
+             android:layout_height="wrap_content"></com.github.mikephil.charting.charts.BarChart>-->
+        <!-- <android.support.v7.widget.RecyclerView
+
+             android:layout_below="@+id/piechart"
+             android:id="@+id/result_recyclerView"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+         </android.support.v7.widget.RecyclerView>-->
+        <!--  <Button
+              android:textColor="@android:color/white"
+              android:squar_background="@color/blue"
+              android:id="@+id/btn_ProgressGraph"
+              android:text="View Progress"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"></Button>-->
+        <!--<LinearLayout
+            android:padding="5dp"
+            android:orientation="vertical"
+            android:weightSum="4"
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+            <TextView
+                android:gravity="center"
+                android:text="Your Overall Result:-"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TextView>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+          <TextView
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="Result"
+                android:textColor="@android:color/black"
+                android:textSize="20dp"
+                android:id="@+id/text_percentage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TextView>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <TextView
+                    android:gravity="center"
+                    android:text="With"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:layout_weight="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></TextView>
+                </LinearLayout>
+             <TextView
+                    android:gravity="center"
+                    android:layout_weight="2"
+                    android:text="Grad"
+                    android:textColor="@android:color/black"
+                    android:textSize="20dp"
+                    android:id="@+id/text_grad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></TextView>
+            </LinearLayout>
+        </LinearLayout>-->
+        <include
+            android:id="@+id/layout"
+            layout="@layout/activity_result_profile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/linearLayout"></include>
+    </RelativeLayout>
+</LinearLayout>

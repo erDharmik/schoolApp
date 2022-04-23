@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.aspirepublicschool.gyanmanjari.Test.DownloadTestKey">
+    <androidx.cardview.widget.CardView
+
+        android:layout_margin="7dp"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+        <RelativeLayout
+            android:id="@+id/reldownload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:padding="10dp">
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/ic_file"
+                android:id="@+id/imgdownloadfile"/>
+            <TextView
+                android:id="@+id/txtdownload"
+                android:layout_toRightOf="@id/imgdownloadfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:textColor="@color/primary_text"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:textColorLink="@android:color/holo_blue_dark"
+                android:clickable="true"
+                android:fontFamily="@font/metropolis"
+                android:text="@string/click"/>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

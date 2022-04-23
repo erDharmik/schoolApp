@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="50dp"
+    android:fillViewport="true"
+    android:isScrollContainer="false"
+    tools:context="com.aspirepublicschool.gyanmanjari.HomeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/icons">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#eaeaea">
+
+                <LinearLayout
+                    android:id="@+id/lnrname"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:background="@drawable/background"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/profile_image"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_gravity="center_horizontal" />
+
+                    <TextView
+                        android:id="@+id/profile_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/profile_image"
+                        android:fontFamily="@font/metropolis"
+                        android:gravity="center_horizontal"
+                        android:text="Student Name"
+                        android:textColor="@android:color/black"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="4">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:orientation="horizontal"
+                            android:weightSum="4">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:fontFamily="@font/metropolis"
+                                android:text="Class:- "
+                                android:textAlignment="textEnd"
+                                android:textColor="@color/primary_text"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/class_id"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/teacher_id"
+                                android:layout_marginBottom="3dp"
+                                android:layout_weight="2"
+                                android:fontFamily="@font/metropolis"
+                                android:gravity="center_horizontal"
+                                android:text="Class"
+                                android:textAlignment="viewStart"
+                                android:textColor="@android:color/black" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:orientation="horizontal"
+                            android:weightSum="4">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:fontFamily="@font/metropolis"
+                                android:text="Roll No:- "
+                                android:textAlignment="textEnd"
+                                android:textColor="@color/primary_text"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/rollno"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/teacher_id"
+                                android:layout_marginBottom="3dp"
+                                android:layout_weight="2"
+                                android:fontFamily="@font/metropolis"
+                                android:gravity="center_horizontal"
+                                android:text="00"
+                                android:textAlignment="viewStart"
+                                android:textColor="@android:color/black" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lnrdetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="160dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="vertical"
+                    android:padding="5dp"
+                    tools:ignore="UnknownId">
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recadv1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="horizontal" />
+
+                </LinearLayout>
+
+               <!-- <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recadv2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lnrdetails"
+                    android:background="@color/icons" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/recadv2"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/metropolis"
+                    android:text="Powered By:zocarro.com"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />-->
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

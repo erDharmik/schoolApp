@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="3dp"
+        app:cardCornerRadius="3dp"
+        app:cardMaxElevation="3dp">
+
+        <RelativeLayout
+            android:id="@+id/relnotice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/carimgnotice"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:elevation="8dp"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="8dp">
+
+                <ImageView
+                    android:id="@+id/imgnotice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_launcher_foreground" />
+
+            </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:id="@+id/lnrdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/carimgnotice"
+                android:orientation="horizontal"
+                android:padding="3dp"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.3"
+                    android:fontFamily="@font/metropolis"
+                    android:text="Date :"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtdate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtnotice"
+                    android:layout_toRightOf="@+id/carimgnotice"
+                    android:layout_weight="0.7"
+                    android:fontFamily="@font/metropolis"
+                    android:text="25/12/2019"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/lnreventtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lnrdate"
+                android:layout_toRightOf="@+id/carimgnotice"
+                android:orientation="horizontal"
+                android:padding="3dp"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.3"
+                    android:fontFamily="@font/metropolis"
+                    android:text="Title :"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/txtnotice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/carimgnotice"
+                    android:layout_weight="0.7"
+                    android:fontFamily="@font/metropolis"
+                    android:text="Heading"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lnrdesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lnreventtitle"
+                android:layout_toRightOf="@+id/carimgnotice"
+                android:orientation="vertical"
+                android:padding="4dp"
+                android:weightSum="4">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/metropolis"
+                    android:text="Description:"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtdesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/metropolis"
+                    android:maxLength="50"
+                    android:text="this is assignmnet"
+                    android:textAlignment="textStart"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/txtreadmore"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:ellipsize="end"
+                    android:maxLength="55"
+                    android:text="@string/readmore"
+                    android:textAlignment="textStart"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+<!--
+
+            <LinearLayout
+                android:id="@+id/lnrdownload"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lnreventtitle"
+                android:layout_toRightOf="@+id/carimgnotice"
+                android:orientation="horizontal"
+                android:padding="3dp"
+                android:weightSum="4">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/metropolis"
+                    android:text="Download Image :"
+                    android:textSize="15sp" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imgdownload"
+                    android:layout_weight="2"
+                    android:src="@drawable/ic_download"
+                    android:layout_below="@id/lnrdate"
+                    />
+
+
+            </LinearLayout>
+-->
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

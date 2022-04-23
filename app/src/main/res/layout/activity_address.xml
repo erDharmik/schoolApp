@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Address">
+
+    <TextView
+        android:id="@+id/my_cart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:fontFamily="@font/metropolis"
+        android:text="Address"
+        android:textColor="#000000"
+        android:textSize="31sp"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/vvv"
+        android:layout_width="120dp"
+        android:layout_height="3dp"
+        android:layout_marginLeft="20dp"
+        android:background="@color/colorPrimaryDark" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="3dp"
+                android:elevation="5dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="10dp">
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:orientation="vertical">
+
+
+                    <EditText
+                        android:id="@+id/edtmobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/metropolis"
+                        android:hint="Mobile No :"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15dp" />
+
+
+                    <EditText
+                        android:id="@+id/edtplotno"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/metropolis"
+                        android:hint="Plot No / Flat No :"
+                        android:inputType="text"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15dp" />
+
+
+                    <EditText
+                        android:id="@+id/edtstreet"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/metropolis"
+                        android:hint="Street :"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15dp" />
+
+
+                    <EditText
+                        android:id="@+id/edtlandmark"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/metropolis"
+                        android:hint="Landmark :"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15dp" />
+
+
+                    <EditText
+                        android:id="@+id/edtcity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/metropolis"
+                        android:hint="City :"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15dp" />
+
+
+                    <EditText
+                        android:id="@+id/edtstate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/metropolis"
+                        android:hint="State :"
+                        android:inputType="text"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15dp" />
+
+
+                    <EditText
+                        android:id="@+id/edtpincode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/metropolis"
+                        android:hint="Pincode :"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15dp" />
+
+
+                    <Button
+                        android:id="@+id/btnaddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="#388e3c"
+                        android:fontFamily="@font/metropolis"
+                        android:text="Submit"
+                        android:textColor="#ffffff"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

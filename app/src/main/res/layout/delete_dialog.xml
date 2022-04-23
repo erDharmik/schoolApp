@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/metropolis"
+        android:text="Are you sure \n want to delete item ?"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"></TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/btn_yes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_gradient"
+            android:fontFamily="@font/metropolis"
+            android:text="yes"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"></Button>
+
+        <Button
+            android:id="@+id/btn_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_gradient"
+            android:fontFamily="@font/metropolis"
+            android:text="No"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"></Button>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:elevation="5dp"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:weightSum="4">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:fontFamily="@font/metropolis"
+            android:text="Status  :-"
+            android:textAlignment="center"
+            android:textColor="@color/primary_text"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtstatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:fontFamily="@font/metropolis"
+            android:text="Ordered"
+            android:textAlignment="center"
+            android:textColor="@color/secondary_text"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rect_gradient"
+        android:fontFamily="@font/metropolis"
+        android:text="Close"
+        android:textColor="@android:color/white"></Button>
+
+</LinearLayout>

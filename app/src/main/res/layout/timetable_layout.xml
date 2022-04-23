@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+    <!--   <TextView
+           android:id="@+id/text_day"
+           android:text="Day"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"></TextView>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/squar_background"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/text_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/metropolis"
+                android:text="Time"
+                android:textAlignment="center"
+                android:textSize="15sp"></TextView>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/squar_background"
+            android:padding="1dp">
+
+            <TextView
+                android:id="@+id/text_lecture"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/metropolis"
+                android:text="Lecture"
+                android:textAlignment="center"
+                android:textSize="15sp"></TextView>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/t_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/metropolis"
+                android:text="Name"
+                android:textAlignment="center"
+                android:textSize="15sp"></TextView>
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

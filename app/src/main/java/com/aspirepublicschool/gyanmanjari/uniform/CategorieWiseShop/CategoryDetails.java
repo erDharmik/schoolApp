@@ -1,0 +1,168 @@
+package com.aspirepublicschool.gyanmanjari.uniform.CategorieWiseShop;
+
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.Bundle;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.aspirepublicschool.gyanmanjari.uniform.Common;
+import com.aspirepublicschool.gyanmanjari.uniform.clothes.ShopProductAdapter;
+import com.aspirepublicschool.gyanmanjari.uniform.clothes.ShopProductModel;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.preference.PreferenceManager;
+import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.aspirepublicschool.gyanmanjari.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class CategoryDetails extends AppCompatActivity {
+    RecyclerView recproduct;
+    TextView txtshopname, txtcontact, total_rating;
+    CollapsingToolbarLayout toolbar_layout;
+    static String s_id, ss_name, s_img, s_cont, ratings,category;
+    static String cat;
+    List<ShopProductModel> shopProductModelList = new ArrayList<>();
+    ImageView imgshopdetails;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_category_details);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        allocatememory();
+        s_id = getIntent().getStringExtra("s_id");
+        ss_name = getIntent().getStringExtra("ss_name");
+        s_img = getIntent().getStringExtra("s_img");
+        s_cont = getIntent().getStringExtra("s_cont");
+        ratings = getIntent().getStringExtra("ratings");
+        category = getIntent().getStringExtra("cat");
+        String ImageUrl = "https://www.aspirepublicschool.net/zocarro/image/shop/" + s_img;
+        Log.v("VVVVV", ImageUrl);
+        Glide.with(CategoryDetails.this).load(ImageUrl).into(imgshopdetails);
+        toolbar_layout.setTitle(ss_name);
+        txtcontact.setText(s_cont);
+        total_rating.setText(ratings);
+        // s_id=getIntent().getExtras().getString("s_id");
+
+        // Log.v("s_id", s_id);
+        loadProduct();
+
+
+    }
+    private void allocatememory() {
+        toolbar_layout =
+                (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+        recproduct = findViewById(R.id.recproduct);
+        txtcontact = findViewById(R.id.txtcontact);
+        recproduct.setLayoutManager(new LinearLayoutManager(this));
+        // recproduct.addItemDecoration(new DividerItemDecoration(recproduct.getContext(), DividerItemDecoration.VERTICAL));
+        imgshopdetails = findViewById(R.id.imgshopdetails);
+        total_rating = findViewById(R.id.total_rating);
+
+        // collapsingToolbarLayout.setTitle("My Toolbar Title");
+        toolbar_layout.setContentScrimColor(Color.RED);
+    }
+
+    private void loadProduct() {
+        Common.progressDialogShow(this);
+        String PRODUCT_URL = Common.GetWebServiceURL() + "displaycatproducts.php";
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        final String uid = preferences.getString("stu_id", "none");
+        final String sc_id = preferences.getString("sc_id", "none").toUpperCase();
+        final String sc_std = preferences.getString("standard", "none");
+        final String med = preferences.getString("med", "none");
+        final String gender = preferences.getString("gender", "none");
+        final StringRequest stringRequest = new StringRequest(Request.Method.POST, PRODUCT_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    Common.progressDialogDismiss(CategoryDetails.this);
+                    JSONArray array = new JSONArray(response);
+                    Log.d("AAA",response);
+                    for (int i = 0; i < array.length(); i++) {
+                        JSONObject object = array.getJSONObject(i);
+
+                        object.getString("sin");
+                        object.getString("p_code");
+                        cat = object.getString("cat");
+                        object.getString("brand");
+                        object.getString("color");
+                        object.getString("material");
+                        object.getString("size");
+                        object.getString("s_id");
+                        object.getString("sc_id");
+                        object.getString("label");
+                        object.getString("stock");
+                        object.getString("img1");
+                        object.getString("img2");
+                        object.getString("img3");
+                        object.getString("img4");
+                        object.getString("img5");
+                        object.getString("img6");
+
+                        object.getString("des");
+                        object.getString("price");
+                        object.getString("discount");
+                        shopProductModelList.add(new ShopProductModel(
+                                object.getString("sin"),
+                                object.getString("label"),
+                                object.getString("p_code"),
+                                object.getString("price"),
+                                object.getString("img1"), object.getString("s_id"), object.getString("cat"),object.getString("discount")
+                        ));
+                        Log.v("PPP", object.getString("p_code"));
+                    }
+                    ShopProductAdapter shopProductAdapter = new ShopProductAdapter(CategoryDetails.this, shopProductModelList);
+                    recproduct.setAdapter(shopProductAdapter);
+                } catch (JSONException e) {
+                    Log.v("TTT", e.toString());
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.v("ERROR", error.getMessage());
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("sc_id", sc_id);
+                params.put("sc_std", sc_std);
+                params.put("sc_med", med);
+                params.put("gender", gender);
+                params.put("s_id", s_id);
+                params.put("cat",category);
+                Log.d("dataaaa",params.toString());
+                return params;
+
+            }
+        };
+        Volley.newRequestQueue(CategoryDetails.this).add(stringRequest);
+    }
+
+}

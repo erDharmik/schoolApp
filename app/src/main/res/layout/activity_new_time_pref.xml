@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/registration"
+    tools:context=".NewRegister.NewTimePrefActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="60dp"
+            android:gravity="center"
+            android:text="Registration"
+            android:textColor="@color/primary_text"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time Detail"
+                android:textColor="@color/primary_text"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.046"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView8">
+
+                <CheckBox
+                    android:id="@+id/chone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8.00AM to 9.00AM"
+                    android:layout_marginLeft="25dp" />
+
+                <CheckBox
+                    android:id="@+id/chtwo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9.00AM to 10.00AM"
+                    android:layout_marginLeft="25dp" />
+
+                <CheckBox
+                    android:id="@+id/chthree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10.00AM to 11.00AM"
+                    android:layout_marginLeft="25dp" />
+
+                <CheckBox
+                    android:id="@+id/chfour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="11.00AM to 12.00PM"
+                    android:layout_marginLeft="25dp" />
+
+                <CheckBox
+                    android:id="@+id/chfive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12.00PM to 1.00PM"
+                    android:layout_marginLeft="25dp" />
+
+                <CheckBox
+                    android:id="@+id/chsix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1.00PM to 2.00PM"
+                    android:layout_marginLeft="25dp" />
+
+                <CheckBox
+                    android:id="@+id/chseven"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2.00PM to 3.00PM"
+                    android:layout_marginLeft="25dp" />
+
+                <CheckBox
+                    android:id="@+id/cheight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3.00PM to 4.00PM"
+                    android:layout_marginLeft="25dp" />
+
+                <CheckBox
+                    android:id="@+id/chnine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.00PM to 5.00PM"
+                    android:layout_marginLeft="25dp" />
+
+                <CheckBox
+                    android:id="@+id/chten"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5.00PM to 6.00PM"
+                    android:layout_marginLeft="25dp" />
+
+                <CheckBox
+                    android:id="@+id/cheleven"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="6.00PM to 7.00PM"
+                    android:layout_marginLeft="25dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="40dp">
+
+                    <Button
+                        android:id="@+id/btnprevfromTime"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:background="@drawable/button"
+                        android:text="Prev"
+                        android:layout_marginRight="140dp"
+                        android:textColor="@color/icons"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btncontwithTime"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/button"
+                        android:text="Next"
+                        android:textColor="@color/icons"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/infotxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Selected Information"
+                        android:layout_marginTop="30dp"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:drawableLeft="@drawable/ic_info" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+</ScrollView>

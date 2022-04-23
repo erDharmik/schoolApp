@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.aspirepublicschool.gyanmanjari.Message">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <Spinner
+            android:id="@+id/spnTeacher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/metropolis"></Spinner>
+
+        <EditText
+            android:id="@+id/edttitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/roundededittext"
+            android:fontFamily="@font/metropolis"
+            android:hint="Subject"
+            android:inputType="text"
+            android:textAlignment="textStart"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/edtmessage"
+            android:layout_width="match_parent"
+            android:layout_height="169dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/roundededittext"
+            android:fontFamily="@font/metropolis"
+            android:gravity="bottom"
+            android:hint="Enter Message"
+            android:inputType="textMultiLine"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/Submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorPrimary"
+            android:fontFamily="@font/metropolis"
+            android:text="Send Message"
+            android:textColor="@android:color/white"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/sent_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorPrimary"
+            android:fontFamily="@font/metropolis"
+            android:text="Sent Message"
+            android:textColor="@android:color/white"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

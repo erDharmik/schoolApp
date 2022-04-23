@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.aspirepublicschool.gyanmanjari.DoubtSolving.UpdateDoubt">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <LinearLayout
+            android:id="@+id/lnrheading"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="8dp"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/metropolis"
+                android:gravity="center"
+                android:text="Doubt Solving"
+                android:textColor="@android:color/black"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_below="@+id/lnrheading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtsub"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/metropolis"
+            android:gravity="left"
+            android:text="Subject"
+            android:textColor="#E02525"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="2dp"
+            android:id="@+id/spnsub"
+            android:layout_margin="3dp"
+            android:textSize="16sp"
+            android:padding="10dp"
+            android:fontFamily="@font/metropolis"
+            android:background="@drawable/edittext_shape"
+            android:layout_below="@+id/txtsub"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txttitle"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/metropolis"
+            android:gravity="left"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@+id/spnsub"
+            android:text="Title"
+            android:textColor="#E02525"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edttitle"
+            android:layout_margin="3dp"
+            android:textSize="16sp"
+            android:padding="10dp"
+            android:fontFamily="@font/metropolis"
+            android:background="@drawable/edittext_shape"
+            android:layout_below="@+id/txttitle"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtdesc"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/metropolis"
+            android:gravity="left"
+            android:text="Description"
+            android:layout_below="@id/edttitle"
+            android:layout_marginLeft="10dp"
+            android:textColor="#E02525"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edtdesc"
+            android:inputType="textMultiLine"
+            android:scrollbars="vertical"
+            android:gravity="top|left"
+            android:lines="8"
+            android:minLines="3"
+            android:padding="10dp"
+            android:fontFamily="@font/metropolis"
+            android:background="@drawable/edittext_shape"
+            android:layout_margin="3dp"
+            android:textSize="16sp"
+            android:layout_below="@+id/txtdesc"/>
+
+        <LinearLayout
+            android:id="@+id/lnrupload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtdesc"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/txtupimg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/metropolis"
+                android:gravity="center"
+                android:text="Upload Image"
+                android:textColor="#E02525"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imgupicon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:src="@drawable/ic_file_upload_black_24dp" />
+        </LinearLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/upimg"
+            android:layout_margin="20dp"
+            android:layout_below="@+id/lnrupload"/>
+        <Button
+            android:id="@+id/btnsubmit"
+            android:layout_width="match_parent"
+            android:layout_margin="8dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/upimg"
+            android:text="Submit"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/rect_gradient"
+            android:textColor="@color/icons"
+            android:textSize="14sp"
+            android:fontFamily="@font/metropolis"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
+</ScrollView>

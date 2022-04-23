@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="7dp"
+        android:elevation="20dp"
+        app:cardCornerRadius="10dp"
+        app:cardMaxElevation="20dp"
+        android:background="@android:color/transparent"
+        app:cardPreventCornerOverlap="false">
+
+        <RelativeLayout
+            android:id="@+id/relsub"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/square_backgroundsub"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:elevation="20dp"
+                    android:padding="5dp"
+                    android:layout_marginTop="3dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardMaxElevation="20dp"
+                    android:background="@android:color/transparent"
+                    app:cardPreventCornerOverlap="false">
+
+                <ImageView
+                    android:id="@+id/imgsub"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    />
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <TextView
+                    android:id="@+id/txtsubcat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/metropolis"
+                    android:text="Subcategories"
+                    android:textAlignment="center"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>
