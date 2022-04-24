@@ -119,10 +119,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TimerTask timerTask;
     String[] perms =
             {
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.CAMERA,
-            Manifest.permission.CALL_PHONE
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.CAMERA,
+                    Manifest.permission.CALL_PHONE
             };
     private static final String TAG = "MainActivity";
 
@@ -580,14 +580,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
         MenuItem menuItem = menu.findItem(R.id.action_image);
+        MenuItem notification = menu.findItem(R.id.action_notification);
         View view = MenuItemCompat.getActionView(menuItem);
+        View notify_view = MenuItemCompat.getActionView(notification);
         CircleImageView profile_imageview = view.findViewById(R.id.toolbar_profile);
+        CircleImageView notification_imageview = notify_view.findViewById(R.id.toolbar_notification);
         try {
             Glide.with(ctx).load(new URL(image_url)).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)
                     .into(profile_imageview);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        notification_imageview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), NotificationActivity.class);
+                startActivity(intent);
+            }
+        });
+
         profile_imageview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -671,7 +682,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void SendAppVersion()
     {
         String url = Common.GetWebServiceURL() + "request_update.php";
-       // String url = Common.GetWebServiceURL() + "text/request_update.php";
+        // String url = Common.GetWebServiceURL() + "text/request_update.php";
         StringRequest sr = new StringRequest(StringRequest.Method.POST, url, new Response.Listener<String>()
         {
             @Override
