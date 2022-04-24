@@ -133,33 +133,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         trimCache(ctx);
 
+        final SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+        s_id = mPrefs.getString("stu_id", "none");
+        sc_id = mPrefs.getString("sc_id", "none");
+        number = mPrefs.getString("number", "none");
 
-//firebase notification token generate and create channel for notification
-
-        FirebaseInstanceId.getInstance().getInstanceId()
-                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                        if (!task.isSuccessful()) {
-                            Log.w("Gyan", "getInstanceId failed", task.getException());
-                            return;
-                        }
-                        // Get new Instance ID token
-                        String token = task.getResult().getToken(); //return firebase id
-                        Toast.makeText(getApplicationContext(),token, Toast.LENGTH_LONG).show();
-//                        sendRegistrationToServer(token);
-
-                        //FirebaseMessaging.getInstance().subscribeToTopic("global");
-//                        FirebaseInstanceId.getInstance().getToken();
+        getToken();
 
 
-                        Log.d("Gyan","firebase regid (token) " + token);
-                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(ctx);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("regid",token);
-                        editor.commit();
-                    }
-                });
+
+
 
 
 
@@ -169,10 +152,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        createnotificationchannel();
 //        repeat();
         //loadStudentData();
-        final SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
-        s_id = mPrefs.getString("stu_id", "none");
-        sc_id = mPrefs.getString("sc_id", "none");
-        number = mPrefs.getString("number", "none");
+
         if (s_id.equalsIgnoreCase("none") && sc_id.equalsIgnoreCase("none"))
         {
             loadStudentData();
@@ -273,11 +253,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    private void getToken() {
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("Gyan", "getInstanceId failed", task.getException());
+                            return;
+                        }
+                        // Get new Instance ID token
+                        String token = task.getResult().getToken(); //return firebase id
+                        Toast.makeText(getApplicationContext(),token, Toast.LENGTH_LONG).show();
+//                        sendRegistrationToServer(token);
+
+                        //FirebaseMessaging.getInstance().subscribeToTopic("global");
+//                        FirebaseInstanceId.getInstance().getToken();
 
 
+                        Log.d("Gyan","firebase regid (token) " + token);
+                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(ctx);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("regid",token);
+                        editor.commit();
+                    }
+                });
 
-
-
+    }
 
 
 //    private void getToken() {
