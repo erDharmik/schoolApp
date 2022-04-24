@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TimerTask timerTask;
     String[] perms =
             {
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.CAMERA,
             Manifest.permission.CALL_PHONE
@@ -582,7 +582,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 //                intent = new Intent(ctx, StudentProfile.class);
                 intent = new Intent(ctx, ProfileMainActivity.class);
-
+                intent.putExtra("number", number);
+                intent.putExtra("stu_id", s_id);
+                intent.putExtra("sc_id", sc_id);
                 startActivity(intent);
             }
         });
