@@ -135,16 +135,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         final SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
         s_id = mPrefs.getString("stu_id", "none");
+        Log.d("s_id", s_id);
         sc_id = mPrefs.getString("sc_id", "none");
         number = mPrefs.getString("number", "none");
 
         getToken();
-
-
-
-
-
-
 
 
 
@@ -235,8 +230,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
 
                 // 31/03/2022
-//                startActivity(new Intent(MainActivity.this, StudentProfile.class));
-                startActivity(new Intent(MainActivity.this, ProfileMainActivity.class));
+//                 startActivity(new Intent(MainActivity.this, StudentProfile.class));
+                Intent intent = new Intent(ctx, ProfileMainActivity.class);
+                intent.putExtra("number", number);
+                intent.putExtra("stu_id", s_id);
+                intent.putExtra("sc_id", sc_id);
+                startActivity(intent);
                 //drawer.closeDrawer(GravityCompat.START);
             }
         });
@@ -263,7 +262,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             return;
                         }
                         // Get new Instance ID token
-                        String token = task.getResult().getToken(); //return firebase id
+                        final String token = task.getResult().getToken(); //return firebase id
                         Toast.makeText(getApplicationContext(),token, Toast.LENGTH_LONG).show();
 //                        sendRegistrationToServer(token);
 
@@ -276,6 +275,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("regid",token);
                         editor.commit();
+
+                        final SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+                        s_id = mPrefs.getString("stu_id", "none");
+
+                        String Webserviceurl = Common.GetWebServiceURL() + "updateFirebasetoken.php";
+                        StringRequest request = new StringRequest(StringRequest.Method.POST, Webserviceurl, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
+
+                            }
+                        }) {
+                            @Override
+                            protected Map<String, String> getParams() throws AuthFailureError {
+                                Map<String, String> data = new HashMap<>();
+                                data.put("token", token);
+                                data.put("stu_id",s_id);
+                                return data;
+                            }
+
+                        };
+                        request.setRetryPolicy(new DefaultRetryPolicy(2000, 3, 1));
+                        Volley.newRequestQueue(getApplicationContext()).add(request);
                     }
                 });
 
