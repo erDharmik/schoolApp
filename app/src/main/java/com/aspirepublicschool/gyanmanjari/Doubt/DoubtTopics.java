@@ -63,8 +63,6 @@ public class DoubtTopics extends AppCompatActivity {
                             subjectDoubts.add(new SubjectDoubt(object.getString("t_id"), object.getString("subject")
                                     , object.getString("chapter"), object.getString("topic"), object.getString("data"),object.getString("date")));
 
-
-
                         }
                     DoubtTopicAdapter doubtTopicAdapter=new DoubtTopicAdapter(DoubtTopics.this,subjectDoubts);
                     RecyclerView.LayoutManager manager = new LinearLayoutManager(DoubtTopics.this);
@@ -91,6 +89,7 @@ public class DoubtTopics extends AppCompatActivity {
                 Map<String,String> data=new HashMap<>();
                 data.put("cid",class_id);
                 data.put("sub",subject);
+                data.put("sc_id",sc_id);
                 Log.d("!!!", data.toString());
                 return data;
             }

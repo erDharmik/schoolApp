@@ -136,13 +136,16 @@ public class StaffDetails extends AppCompatActivity {
     }
 
     private void SendRequest() {
+
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
         final String class_id = preferences.getString("class_id", "none");
-        final String sc_id = preferences.getString("sc_id", "none").toLowerCase();
-        String Webserviceurl = Common.GetWebServiceURL() + "displayTeacher.php";
+        final String sc_id = preferences.getString("sc_id", "none").toUpperCase();
+
+        String Webserviceurl = Common.GetWebServiceURL() + "classTeacherDetails.php";
         StringRequest request = new StringRequest(StringRequest.Method.POST, Webserviceurl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+
                 try {
                     Common.progressDialogDismiss(StaffDetails.this);
                     JSONArray array = new JSONArray(response);
@@ -162,7 +165,7 @@ public class StaffDetails extends AppCompatActivity {
                                 result.getString("t_lname"),
                                 result.getString("subject"),
                                 result.getString("t_img"),
-                                result.getString("t_cont")
+                                result.getString("t_cno")
 
                         ));
                     }
@@ -173,24 +176,24 @@ public class StaffDetails extends AppCompatActivity {
                     recteacherdetils.setAdapter(adapter);
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), R.string.no_connection_toast, Toast.LENGTH_SHORT).show();
                 }
-
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Toast.makeText(getApplicationContext(), R.string.no_connection_toast, Toast.LENGTH_SHORT).show();
             }
         }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> data = new HashMap<>();
-                data.put("sc_id", sc_id.toUpperCase());
+                data.put("sc_id", sc_id);
                 data.put("c_id", class_id);
-
                 return data;
             }
         };
+
         Volley.newRequestQueue(ctx).add(request);
 
     }

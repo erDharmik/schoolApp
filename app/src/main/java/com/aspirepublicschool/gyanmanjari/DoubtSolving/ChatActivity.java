@@ -22,15 +22,18 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.aspirepublicschool.gyanmanjari.Common;
 import com.aspirepublicschool.gyanmanjari.R;
@@ -39,7 +42,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -56,6 +64,7 @@ public class ChatActivity extends AppCompatActivity {
 
     Timer timer;
     TimerTask timerTask;
+    String title, time;
     static String senderId, sc_id, class_id, stu_id, tname,number;
     String SendingID;
 
@@ -67,9 +76,13 @@ public class ChatActivity extends AppCompatActivity {
         sc_id = preferences.getString("sc_id", "none").toUpperCase();
         class_id = preferences.getString("class_id", "none");
         SendingID = preferences.getString("stu_id", "none");
+
         senderId = getIntent().getExtras().getString("t_id");
         tname = getIntent().getExtras().getString("tname");
         number = getIntent().getExtras().getString("mno");
+
+        Toast.makeText(getApplicationContext(), senderId, Toast.LENGTH_SHORT).show();
+
         setTitle(tname);
         allocatememory();
         //Disable soft keyboard from appearing by default
@@ -83,15 +96,20 @@ public class ChatActivity extends AppCompatActivity {
                 view.startAnimation(sendClick);
 
                 //To avoid sending empty messages
-                if (!editText.getText().toString().equals("")) {
+                if (!editText.getText().toString().trim().equals("")) {
                     if (Utils.isNetworkAvailable(ChatActivity.this)) {
-                        sendMessage(SendingID
-                                , senderId, String.valueOf(Html.fromHtml(editText.getText().toString().trim())));
-                        editText.setText("");
+//                        sendMessage(SendingID, senderId, String.valueOf(Html.fromHtml(editText.getText().toString().trim())));
+
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+                            time = sdf.format(new Date());
+                            sendMessage();
+
                         fetchMessage(SendingID, senderId);
                     } else
                         Toast.makeText(getApplicationContext(), "No network available", Toast.LENGTH_SHORT).show();
 
+                }else{
+                    Toast.makeText(getApplicationContext(), "Enter Message First", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -160,6 +178,52 @@ public class ChatActivity extends AppCompatActivity {
         });
         requestProcessor.execute(GenerateUrl.getPrivateSendMsgUrl(sender, receiver, message));
     }
+
+
+
+
+    public void sendMessage(){
+        String Webservice = Common.GetWebServiceURL() + "sendMessage.php";
+
+        StringRequest request=new StringRequest(StringRequest.Method.POST, Webservice, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                if (response.equalsIgnoreCase("true")){
+                    editText.setText("");
+                    Toast.makeText(getApplicationContext(), "Sent", Toast.LENGTH_SHORT).show();
+                    fetchMessage(SendingID, senderId);
+                }else{
+                    Toast.makeText(getApplicationContext(), R.string.no_connection_toast, Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Common.progressDialogDismiss(ChatActivity.this);
+                Toast.makeText(ChatActivity.this, R.string.no_connection_toast, Toast.LENGTH_LONG).show();
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> data=new HashMap<>();
+                data.put("role",SendingID);
+                data.put("target",senderId);
+                data.put("message",editText.getText().toString().trim());
+                data.put("time", time);
+                data.put("title", tname);
+                return data;
+            }
+        };
+        Volley.newRequestQueue(ChatActivity.this).add(request);
+
+    }
+
+
+
+
 
     private void repeat() {
         timer = new Timer();

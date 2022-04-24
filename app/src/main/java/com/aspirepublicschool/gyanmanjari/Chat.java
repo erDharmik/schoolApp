@@ -52,7 +52,7 @@ public class Chat extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     RecyclerView recteacher;
-    FloatingActionButton newChat;
+//    FloatingActionButton newChat;
     ArrayList<TeacherDoubt> teacherDoubts=new ArrayList<>();
 
 
@@ -99,16 +99,16 @@ public class Chat extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_chat, container, false);
         recteacher=view.findViewById(R.id.recteacher);
-        newChat=view.findViewById(R.id.newChat);
+//        newChat=view.findViewById(R.id.newChat);
         SendRequest();
 
-        newChat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                    Intent intent = new Intent(getContext(), NewChatActivity.class);
-                    startActivity(intent);
-            }
-        });
+//        newChat.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                    Intent intent = new Intent(getContext(), NewChatActivity.class);
+//                    startActivity(intent);
+//            }
+//        });
 
         return view;
     }
@@ -126,8 +126,11 @@ public class Chat extends Fragment {
                     int asize=res.length();
                     for(int i=0;i<asize;i++) {
                         JSONObject object=res.getJSONObject(i);
-                        teacherDoubts.add(new TeacherDoubt(object.getString("t_id"),object.getString("t_fname")+" "+object.getString("t_lname"),
-                                object.getString("t_img"),object.getString("t_cont"),object.getString("subject")));
+                        teacherDoubts.add(new TeacherDoubt(object.getString("t_id"),
+                                object.getString("t_fname")+" "+object.getString("t_lname"),
+                                object.getString("t_img"),
+                                object.getString("t_cno"),
+                                object.getString("subject")));
 
 
                     }

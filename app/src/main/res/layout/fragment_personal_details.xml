@@ -18,7 +18,7 @@
             android:layout_alignRight="@+id/profilePic"
             android:layout_alignBottom="@+id/profilePic"
             android:background="@color/colorPrimary"
-            android:src="@drawable/ic_baseline_photo_camera_24" />
+            android:src="@drawable/ic_baseline_edit_24" />
 
 
         <de.hdodenhof.circleimageview.CircleImageView

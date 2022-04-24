@@ -55,15 +55,20 @@
     <Button
         android:id="@+id/btnsubmit"
         android:layout_width="match_parent"
-        android:layout_margin="8dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/spnsub"
-        android:text="Select"
         android:layout_centerHorizontal="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/rect_gradient"
+        android:fontFamily="@font/metropolis"
+        android:text="Select"
         android:textColor="@color/icons"
         android:textSize="14sp"
-        android:fontFamily="@font/metropolis"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
 </RelativeLayout>

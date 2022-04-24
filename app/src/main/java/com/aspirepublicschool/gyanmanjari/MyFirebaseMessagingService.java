@@ -95,6 +95,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         StringRequest request=new StringRequest(StringRequest.Method.POST,Webserviceurl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+
                 Log.d(TAG, response);
 
             }

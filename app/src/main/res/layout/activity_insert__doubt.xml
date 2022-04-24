@@ -95,20 +95,25 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/edtdesc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/edtdesc"
-            android:inputType="textMultiLine"
-            android:scrollbars="vertical"
+            android:layout_below="@+id/txtdesc"
+            android:layout_marginStart="3dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/edittext_shape"
+            android:fontFamily="@font/metropolis"
             android:gravity="top|left"
+            android:inputType="textMultiLine"
             android:lines="8"
             android:minLines="3"
             android:padding="10dp"
-            android:fontFamily="@font/metropolis"
-            android:background="@drawable/edittext_shape"
-            android:layout_margin="3dp"
-            android:textSize="16sp"
-            android:layout_below="@+id/txtdesc"/>
+            android:scrollbars="vertical"
+            android:textSize="16sp" />
 
         <LinearLayout
             android:id="@+id/lnrupload"

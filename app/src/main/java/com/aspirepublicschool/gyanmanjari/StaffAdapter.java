@@ -51,7 +51,7 @@ class StaffAdapter extends RecyclerView.Adapter {
             public void onClick(View v) {
 
                 new AlertDialog.Builder(ctx)
-                        .setTitle(container.txtteachername.toString())
+                        .setTitle(staff.getT_fname() + " " + staff.getT_lname())
                         .setMessage("Are you sure you want to call?")
                         .setCancelable(true)
 
@@ -79,7 +79,7 @@ class StaffAdapter extends RecyclerView.Adapter {
 
 
         });
-        String URL_IMAGE="https://mrawideveloper.com/gyanmanfarividyapith.net/zocarro/image/teacher/"+staff.getT_img();
+        String URL_IMAGE = staff.getT_img();
         Log.d("img",staff.getT_img());
         Glide.with(ctx).load(URL_IMAGE).into(container.imgteacher);
 
@@ -89,6 +89,7 @@ class StaffAdapter extends RecyclerView.Adapter {
     public int getItemCount() {
         return staffList.size();
     }
+
     class MyWidgetContainer extends RecyclerView.ViewHolder {
         public TextView txtteachername,txttcsub;
         ImageView imgcall,imgteacher;
@@ -98,10 +99,6 @@ class StaffAdapter extends RecyclerView.Adapter {
             txttcsub=itemView.findViewById(R.id.txttcsub);
             imgcall=itemView.findViewById(R.id.imgcall);
             imgteacher=itemView.findViewById(R.id.imgteacher);
-
-
-
-
 
 
         }

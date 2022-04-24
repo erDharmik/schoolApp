@@ -1,8 +1,11 @@
 package com.aspirepublicschool.gyanmanjari.DoubtSolving;
 
+import static java.security.AccessController.getContext;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -26,12 +29,17 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.aspirepublicschool.gyanmanjari.Common;
 import com.aspirepublicschool.gyanmanjari.MainActivity;
 import com.aspirepublicschool.gyanmanjari.R;
+import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -72,13 +80,15 @@ public class Insert_Doubt extends AppCompatActivity {
     boolean flag;
     String ImageName = "image_data";
     BufferedReader bufferedReader;
+    String selectedPicture;
     StringBuilder stringBuilder;
     boolean check = true;
     private int GALLERY = 1, CAMERA = 2;
     int PICK_IMAGE_REQUEST = 111;
     ProgressDialog progressDialog;
     int flagimgupload;
-    String subjectsselect, Title, Des;
+    String class_id, stu_id, sc_id;
+    String subjectsselect, Title, Des, t_name;
     ArrayList<String> subList=new ArrayList<>();
     private static final int MY_CAMERA_REQUEST_CODE = 100;
     String t_id;
@@ -89,9 +99,16 @@ public class Insert_Doubt extends AppCompatActivity {
         setContentView(R.layout.activity_insert__doubt);
         allocatemeory();
         t_id=getIntent().getExtras().getString("t_id");
+        t_name=getIntent().getExtras().getString("t_name");
 
         byteArrayOutputStream = new ByteArrayOutputStream();
         Fixbitmap = BitmapFactory.decodeResource(getResources(), R.drawable.school);
+
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        class_id = mPrefs.getString("class_id", "none");
+        sc_id = mPrefs.getString("sc_id", "none");
+        stu_id = mPrefs.getString("stu_id", "none");
+
         //SetSpinnerSubject();
        /* spnsub.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -121,10 +138,65 @@ public class Insert_Doubt extends AppCompatActivity {
                 Log.d("@@@",Des);
 
                 if(validateInput()) {
-                    UploadImageToServer();
+//                    UploadImageToServer();
+                    UploadDoubt();
                 }
+
             }
         });
+
+    }
+
+
+    private void UploadDoubt() {
+
+        progressDialog = ProgressDialog.show(Insert_Doubt.this, "Attachment is Uploading", "Please Wait", false, false);
+        progressDialog.show();
+        String url = Common.GetWebServiceURL() + "insert_doubt.php";
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progressDialog.dismiss();
+                        Toast.makeText(getApplicationContext(), "Doubt Uploaded Successfully", Toast.LENGTH_SHORT).show();
+                        edtdesc.setText("");
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
+                error.printStackTrace();
+                Toast.makeText(getApplicationContext(), R.string.no_connection_toast, Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("t_id", t_id);
+                params.put("stu_id", stu_id);
+                params.put("cid", class_id);
+                params.put("title", t_name);
+                params.put("des", edtdesc.getText().toString().trim());
+                params.put("image_data", selectedPicture);
+                params.put("sc_id", sc_id);
+
+                return params;
+            }
+
+        };
+
+        // To prevent timeout error
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(50000, 5, 3));
+
+        // Add the request to the RequestQueue.
+        stringRequest.setShouldCache(false);
+        ((RequestQueue) queue).add(stringRequest);
 
     }
 
@@ -208,6 +280,13 @@ public class Insert_Doubt extends AppCompatActivity {
                     Fixbitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
                     upimg.setImageBitmap(Fixbitmap);
 
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    Fixbitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                    byte[] imageBytes = baos.toByteArray();
+                    selectedPicture = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+                    byte[] bytesImage = Base64.decode(selectedPicture, Base64.DEFAULT);
+
+//                    Toast.makeText(getApplicationContext(), selectedPicture, Toast.LENGTH_SHORT).show();
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -226,141 +305,147 @@ public class Insert_Doubt extends AppCompatActivity {
         }
     }
 
-    public void UploadImageToServer() {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        int width = Fixbitmap.getWidth();
-        int height = Fixbitmap.getHeight();
-        Log.v("HHH", String.valueOf(width));
-        Log.v("HHH", String.valueOf(height));
-       // Title = TextUtils.htmlEncode(edttitle.getText().toString());
-        Des = TextUtils.htmlEncode(edtdesc.getText().toString());
-      //  Log.d("@@@", Title);
-        Log.d("@@@", Des);
-        Bitmap b2 = Bitmap.createScaledBitmap(Fixbitmap, 700, 700, false);
-        Log.v("GGG", String.valueOf(b2.getWidth()));
-        Log.v("GGG", String.valueOf(b2.getHeight()));
-        b2.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream);
-        byteArray = byteArrayOutputStream.toByteArray();
-        // ConvertImage=null;
-        ConvertImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
-     /*   else {
-            Fixbitmap = BitmapFactory.decodeResource(getResources(), R.drawable.school);
-            int width = Fixbitmap.getWidth();
-            int height = Fixbitmap.getHeight();
-            Log.v("HHH",String.valueOf(width));
-            Log.v("HHH",String.valueOf(height));
-            Title= TextUtils.htmlEncode(title.getText().toString());
-            Des= TextUtils.htmlEncode(des.getText().toString());
-            Log.d("@@@",Title);
-            Log.d("@@@",Des);
-            Timeline= timeline.getText().toString();
-            Bitmap b2 = Bitmap.createScaledBitmap(Fixbitmap, 487, 379, false);
-            Log.v("GGG",String.valueOf(b2.getWidth()));
-            Log.v("GGG",String.valueOf(b2.getHeight()));
-            b2.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream);
-            byteArray = byteArrayOutputStream.toByteArray();
-            ConvertImage=null;
-            ConvertImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
-        }*/
 
-        class AsyncTaskUploadClass extends AsyncTask<Void, Void, String> {
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                progressDialog = ProgressDialog.show(Insert_Doubt.this, "Attachment is Uploading", "Please Wait", false, false);
-            }
 
-            @Override
-            protected void onPostExecute(String string1) {
-                super.onPostExecute(string1);
-                Log.d("AAA", string1);
-                progressDialog.dismiss();
-                //imageName.setText("");
+//    public void UploadImageToServer() {
+//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+//        int width = Fixbitmap.getWidth();
+//        int height = Fixbitmap.getHeight();
+//        Log.v("HHH", String.valueOf(width));
+//        Log.v("HHH", String.valueOf(height));
+//       // Title = TextUtils.htmlEncode(edttitle.getText().toString());
+//        Des = TextUtils.htmlEncode(edtdesc.getText().toString());
+//      //  Log.d("@@@", Title);
+//        Log.d("@@@", Des);
+//        Bitmap b2 = Bitmap.createScaledBitmap(Fixbitmap, 700, 700, false);
+//        Log.v("GGG", String.valueOf(b2.getWidth()));
+//        Log.v("GGG", String.valueOf(b2.getHeight()));
+//        b2.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream);
+//        byteArray = byteArrayOutputStream.toByteArray();
+//        // ConvertImage=null;
+//        ConvertImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
+//
+//     /*   else {
+//            Fixbitmap = BitmapFactory.decodeResource(getResources(), R.drawable.school);
+//            int width = Fixbitmap.getWidth();
+//            int height = Fixbitmap.getHeight();
+//            Log.v("HHH",String.valueOf(width));
+//            Log.v("HHH",String.valueOf(height));
+//            Title= TextUtils.htmlEncode(title.getText().toString());
+//            Des= TextUtils.htmlEncode(des.getText().toString());
+//            Log.d("@@@",Title);
+//            Log.d("@@@",Des);
+//            Timeline= timeline.getText().toString();
+//            Bitmap b2 = Bitmap.createScaledBitmap(Fixbitmap, 487, 379, false);
+//            Log.v("GGG",String.valueOf(b2.getWidth()));
+//            Log.v("GGG",String.valueOf(b2.getHeight()));
+//            b2.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream);
+//            byteArray = byteArrayOutputStream.toByteArray();
+//            ConvertImage=null;
+//            ConvertImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
+//        }*/
+//
+//        class AsyncTaskUploadClass extends AsyncTask<Void, Void, String> {
+//            @Override
+//            protected void onPreExecute() {
+//                super.onPreExecute();
+//                progressDialog = ProgressDialog.show(Insert_Doubt.this, "Attachment is Uploading", "Please Wait", false, false);
+//            }
+//
+//            @Override
+//            protected void onPostExecute(String string1) {
+//                super.onPostExecute(string1);
+//                Log.d("AAA", string1);
+//                progressDialog.dismiss();
+//                //imageName.setText("");
+//
+//                Toast.makeText(Insert_Doubt.this, "Successfully Image Uploaded", Toast.LENGTH_LONG).show();
+//                startActivity(new Intent(Insert_Doubt.this, MainActivity.class));
+//                finish();
+//
+//                // editor.remove("status");
+//
+//                Log.d("@@@@@", string1);
+//            }
+//
+//            @Override
+//            protected String doInBackground(Void... params) {
+//                Insert_Doubt.ImageProcessClass imageProcessClass = new Insert_Doubt.ImageProcessClass();
+//                SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+//                final String class_id = mPrefs.getString("class_id", "none");
+//                final String sc_id = mPrefs.getString("sc_id", "none");
+//                final String stu_id = mPrefs.getString("stu_id", "none");
+//                HashMap<String, String> HashMapParams = new HashMap<String, String>();
+//                HashMapParams.put("path", Common.GetBaseImageURL() + "student/");
+//
+//                HashMapParams.put(ImageName, ConvertImage);
+//                HashMapParams.put("stu_id", stu_id);
+//                HashMapParams.put("t_id",t_id );
+//                HashMapParams.put("title", "test");
+//                HashMapParams.put("des", "This message have attachment with message:"+Des);
+//                // Log.v("TTTT", "" + s_id);
+//                Log.v("TTTT", "" + ConvertImage);
+//                Log.v("TTTT", "" + sc_id);
+//                Log.v("TTTT", "" + Common.GetBaseImageURL() + "student/");
+//                Log.v("VVVVV", String.valueOf(HashMapParams));
+//                String FinalData = imageProcessClass.ImageHttpRequest("https://gyanmanjarividyapith.net/zocarro_mobile_app/ws/insert_doubt.php", HashMapParams);
+//                return FinalData;
+//            }
+//        }
+//        AsyncTaskUploadClass AsyncTaskUploadClassOBJ = new AsyncTaskUploadClass();
+//        AsyncTaskUploadClassOBJ.execute();
+//    }
 
-                Toast.makeText(Insert_Doubt.this, "Successfully Image Uploaded", Toast.LENGTH_LONG).show();
-                startActivity(new Intent(Insert_Doubt.this, MainActivity.class));
-                finish();
+//    public class ImageProcessClass {
+//        public String ImageHttpRequest(String requestURL, HashMap<String, String> PData) {
+//            StringBuilder stringBuilder = new StringBuilder();
+//            try {
+//                url = new URL(requestURL);
+//                httpURLConnection = (HttpURLConnection) url.openConnection();
+//                httpURLConnection.setReadTimeout(20000);
+//                httpURLConnection.setConnectTimeout(20000);
+//                httpURLConnection.setRequestMethod("POST");
+//                httpURLConnection.setDoInput(true);
+//                httpURLConnection.setDoOutput(true);
+//                outputStream = httpURLConnection.getOutputStream();
+//                bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+//                bufferedWriter.write(bufferedWriterDataFN(PData));
+//                bufferedWriter.flush();
+//                bufferedWriter.close();
+//                outputStream.close();
+//                RC = httpURLConnection.getResponseCode();
+//                if (RC == HttpsURLConnection.HTTP_OK) {
+//                    bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+//                    stringBuilder = new StringBuilder();
+//                    String RC2;
+//                    while ((RC2 = bufferedReader.readLine()) != null) {
+//                        stringBuilder.append(RC2);
+//                    }
+//                }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            return stringBuilder.toString();
+//        }
+//
+//        private String bufferedWriterDataFN(HashMap<String, String> HashMapParams) throws UnsupportedEncodingException {
+//            stringBuilder = new StringBuilder();
+//            for (Map.Entry<String, String> KEY : HashMapParams.entrySet()) {
+//                if (check)
+//                    check = false;
+//                else
+//                    stringBuilder.append("&");
+//                stringBuilder.append(URLEncoder.encode(KEY.getKey(), "UTF-8"));
+//                stringBuilder.append("=");
+//                stringBuilder.append(URLEncoder.encode(KEY.getValue(), "UTF-8"));
+//            }
+//            return stringBuilder.toString();
+//        }
+//    }
 
-                // editor.remove("status");
 
-                Log.d("@@@@@", string1);
-            }
 
-            @Override
-            protected String doInBackground(Void... params) {
-                Insert_Doubt.ImageProcessClass imageProcessClass = new Insert_Doubt.ImageProcessClass();
-                SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-                final String class_id = mPrefs.getString("class_id", "none");
-                final String sc_id = mPrefs.getString("sc_id", "none");
-                final String stu_id = mPrefs.getString("stu_id", "none");
-                HashMap<String, String> HashMapParams = new HashMap<String, String>();
-                HashMapParams.put("path", Common.GetBaseImageURL() + "student/");
-
-                HashMapParams.put(ImageName, ConvertImage);
-                HashMapParams.put("stu_id", stu_id);
-                HashMapParams.put("t_id",t_id );
-                HashMapParams.put("title", "test");
-                HashMapParams.put("des", "This message have attachment with message:"+Des);
-                // Log.v("TTTT", "" + s_id);
-                Log.v("TTTT", "" + ConvertImage);
-                Log.v("TTTT", "" + sc_id);
-                Log.v("TTTT", "" + Common.GetBaseImageURL() + "student/");
-                Log.v("VVVVV", String.valueOf(HashMapParams));
-                String FinalData = imageProcessClass.ImageHttpRequest("https://gyanmanjarividyapith.net/zocarro_mobile_app/ws/insert_doubt.php", HashMapParams);
-                return FinalData;
-            }
-        }
-        AsyncTaskUploadClass AsyncTaskUploadClassOBJ = new AsyncTaskUploadClass();
-        AsyncTaskUploadClassOBJ.execute();
-    }
-
-    public class ImageProcessClass {
-        public String ImageHttpRequest(String requestURL, HashMap<String, String> PData) {
-            StringBuilder stringBuilder = new StringBuilder();
-            try {
-                url = new URL(requestURL);
-                httpURLConnection = (HttpURLConnection) url.openConnection();
-                httpURLConnection.setReadTimeout(20000);
-                httpURLConnection.setConnectTimeout(20000);
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoInput(true);
-                httpURLConnection.setDoOutput(true);
-                outputStream = httpURLConnection.getOutputStream();
-                bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                bufferedWriter.write(bufferedWriterDataFN(PData));
-                bufferedWriter.flush();
-                bufferedWriter.close();
-                outputStream.close();
-                RC = httpURLConnection.getResponseCode();
-                if (RC == HttpsURLConnection.HTTP_OK) {
-                    bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-                    stringBuilder = new StringBuilder();
-                    String RC2;
-                    while ((RC2 = bufferedReader.readLine()) != null) {
-                        stringBuilder.append(RC2);
-                    }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return stringBuilder.toString();
-        }
-
-        private String bufferedWriterDataFN(HashMap<String, String> HashMapParams) throws UnsupportedEncodingException {
-            stringBuilder = new StringBuilder();
-            for (Map.Entry<String, String> KEY : HashMapParams.entrySet()) {
-                if (check)
-                    check = false;
-                else
-                    stringBuilder.append("&");
-                stringBuilder.append(URLEncoder.encode(KEY.getKey(), "UTF-8"));
-                stringBuilder.append("=");
-                stringBuilder.append(URLEncoder.encode(KEY.getValue(), "UTF-8"));
-            }
-            return stringBuilder.toString();
-        }
-    }
     private void SetSpinnerSubject() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         final String sc_id = preferences.getString("sc_id","none").toLowerCase();

@@ -19,4 +19,5 @@
         android:title="Profile"
         app:actionLayout="@layout/toolbar_layout"
         app:showAsAction="always" />
+
 </menu>

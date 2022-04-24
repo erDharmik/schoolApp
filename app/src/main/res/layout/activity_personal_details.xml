@@ -21,16 +21,30 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/profilePicUpdateBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@+id/profilePic"
+                android:layout_alignBottom="@+id/profilePic"
+                android:background="@color/colorPrimary"
+                android:src="@drawable/ic_baseline_photo_camera_24" />
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profilePic"
                 android:layout_width="150dp"
+                android:layout_centerInParent="true"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_person"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"/>
 
-
+            </RelativeLayout>
 
         </LinearLayout>
 

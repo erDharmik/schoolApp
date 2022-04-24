@@ -6,7 +6,11 @@
     <ImageView
         android:id="@+id/profilePicDialog"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
         android:src="@drawable/ic_person"
         android:layout_gravity="center" />
 

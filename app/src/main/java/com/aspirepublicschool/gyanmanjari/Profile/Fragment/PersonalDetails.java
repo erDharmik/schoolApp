@@ -3,6 +3,7 @@ package com.aspirepublicschool.gyanmanjari.Profile.Fragment;
 import static android.app.Activity.RESULT_OK;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -34,6 +35,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.aspirepublicschool.gyanmanjari.Common;
+import com.aspirepublicschool.gyanmanjari.DoubtSolving.Insert_Doubt;
 import com.aspirepublicschool.gyanmanjari.Profile.Update.PersonalDetailsActivity;
 import com.aspirepublicschool.gyanmanjari.R;
 import com.bumptech.glide.Glide;
@@ -65,8 +67,11 @@ public class PersonalDetails extends Fragment {
     String selectedPicture = "";
     private final int PICK_IMAGE_REQUEST = 71;
     ImageView dpPreview;
+    private int GALLERY = 1, CAMERA = 2;
+    Bitmap Fixbitmap;
     Button upload;
     RequestQueue requestQueue;
+    ProgressDialog pd;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,6 +82,10 @@ public class PersonalDetails extends Fragment {
         stu_id = getArguments().getString("stu_id");
         sc_id = getArguments().getString("sc_id");
         number = getArguments().getString("number");
+
+        pd = new ProgressDialog(getContext());
+        pd.setTitle("Loading, please wait");
+        pd.setCancelable(false);
 
 //        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
 //        stu_id = mPrefs.getString("stu_id", "none");
@@ -97,6 +106,7 @@ public class PersonalDetails extends Fragment {
         mobile = view.findViewById(R.id.mobile);
         email = view.findViewById(R.id.email);
         gender = view.findViewById(R.id.gender);
+
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,10 +119,9 @@ public class PersonalDetails extends Fragment {
         dpUpdateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent();
-//                intent.setType("image/*");
-//                intent.setAction(Intent.ACTION_GET_CONTENT);
-//                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+
+               goToUpdateActivity();
+
             }
         });
 
@@ -168,91 +177,8 @@ public class PersonalDetails extends Fragment {
         return view;
     }
 
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
-//                && data != null && data.getData() != null) {
-//            Uri filePath = data.getData();
-//            try {
-//                Bitmap bitmap = MediaStore.Images.Media.getBitmap(ctx.getContentResolver(), filePath);
-//
-//                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-//                byte[] imageBytes = baos.toByteArray();
-//                selectedPicture = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-//
-//                byte[] bytesImage = Base64.decode(selectedPicture, Base64.DEFAULT);
-//
-//                Dialog dialog = new Dialog(getContext());
-//                dialog.setContentView(R.layout.dp_review);
-//                dpPreview = dialog.findViewById(R.id.imagePreview);
-//                upload = dialog.findViewById(R.id.dpUpload);
-//
-//                Glide.with(ctx)
-//                        .asBitmap()
-//                        .load(bytesImage)
-//                        .into(dpPreview);
-//
-//                upload.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        uploadImage();
-//                    }
-//                });
-//
-//            } catch (IOException e) {
-//                Toast.makeText(ctx, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-//                e.printStackTrace();
-//            }
-//        }
-//    }
 
-//    private void uploadImage() {
-//
-//        String url = Common.GetWebServiceURL() + "updateProfilePic.php";
-//        // Instantiate the RequestQueue.
-//        RequestQueue queue = Volley.newRequestQueue(ctx);
-//
-//        // Request a string response from the provided URL.
-//        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        Toast.makeText(ctx, "Profile Picture has been updated", Toast.LENGTH_LONG).show();
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                error.printStackTrace();
-//            }
-//        }) {
-//            @Override
-//            protected Map<String, String> getParams() {
-//                Map<String, String> params = new HashMap<>();
-//                params.put("stu_id", stu_id);
-//                params.put("picture", selectedPicture);
-//                params.put("sc_id", sc_id);
-//
-//                return params;
-//            }
-//
-//            @Override
-//            public Map<String, String> getHeaders() throws AuthFailureError {
-//                Map<String, String> params = new HashMap<>();
-//                params.put("Content-Type", "application/x-www-form-urlencoded");
-//                return params;
-//            }
-//        };
-//
-//        // To prevent timeout error
-//        stringRequest.setRetryPolicy(new DefaultRetryPolicy(50000, 5, 3));
-//
-//        // Add the request to the RequestQueue.
-//        stringRequest.setShouldCache(false);
-//        ((RequestQueue) queue).add(stringRequest);
-//
-//    }
+
 
     private void goToUpdateActivity() {
         Intent intent = new Intent(getContext(), PersonalDetailsActivity.class);
@@ -265,6 +191,9 @@ public class PersonalDetails extends Fragment {
         intent.putExtra("dob", dob.getText().toString().trim());
         intent.putExtra("gender", gender.getText().toString().trim());
         intent.putExtra("id", id);
+        intent.putExtra("number", number);
+        intent.putExtra("sc_id", sc_id);
+        intent.putExtra("stu_id", stu_id);
         intent.putExtra("dp_url", dp_url);
         startActivity(intent);
     }
@@ -277,22 +206,21 @@ public class PersonalDetails extends Fragment {
         dialog.setContentView(R.layout.profile_pic_dialog_layout);
         dialog.show();
 
-//        dp = dialog.findViewById(R.id.profilePicDialog);
-//
-//        Picasso.get().load(dp_url).placeholder(R.mipmap.ic_launcher_round).into(dp);
+        dp = dialog.findViewById(R.id.profilePicDialog);
+
+        Picasso.get().load(dp_url).placeholder(R.mipmap.ic_launcher_round).into(dp);
 
     }
 
     public void fetchPersonalData() {
+        pd.show();
 
         String WebServiceUrl = Common.GetWebServiceURL() + "personalDetails.php";
 //        String WebServiceUrl = "https://mrawideveloper.com/gyanmanfarividyapith.net/zocarro_mobile_app/ws/personalDetails.php";
         StringRequest trequest=new StringRequest(Request.Method.POST, WebServiceUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
-                Toast.makeText(getContext(), "response", Toast.LENGTH_SHORT).show();
-
+                pd.dismiss();
                 try {
 
                     JSONArray jsonArray = new JSONArray(response);
@@ -313,8 +241,9 @@ public class PersonalDetails extends Fragment {
                     email.setText(email12);
                     gender.setText(gender1);
 
-//                    dp_url= jsonArray.getJSONObject(0).getString("stu_img");
-//                    Glide.with(ctx).load(dp_url).into(profilePic);
+                    dp_url= "https://mrawideveloper.com/gyanmanfarividyapith.net/zocarro/image/student/" + jsonArray.getJSONObject(0).getString("stu_img");
+//                    Toast.makeText(ctx, dp_url, Toast.LENGTH_SHORT).show();
+                    Picasso.get().load(dp_url).placeholder(R.mipmap.ic_launcher_round).into(profilePic);
 
 
                 } catch (JSONException e) {
@@ -326,6 +255,7 @@ public class PersonalDetails extends Fragment {
         }, new com.android.volley.Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                pd.dismiss();
                 Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
             }
         }){

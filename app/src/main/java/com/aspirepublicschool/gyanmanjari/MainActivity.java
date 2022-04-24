@@ -196,8 +196,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TextView id = headerview.findViewById(R.id.txtemail);
         CircleImageView imgurl = headerview.findViewById(R.id.imgnavprofile);
         try {
-            Glide.with(MainActivity.this).load(new URL(image_url)).diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(true).into(imgurl);
+            Glide.with(MainActivity.this).load(new URL(image_url))
+                    .placeholder(R.mipmap.ic_launcher_round)
+                    .into(imgurl);
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

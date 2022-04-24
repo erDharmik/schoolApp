@@ -33,19 +33,19 @@ import java.util.Map;
 public class ChatDoubt extends AppCompatActivity {
     RecyclerView recteacher;
     ArrayList<TeacherDoubt> teacherDoubts=new ArrayList<>();
-    FloatingActionButton newChat;
+//    FloatingActionButton newChat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_doubt);
         allocatememory();
-        newChat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), NewChatActivity.class));
-            }
-        });
+//        newChat.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getApplicationContext(), NewChatActivity.class));
+//            }
+//        });
         SendRequest();
     }
 
@@ -53,18 +53,25 @@ public class ChatDoubt extends AppCompatActivity {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         final String sc_id = preferences.getString("sc_id","none").toLowerCase();
         final String class_id = preferences.getString("class_id","none");
+
+        Toast.makeText(getApplicationContext(), sc_id + " " + class_id, Toast.LENGTH_SHORT).show();
+
         String WebServiceUrl= Common.GetWebServiceURL()+"getTeacher.php";
         StringRequest request=new StringRequest(StringRequest.Method.POST, WebServiceUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+
                 try {
                     JSONArray res=new JSONArray(response);
                     int asize=res.length();
+
                     for(int i=0;i<asize;i++) {
                         JSONObject object=res.getJSONObject(i);
-                        teacherDoubts.add(new TeacherDoubt(object.getString("t_id"),object.getString("t_fname")+" "+object.getString("t_lname"),
-                                object.getString("t_img"),object.getString("t_cont"),object.getString("subject")));
-
+                        teacherDoubts.add(new TeacherDoubt(object.getString("t_id"),
+                                object.getString("t_fname")+" "+object.getString("t_lname"),
+                                object.getString("t_img"),
+                                object.getString("t_cno"),
+                                object.getString("subject")));
 
                     }
                     ChatAdapter adapter=new ChatAdapter(ChatDoubt.this, teacherDoubts);
@@ -73,10 +80,10 @@ public class ChatDoubt extends AppCompatActivity {
                     recteacher.setAdapter(adapter);
 
 
-
                     //}
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), e.getMessage().toString() + "Catch", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -102,6 +109,6 @@ public class ChatDoubt extends AppCompatActivity {
 
     private void allocatememory() {
         recteacher=findViewById(R.id.recteacher);
-        newChat=findViewById(R.id.newChat);
+//        newChat=findViewById(R.id.newChat);
     }
 }
