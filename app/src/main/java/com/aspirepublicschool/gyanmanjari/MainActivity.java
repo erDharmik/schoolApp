@@ -276,33 +276,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         editor.putString("regid",token);
                         editor.commit();
 
-                        final SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
-                        s_id = mPrefs.getString("stu_id", "none");
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            CharSequence name = "firebaseNotificationnChannel";
+                            String description = "Received notification channel";
+                            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+                            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+                            channel.setDescription(description);
+                            // Register the channel with the system; you can't change the importance
+                            // or other notification behaviors after this
+                            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+                            notificationManager.createNotificationChannel(channel);
+                        }
 
-                        String Webserviceurl = Common.GetWebServiceURL() + "updateFirebasetoken.php";
-                        StringRequest request = new StringRequest(StringRequest.Method.POST, Webserviceurl, new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
-                            }
-                        }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
 
-                            }
-                        }) {
-                            @Override
-                            protected Map<String, String> getParams() throws AuthFailureError {
-                                Map<String, String> data = new HashMap<>();
-                                data.put("token", token);
-                                data.put("stu_id",s_id);
-                                return data;
-                            }
-
-                        };
-                        request.setRetryPolicy(new DefaultRetryPolicy(2000, 3, 1));
-                        Volley.newRequestQueue(getApplicationContext()).add(request);
                     }
                 });
 
