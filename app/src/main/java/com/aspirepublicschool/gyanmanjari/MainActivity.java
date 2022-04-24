@@ -1,7 +1,11 @@
 package com.aspirepublicschool.gyanmanjari;
 
+import static android.content.ContentValues.TAG;
+
 import android.Manifest;
 import android.app.Dialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -63,9 +67,16 @@ import com.aspirepublicschool.gyanmanjari.WRT_Test.WRT_TEST;
 import com.aspirepublicschool.gyanmanjari.internet.NetworkChangeReceiver;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+//import com.google.firebase.iid.FirebaseInstanceId;
+//import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.FirebaseMessagingService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -87,6 +98,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
     Context ctx = this;
+    private static final String CHANNEL_ID = "101";
+
     DrawerLayout drawer;
     NavigationView navigationView;
     BottomNavigationView navigation;
@@ -119,6 +132,41 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         trimCache(ctx);
+
+
+//firebase notification token generate and create channel for notification
+
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("Gyan", "getInstanceId failed", task.getException());
+                            return;
+                        }
+                        // Get new Instance ID token
+                        String token = task.getResult().getToken(); //return firebase id
+                        Toast.makeText(getApplicationContext(),token, Toast.LENGTH_LONG).show();
+//                        sendRegistrationToServer(token);
+
+                        //FirebaseMessaging.getInstance().subscribeToTopic("global");
+//                        FirebaseInstanceId.getInstance().getToken();
+
+
+                        Log.d("Gyan","firebase regid (token) " + token);
+                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(ctx);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("regid",token);
+                        editor.commit();
+                    }
+                });
+
+
+
+
+
+//        getToken();
+//        createnotificationchannel();
 //        repeat();
         //loadStudentData();
         final SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
@@ -131,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 //       SendAppVersion();
         //FirebaseInstanceId.getInstance().getToken();
-        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
+//        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
 
         Toast.makeText(getApplicationContext(), number + " " + stu_id + " " + sc_id, Toast.LENGTH_SHORT).show();
 
@@ -224,6 +272,71 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
     }
+
+
+
+
+
+
+
+
+//    private void getToken() {
+//
+//        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+//            @Override
+//            public void onComplete(@NonNull Task<String> task) {
+//                if (!task.isSuccessful()) {
+//                    Log.d("push notification", "failed to get token");
+//                }
+//                String token = task.getResult();
+//                Log.d("token", token);
+//
+////                String Webserviceurl = Common.GetWebServiceURL() + "updateFirebasetoken.php";
+//////                    String Webserviceurl ="http://livebookss.com/videobook/App/ws/updateFirebasetoken.php";
+////                final SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+////                final String user_id = mPrefs.getString("u_id", "none");
+////                StringRequest request = new StringRequest(StringRequest.Method.POST, Webserviceurl, new Response.Listener<String>() {
+////                    @Override
+////                    public void onResponse(String response) {
+////                        Log.d(TAG, response);
+////                    }
+////                }, new Response.ErrorListener() {
+////                    @Override
+////                    public void onErrorResponse(VolleyError error) {
+////                        error.printStackTrace();
+////
+////                    }
+////                }) {
+////                    @Override
+////                    protected Map<String, String> getParams() throws AuthFailureError {
+////                        Map<String, String> data = new HashMap<>();
+////                        data.put("token", token);
+////                        data.put("user_id", user_id);
+////                        Log.d(TAG, "getParams: " + data);
+////                        return data;
+////                    }
+////
+////                };
+////                request.setRetryPolicy(new DefaultRetryPolicy(2000, 3, 1));
+////                Volley.newRequestQueue(getApplicationContext()).add(request);
+//            }
+//        });
+//    }
+
+//    private void createnotificationchannel(){
+//
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            CharSequence name = "firebaseNotificationnChannel";
+//            String description = "Received notification channel";
+//            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+//            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+//            channel.setDescription(description);
+//            // Register the channel with the system; you can't change the importance
+//            // or other notification behaviors after this
+//            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+//            notificationManager.createNotificationChannel(channel);
+//        }
+//}
 
     private void repeat() {
         timer = new Timer();
