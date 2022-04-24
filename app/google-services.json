@@ -1,150 +1,33 @@
 {
   "project_info": {
-    "project_number": "730437060297",
-    "firebase_url": "https://studymaterialgyanmnajari.firebaseio.com",
-    "project_id": "studymaterialgyanmnajari",
-    "storage_bucket": "studymaterialgyanmnajari.appspot.com"
+    "project_number": "341045105208",
+    "project_id": "schoolapp-b5e5d",
+    "storage_bucket": "schoolapp-b5e5d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:730437060297:android:904d474a61f00a33382f18",
-        "android_client_info": {
-          "package_name": "com.aspirepublicschool.aspirepublicschoolparents"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "730437060297-qvbru8n7ft9hd8hb83jvujqn086b9ssn.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAwuQiF1L2vJrt9iD7ZYDksndS07T20444"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "730437060297-qvbru8n7ft9hd8hb83jvujqn086b9ssn.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:730437060297:android:44494a44e83774e8382f18",
+        "mobilesdk_app_id": "1:341045105208:android:0a5fbad0bdee5394738ccd",
         "android_client_info": {
           "package_name": "com.aspirepublicschool.gyanmanjari"
         }
       },
       "oauth_client": [
         {
-          "client_id": "730437060297-qvbru8n7ft9hd8hb83jvujqn086b9ssn.apps.googleusercontent.com",
+          "client_id": "341045105208-i3osfd0434kp3glop7j8p3d5b23rtvf1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAwuQiF1L2vJrt9iD7ZYDksndS07T20444"
+          "current_key": "AIzaSyCBThv2Cbll9FWYZjrCMIpa5FOVOZx0qMQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "730437060297-qvbru8n7ft9hd8hb83jvujqn086b9ssn.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:730437060297:android:5f259666da92b754382f18",
-        "android_client_info": {
-          "package_name": "com.aspirepublicschool.gyanmanjariparents"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "730437060297-qvbru8n7ft9hd8hb83jvujqn086b9ssn.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAwuQiF1L2vJrt9iD7ZYDksndS07T20444"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "730437060297-qvbru8n7ft9hd8hb83jvujqn086b9ssn.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:730437060297:android:8b5fa5379097526e382f18",
-        "android_client_info": {
-          "package_name": "com.zocarro.aspirepublicschool"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "730437060297-qvbru8n7ft9hd8hb83jvujqn086b9ssn.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAwuQiF1L2vJrt9iD7ZYDksndS07T20444"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "730437060297-qvbru8n7ft9hd8hb83jvujqn086b9ssn.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:730437060297:android:5d62e68cabc4951f382f18",
-        "android_client_info": {
-          "package_name": "com.zocarro.gyanmanjari"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "730437060297-qvbru8n7ft9hd8hb83jvujqn086b9ssn.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAwuQiF1L2vJrt9iD7ZYDksndS07T20444"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "730437060297-qvbru8n7ft9hd8hb83jvujqn086b9ssn.apps.googleusercontent.com",
+              "client_id": "341045105208-i3osfd0434kp3glop7j8p3d5b23rtvf1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

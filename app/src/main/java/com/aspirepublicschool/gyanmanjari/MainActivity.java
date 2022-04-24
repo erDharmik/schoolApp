@@ -1,7 +1,11 @@
 package com.aspirepublicschool.gyanmanjari;
 
+import static android.content.ContentValues.TAG;
+
 import android.Manifest;
 import android.app.Dialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -63,9 +67,16 @@ import com.aspirepublicschool.gyanmanjari.WRT_Test.WRT_TEST;
 import com.aspirepublicschool.gyanmanjari.internet.NetworkChangeReceiver;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+//import com.google.firebase.iid.FirebaseInstanceId;
+//import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.FirebaseMessagingService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -87,6 +98,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
     Context ctx = this;
+    private static final String CHANNEL_ID = "101";
+
     DrawerLayout drawer;
     NavigationView navigationView;
     BottomNavigationView navigation;
@@ -107,9 +120,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     String[] perms =
             {
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.READ_EXTERNAL_STORAGE,
-                    Manifest.permission.CAMERA,
-                    Manifest.permission.CALL_PHONE
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA,
+            Manifest.permission.CALL_PHONE
             };
     private static final String TAG = "MainActivity";
 
@@ -119,20 +132,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         trimCache(ctx);
+
+        final SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+        s_id = mPrefs.getString("stu_id", "none");
+        sc_id = mPrefs.getString("sc_id", "none");
+        number = mPrefs.getString("number", "none");
+
+        getToken();
+
+
+
+
+
+
+
+
+
+//        getToken();
+//        createnotificationchannel();
 //        repeat();
         //loadStudentData();
 
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
-        stu_id = mPrefs.getString("stu_id", "none");
-        sc_id = mPrefs.getString("sc_id", "none");
-        number = mPrefs.getString("number", "none");
-        if (stu_id.equalsIgnoreCase("none") && sc_id.equalsIgnoreCase("none"))
+        if (s_id.equalsIgnoreCase("none") && sc_id.equalsIgnoreCase("none"))
         {
             loadStudentData();
         }
 //       SendAppVersion();
         //FirebaseInstanceId.getInstance().getToken();
-        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
+//        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
 
         Toast.makeText(getApplicationContext(), number + " " + stu_id + " " + sc_id, Toast.LENGTH_SHORT).show();
 
@@ -196,10 +223,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TextView id = headerview.findViewById(R.id.txtemail);
         CircleImageView imgurl = headerview.findViewById(R.id.imgnavprofile);
         try {
-            Glide.with(MainActivity.this).load(new URL(image_url))
-                    .placeholder(R.mipmap.ic_launcher_round)
-                    .into(imgurl);
-
+            Glide.with(MainActivity.this).load(new URL(image_url)).diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true).into(imgurl);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -228,6 +253,93 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    private void getToken() {
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("Gyan", "getInstanceId failed", task.getException());
+                            return;
+                        }
+                        // Get new Instance ID token
+                        String token = task.getResult().getToken(); //return firebase id
+                        Toast.makeText(getApplicationContext(),token, Toast.LENGTH_LONG).show();
+//                        sendRegistrationToServer(token);
+
+                        //FirebaseMessaging.getInstance().subscribeToTopic("global");
+//                        FirebaseInstanceId.getInstance().getToken();
+
+
+                        Log.d("Gyan","firebase regid (token) " + token);
+                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(ctx);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("regid",token);
+                        editor.commit();
+                    }
+                });
+
+    }
+
+
+//    private void getToken() {
+//
+//        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+//            @Override
+//            public void onComplete(@NonNull Task<String> task) {
+//                if (!task.isSuccessful()) {
+//                    Log.d("push notification", "failed to get token");
+//                }
+//                String token = task.getResult();
+//                Log.d("token", token);
+//
+////                String Webserviceurl = Common.GetWebServiceURL() + "updateFirebasetoken.php";
+//////                    String Webserviceurl ="http://livebookss.com/videobook/App/ws/updateFirebasetoken.php";
+////                final SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+////                final String user_id = mPrefs.getString("u_id", "none");
+////                StringRequest request = new StringRequest(StringRequest.Method.POST, Webserviceurl, new Response.Listener<String>() {
+////                    @Override
+////                    public void onResponse(String response) {
+////                        Log.d(TAG, response);
+////                    }
+////                }, new Response.ErrorListener() {
+////                    @Override
+////                    public void onErrorResponse(VolleyError error) {
+////                        error.printStackTrace();
+////
+////                    }
+////                }) {
+////                    @Override
+////                    protected Map<String, String> getParams() throws AuthFailureError {
+////                        Map<String, String> data = new HashMap<>();
+////                        data.put("token", token);
+////                        data.put("user_id", user_id);
+////                        Log.d(TAG, "getParams: " + data);
+////                        return data;
+////                    }
+////
+////                };
+////                request.setRetryPolicy(new DefaultRetryPolicy(2000, 3, 1));
+////                Volley.newRequestQueue(getApplicationContext()).add(request);
+//            }
+//        });
+//    }
+
+//    private void createnotificationchannel(){
+//
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            CharSequence name = "firebaseNotificationnChannel";
+//            String description = "Received notification channel";
+//            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+//            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+//            channel.setDescription(description);
+//            // Register the channel with the system; you can't change the importance
+//            // or other notification behaviors after this
+//            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+//            notificationManager.createNotificationChannel(channel);
+//        }
+//}
+
     private void repeat() {
         timer = new Timer();
         if (timerTask == null) {
@@ -253,7 +365,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void loadStudentData() {
         final SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
-        stu_id = mPrefs.getString("stu_id", "none");
+        s_id = mPrefs.getString("stu_id", "none");
         sc_id = mPrefs.getString("sc_id", "none");
         String STUDENT_PROFILE_URL = Common.GetWebServiceURL() + "student_profile.php";
         Log.v("profile", STUDENT_PROFILE_URL);
@@ -335,7 +447,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("stu_id", stu_id);
+                params.put("stu_id", s_id);
                 params.put("sc_id", sc_id);
                 return params;
             }
@@ -470,9 +582,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 //                intent = new Intent(ctx, StudentProfile.class);
                 intent = new Intent(ctx, ProfileMainActivity.class);
-                intent.putExtra("number", number);
-                intent.putExtra("stu_id", stu_id);
-                intent.putExtra("sc_id", sc_id);
+
                 startActivity(intent);
             }
         });
@@ -546,7 +656,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void SendAppVersion()
     {
         String url = Common.GetWebServiceURL() + "request_update.php";
-        // String url = Common.GetWebServiceURL() + "text/request_update.php";
+       // String url = Common.GetWebServiceURL() + "text/request_update.php";
         StringRequest sr = new StringRequest(StringRequest.Method.POST, url, new Response.Listener<String>()
         {
             @Override
@@ -650,7 +760,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     {
         Common.progressDialogShow(MainActivity.this);
         final SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
-        stu_id = mPrefs.getString("stu_id", "none");
+        s_id = mPrefs.getString("stu_id", "none");
         sc_id = mPrefs.getString("sc_id", "none");
         String Webserviceurl = Common.GetWebServiceURL() + "Logoutdeviceid.php";
         StringRequest request = new StringRequest(StringRequest.Method.POST, Webserviceurl, new Response.Listener<String>()
@@ -666,7 +776,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     String messsage = object.getString("message");
                     if (messsage.equals("Submitted"))
                     {
-                        startActivity(new Intent(MainActivity.this, OTPLogin.class));
+                        startActivity(new Intent(MainActivity.this, Login.class));
                         finish();
                         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
                         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -705,7 +815,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> data = new HashMap<>();
                 data.put("sc_id", sc_id);
-                data.put("stu_id", stu_id);
+                data.put("stu_id", s_id);
                 return data;
             }
         };
