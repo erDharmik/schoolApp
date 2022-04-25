@@ -113,12 +113,12 @@ public class NewSplashScreen extends AppCompatActivity {
                             }
                             else if (status.equalsIgnoreCase("LoggedIn")){
                                 
-                                checkPaymentStatus();
+//                                checkPaymentStatusntStatus();
                                 
-//                                Intent is = new Intent(NewSplashScreen.this , MainActivity.class);
-//                                is.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                                startActivity(is);
-//                                finish();
+                                Intent is = new Intent(NewSplashScreen.this , MainActivity.class);
+                                is.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(is);
+                                finish();
                             }else{
                                 Intent is = new Intent(NewSplashScreen.this , OTPLogin.class);
                                 is.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);

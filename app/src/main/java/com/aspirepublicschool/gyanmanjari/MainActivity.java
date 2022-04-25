@@ -47,6 +47,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -264,10 +265,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         // Get new Instance ID token
                         final String token = task.getResult().getToken(); //return firebase id
 
-//                        sendRegistrationToServer(token);
+                        String updateToken = Common.GetWebServiceURL() + "updateFirebasetoken.php";
 
-                        //FirebaseMessaging.getInstance().subscribeToTopic("global");
-//                        FirebaseInstanceId.getInstance().getToken();
+                        StringRequest request = new StringRequest(Request.Method.POST, updateToken, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+
+                                Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
+
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+
+                            }
+                        }) {
+                            @Override
+
+                            protected Map<String, String> getParams() throws AuthFailureError {
+                                Map<String, String> param = new HashMap<String, String>();
+
+                                param.put("token", token);
+                                param.put("stu_id", s_id);
+                                Log.d("id" , s_id);
+                                return param;
+                            }
+                        };
+
+                        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                        queue.add(request);
 
 
                         Log.d("Gyan","firebase regid (token) " + token);
