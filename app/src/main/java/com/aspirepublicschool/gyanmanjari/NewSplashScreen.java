@@ -95,7 +95,7 @@ public class NewSplashScreen extends AppCompatActivity {
                         {
 
                             JSONObject object = array.getJSONObject(i);
-                            String url = "https://mrawideveloper.com/gyanmanfarividyapith.net/zocarro/image/"+"splash/" + object.getString("sc_img");
+                            String url = "https://mrawideveloper.com/houseofknowledge.net/zocarro/image/"+"splash/" + object.getString("sc_img");
 //                            String url = "https://mrawideveloper.com/gyanmanfarividyapith.net/zocarro/image/splash/1649231510354.png";
                             Glide.with(NewSplashScreen.this).load(url).into(imgsplash);
                         }

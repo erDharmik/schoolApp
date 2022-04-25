@@ -81,72 +81,6 @@ public class OTPLogin extends AppCompatActivity {
 
     }
 
-    private void isLoggedIn() {
-
-        String Webserviceurl = Common.GetWebServiceURL() + "isLoggedIn.php";
-        Log.d("@@@web", Webserviceurl);
-        StringRequest request = new StringRequest(StringRequest.Method.POST, Webserviceurl, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-
-                try {
-                    JSONArray jsonArray = new JSONArray(response);
-
-                    String message = jsonArray.getJSONObject(0).getString("message");
-                    if (message.equalsIgnoreCase("fail")){
-                        Toast.makeText(getApplicationContext(), "Invalid OTP", Toast.LENGTH_SHORT).show();
-                    }
-                    else if(message.equalsIgnoreCase("true")){
-
-                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(OTPLogin.this);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("number",mobile.getText().toString().trim());
-                        editor.putString("stu_id",jsonArray.getJSONObject(1).getString("stu_id"));
-                        editor.putString("class_id",jsonArray.getJSONObject(1).getString("cid"));
-                        editor.putString("sc_id",jsonArray.getJSONObject(1).getString("sc_id"));
-                        editor.apply();
-
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-
-//                        String paid = jsonArray.getJSONObject(1).getString("paid");
-//
-//                        if (paid.equals("1")){
-//                            Toast.makeText(getApplicationContext(), "Verified Successfully", Toast.LENGTH_SHORT).show();
-//                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                            startActivity(intent);
-//                        }
-//                        else{
-//                            Toast.makeText(getApplicationContext(), "Pay Fees First", Toast.LENGTH_SHORT).show();
-//                        }
-
-
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.getMessage() , Toast.LENGTH_SHORT).show();
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> data = new HashMap<>();
-                data.put("number", number);
-                data.put("stu_id", stu_id);
-                return data;
-            }
-        };
-        RequestQueue requestQueue = Volley.newRequestQueue(OTPLogin.this);
-        requestQueue.add(request);
-
-    }
 
     private void dialogmethod() {
         dialog=new Dialog(OTPLogin.this);
@@ -314,4 +248,73 @@ public class OTPLogin extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(OTPLogin.this);
         requestQueue.add(request);
     }
+
+
+    private void isLoggedIn() {
+
+        String Webserviceurl = Common.GetWebServiceURL() + "isLoggedIn.php";
+        Log.d("@@@web", Webserviceurl);
+        StringRequest request = new StringRequest(StringRequest.Method.POST, Webserviceurl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+
+                    String message = jsonArray.getJSONObject(0).getString("message");
+                    if (message.equalsIgnoreCase("fail")){
+                        Toast.makeText(getApplicationContext(), "Invalid OTP", Toast.LENGTH_SHORT).show();
+                    }
+                    else if(message.equalsIgnoreCase("true")){
+
+                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(OTPLogin.this);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("number",mobile.getText().toString().trim());
+                        editor.putString("stu_id",jsonArray.getJSONObject(1).getString("stu_id"));
+                        editor.putString("class_id",jsonArray.getJSONObject(1).getString("cid"));
+                        editor.putString("sc_id",jsonArray.getJSONObject(1).getString("sc_id"));
+                        editor.apply();
+
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+
+//                        String paid = jsonArray.getJSONObject(1).getString("paid");
+//
+//                        if (paid.equals("1")){
+//                            Toast.makeText(getApplicationContext(), "Verified Successfully", Toast.LENGTH_SHORT).show();
+//                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                            startActivity(intent);
+//                        }
+//                        else{
+//                            Toast.makeText(getApplicationContext(), "Pay Fees First", Toast.LENGTH_SHORT).show();
+//                        }
+
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.getMessage() , Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> data = new HashMap<>();
+                data.put("number", number);
+                data.put("stu_id", stu_id);
+                return data;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(OTPLogin.this);
+        requestQueue.add(request);
+
+    }
+
 }

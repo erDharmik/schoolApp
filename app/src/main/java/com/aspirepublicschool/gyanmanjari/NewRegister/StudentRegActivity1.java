@@ -66,10 +66,8 @@ public class StudentRegActivity1 extends AppCompatActivity {
             public void onClick(View v) {
 
                 //Testing
-                startActivity(new Intent(getApplicationContext(), OTPVerificationActivity.class).
-                        putExtra("number", editMobile.getText().toString().trim()).
-                        putExtra("next", "register"));
-//                getOTP();
+
+                getOTP();
             }
         });
 
@@ -127,14 +125,15 @@ public class StudentRegActivity1 extends AppCompatActivity {
 
                     if (check.equals("true")) {
 
+                        String stu_id = array.getJSONObject(1).getString("stu_id");
+
                         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(StudentRegActivity1.this);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("number", m_no);
+                        editor.putString("stu_id", stu_id);
                         editor.commit();
 
-                        Intent intent = new Intent(getApplicationContext(), OTPVerificationActivity.class);
-                        intent.putExtra("m_no", m_no);
-                        startActivity(intent);
+                        startActivity(new Intent(getApplicationContext(), OTPRegisterVerificationActivity.class));
 
                     }  else if(check.equals("fail")){
                         Toast.makeText(getApplicationContext()," Failed !", Toast.LENGTH_SHORT).show();

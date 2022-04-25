@@ -31,7 +31,7 @@ public class Common {
     //public final static String MAIN_URL = "https://gyanmanjarividyapith.net";
 
     //run on localhost
-    public final static String MAIN_URL = "https://mrawideveloper.com/gyanmanfarividyapith.net";
+    public final static String MAIN_URL = "https://mrawideveloper.com/houseofknowledge.net";
 //    public final static String MAIN_URL = "http://192.168.43.191";
 //    public final static String  IP = "http://192.168.0.106";
     public final static String DEFAULT_ERROR_MESSAGE = "OOPS, Something went wrong we are trying to findout problem, " +

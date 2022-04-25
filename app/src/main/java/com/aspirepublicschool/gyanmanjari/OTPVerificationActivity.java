@@ -54,11 +54,9 @@ public class OTPVerificationActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         verifyotp = findViewById(R.id.verifyotp);
+;
 
-        number = getIntent().getStringExtra("number");
-        nextCall = getIntent().getStringExtra("next");
-
-        sendOTP(number);
+//        sendOTP(number);
 
         otpEdit = findViewById(R.id.otpEdit);
         timer = findViewById(R.id.timer);
@@ -97,7 +95,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
 
                 if (otpEdit.getText().toString().length() == 6){
                     if (nextCall.equals("register")){
-                        RegistrationVerification(otpEdit.getText().toString().trim());
+//                        RegistrationVerification(otpEdit.getText().toString().trim());
                     }else if (nextCall.equals("login")){
                         verifyOTPMethod(otpEdit.getText().toString().trim());
                     }
@@ -113,69 +111,70 @@ public class OTPVerificationActivity extends AppCompatActivity {
 
     }
 
-    private void RegistrationVerification(String otp) {
-        final String finalOTP = otp;
-
-        progressdialog.show();
-        verifyotp.setFocusable(false);
-
-        String Webserviceurl = Common.GetWebServiceURL() + "registerOtpVerification.php";
-        Log.d("@@@web", Webserviceurl);
-        StringRequest request = new StringRequest(StringRequest.Method.POST, Webserviceurl, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                progressdialog.dismiss();
-                try {
-                    JSONArray jsonArray = new JSONArray(response);
-
-                    String message = jsonArray.getJSONObject(0).getString("message");
-                    if (message.equalsIgnoreCase("fail")){
-                        verifyotp.setFocusable(true);
-                        Toast.makeText(getApplicationContext(), "Invalid OTP", Toast.LENGTH_SHORT).show();
-                    }
-                    else if(message.equalsIgnoreCase("true")){
-
-                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(OTPVerificationActivity.this);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("number",number);
-                        editor.putString("sc_id",jsonArray.getJSONObject(1).getString("sc_id"));
-                        editor.putString("token",currentDateTime);
-                        editor.apply();
-
-                        Intent intent = new Intent(getApplicationContext(), NewTutionDetailsActivity.class);
-                        intent.putExtra("number", number);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                        finish();
-
-
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                progressdialog.dismiss();
-                verifyotp.setFocusable(true);
-                Toast.makeText(getApplicationContext(), error.getMessage() , Toast.LENGTH_SHORT).show();
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> data = new HashMap<>();
-                data.put("number", number);
-                data.put("otp", finalOTP);
-                data.put("token", currentDateTime);
-                return data;
-            }
-        };
-        RequestQueue requestQueue = Volley.newRequestQueue(OTPVerificationActivity.this);
-        requestQueue.add(request);
-
-    }
+//    private void RegistrationVerification(String otp) {
+//        final String finalOTP = otp;
+//
+//        progressdialog.show();
+//        verifyotp.setFocusable(false);
+//
+//        String Webserviceurl = Common.GetWebServiceURL() + "registerOtpVerification.php";
+//        Log.d("@@@web", Webserviceurl);
+//        StringRequest request = new StringRequest(StringRequest.Method.POST, Webserviceurl, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                progressdialog.dismiss();
+//                try {
+//                    JSONArray jsonArray = new JSONArray(response);
+//
+//                    String message = jsonArray.getJSONObject(0).getString("message");
+//                    if (message.equalsIgnoreCase("fail")){
+//                        verifyotp.setFocusable(true);
+//                        Toast.makeText(getApplicationContext(), "Invalid OTP", Toast.LENGTH_SHORT).show();
+//                    }
+//                    else if(message.equalsIgnoreCase("true")){
+//
+//                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(OTPVerificationActivity.this);
+//                        SharedPreferences.Editor editor = sharedPreferences.edit();
+//                        editor.putString("number",number);
+//                        editor.putString("sc_id",jsonArray.getJSONObject(1).getString("sc_id"));
+//                        editor.putString("token",currentDateTime);
+//                        editor.apply();
+//
+//                        Intent intent = new Intent(getApplicationContext(), NewTutionDetailsActivity.class);
+//                        intent.putExtra("number", number);
+//                        intent.putExtra("number", number);
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                        startActivity(intent);
+//                        finish();
+//
+//
+//                    }
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                progressdialog.dismiss();
+//                verifyotp.setFocusable(true);
+//                Toast.makeText(getApplicationContext(), error.getMessage() , Toast.LENGTH_SHORT).show();
+//            }
+//        }) {
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                Map<String, String> data = new HashMap<>();
+//                data.put("number", number);
+//                data.put("otp", finalOTP);
+//                data.put("token", currentDateTime);
+//                return data;
+//            }
+//        };
+//        RequestQueue requestQueue = Volley.newRequestQueue(OTPVerificationActivity.this);
+//        requestQueue.add(request);
+//
+//    }
 
     private void verifyOTPMethod(String tempOTP) {
 
@@ -269,7 +268,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
                 if(otpEdit.getText().toString().length() == 6){
                     status = "auto";
                     if (nextCall.equals("register")){
-                        RegistrationVerification(otpEdit.getText().toString().trim());
+//                        RegistrationVerification(otpEdit.getText().toString().trim());
                     }else if (nextCall.equals("login")){
                         verifyOTPMethod(otpEdit.getText().toString().trim());
                     }

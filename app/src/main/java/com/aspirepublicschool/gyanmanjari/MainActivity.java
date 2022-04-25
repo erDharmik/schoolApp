@@ -429,7 +429,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         stu_id = jsonObject.getString("stu_id");
                         std = jsonObject.getString("std") + "-" + jsonObject.getString("division");
                         standard = jsonObject.getString("std");
-                        DP_URL = "https://gyanmanjarividyapith.net/zocarro/image/" + "student/" + student_profileModelList.get(i).getStu_img();
+                        DP_URL = "https://mrawideveloper.com/houseofknowledge.net/zocarro/image/" + "student/" + student_profileModelList.get(i).getStu_img();
                         Log.d("URL", DP_URL);
                         classid = jsonObject.getString("cid");
 
