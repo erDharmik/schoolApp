@@ -100,7 +100,7 @@ public class AddressActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registerAddress();
+                    registerAddress();
             }
         });
 

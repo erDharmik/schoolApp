@@ -36,7 +36,7 @@ import java.util.Map;
 
 public class NewTimePrefActivity extends AppCompatActivity {
 
-    CheckBox chone , chtwo, chthree, chfour, chfive, chsix, chseven,cheight, chnine, chten,cheleven;
+    CheckBox chzero, chone , chtwo, chthree, chfour, chfive, chsix, chseven,cheight, chnine,chfourteen, chten,cheleven, chtwelve, chthirteen;
     Button dialogClose;
     ArrayList sub;
     List<String> time = new ArrayList<String>();
@@ -54,6 +54,8 @@ public class NewTimePrefActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_time_pref);
 
         getSupportActionBar().hide();
+
+        allocateMemory();
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         number = preferences.getString("number", null);
@@ -77,7 +79,6 @@ public class NewTimePrefActivity extends AppCompatActivity {
 //            group = " ";
 //        }
 
-        allocateMemory();
 
         Toast.makeText(getApplicationContext(), String.valueOf(sub), Toast.LENGTH_SHORT).show();
 
@@ -136,6 +137,9 @@ public class NewTimePrefActivity extends AppCompatActivity {
 
 
     private void RegisterUser() {
+        if(chzero.isChecked()){
+            time.add("7.00SAM to 8.00AM");
+        }
         if (chone.isChecked()){
             time.add("8:00 to 9:00 AM");
         }
@@ -168,6 +172,15 @@ public class NewTimePrefActivity extends AppCompatActivity {
         }
         if(cheleven.isChecked()){
             time.add("6.00PM to 7.00PM");
+        }
+        if(chtwelve.isChecked()){
+            time.add("7.00PM to 8.00PM");
+        }
+        if(chthirteen.isChecked()){
+            time.add("8.00PM to 9.00PM");
+        }
+        if(chfourteen.isChecked()){
+            time.add("9.00PM to 10.00PM");
         }
         timehashSet.addAll(time);
         time.clear();
@@ -290,6 +303,10 @@ public class NewTimePrefActivity extends AppCompatActivity {
         chnine = findViewById(R.id.chnine);
         chten = findViewById(R.id.chten);
         cheleven = findViewById(R.id.cheleven);
+        chtwelve = findViewById(R.id.chtwelve);
+        chthirteen = findViewById(R.id.chthirteen);
+        chfourteen = findViewById(R.id.chfourteen);
+        chzero = findViewById(R.id.chzero);
     }
 
 

@@ -54,9 +54,10 @@ public class OTPVerificationActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         verifyotp = findViewById(R.id.verifyotp);
-;
 
-//        sendOTP(number);
+        number = getIntent().getStringExtra("number");
+
+        sendOTP(number);
 
         otpEdit = findViewById(R.id.otpEdit);
         timer = findViewById(R.id.timer);
@@ -93,12 +94,8 @@ public class OTPVerificationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (otpEdit.getText().toString().length() == 6){
-                    if (nextCall.equals("register")){
-//                        RegistrationVerification(otpEdit.getText().toString().trim());
-                    }else if (nextCall.equals("login")){
+                if (otpEdit.getText().toString().isEmpty()){
                         verifyOTPMethod(otpEdit.getText().toString().trim());
-                    }
 
                 }else{
                     Toast.makeText(getApplicationContext(), "Enter 6 digit OTP", Toast.LENGTH_SHORT).show();
@@ -266,12 +263,8 @@ public class OTPVerificationActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(otpEdit.getText().toString().length() == 6){
-                    status = "auto";
-                    if (nextCall.equals("register")){
-//                        RegistrationVerification(otpEdit.getText().toString().trim());
-                    }else if (nextCall.equals("login")){
                         verifyOTPMethod(otpEdit.getText().toString().trim());
-                    }
+
                 }
             }
 

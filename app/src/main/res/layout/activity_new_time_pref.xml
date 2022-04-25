@@ -53,6 +53,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView8">
 
                 <CheckBox
+                    android:id="@+id/chzero"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7.00AM to 8.00AM"
+                    android:layout_marginLeft="25dp" />
+
+                <CheckBox
                     android:id="@+id/chone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -129,6 +136,27 @@
                     android:text="6.00PM to 7.00PM"
                     android:layout_marginLeft="25dp" />
 
+                <CheckBox
+                    android:id="@+id/chtwelve"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7.00PM to 8.00PM"
+                    android:layout_marginLeft="25dp" />
+
+                <CheckBox
+                    android:id="@+id/chthirteen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8.00PM to 9.00PM"
+                    android:layout_marginLeft="25dp" />
+
+                <CheckBox
+                    android:id="@+id/chfourteen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9.00PM to 10.00PM"
+                    android:layout_marginLeft="25dp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -141,10 +169,11 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
-                        android:background="@drawable/button"
+                        android:background="@drawable/edittext_shape"
                         android:text="Prev"
                         android:layout_marginRight="140dp"
-                        android:textColor="@color/icons"
+                        android:textColor="@color/white"
+                        android:backgroundTint="@color/colorPrimary"
                         android:textSize="17sp"
                         android:textStyle="bold" />
 
@@ -153,9 +182,10 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:background="@drawable/button"
+                        android:background="@drawable/edittext_shape"
+                        android:backgroundTint="@color/colorPrimary"
                         android:text="Next"
-                        android:textColor="@color/icons"
+                        android:textColor="@color/white"
                         android:textSize="17sp"
                         android:textStyle="bold" />
                 </LinearLayout>

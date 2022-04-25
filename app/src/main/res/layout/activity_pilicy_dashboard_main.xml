@@ -46,8 +46,8 @@
             android:id="@+id/afterPolicy"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -55,21 +55,21 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_marginTop="50dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center_horizontal">
+                    android:layout_marginTop="50dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
 
                     <TextView
-                        android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Congratulations! \n We are adding you to the class"
-                        android:textStyle="bold"
-                        android:textSize="18sp"
+                        android:layout_marginTop="10dp"
                         android:gravity="center_horizontal"
-                        android:textColor="#287100" />
+                        android:text="Congratulations! \n We are adding you to the class"
+                        android:textColor="#287100"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>
@@ -85,14 +85,14 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_marginTop="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/class_details"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center_horizontal"
                             android:padding="5dp"
-                            android:textStyle="bold"
+                            android:text="@string/class_details"
                             android:textSize="16sp"
-                            android:gravity="center_horizontal" />
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
@@ -109,26 +109,26 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Board : "
-                                android:padding="5dp"
                                 android:layout_marginLeft="10dp"
-                                android:gravity="center_horizontal" />
+                                android:gravity="center_horizontal"
+                                android:padding="5dp"
+                                android:text="Board : " />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Medium : "
                                 android:layout_marginLeft="10dp"
+                                android:gravity="center_horizontal"
                                 android:padding="5dp"
-                                android:gravity="center_horizontal" />
+                                android:text="Medium : " />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Standard : "
                                 android:layout_marginLeft="10dp"
+                                android:gravity="center_horizontal"
                                 android:padding="5dp"
-                                android:gravity="center_horizontal" />
+                                android:text="Standard : " />
 
 
                         </LinearLayout>
@@ -142,22 +142,22 @@
                                 android:id="@+id/board"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:gravity="center_horizontal" />
+                                android:gravity="center_horizontal"
+                                android:padding="5dp" />
 
                             <TextView
                                 android:id="@+id/medium"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:gravity="center_horizontal" />
+                                android:gravity="center_horizontal"
+                                android:padding="5dp" />
 
                             <TextView
                                 android:id="@+id/standard"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:gravity="center_horizontal" />
+                                android:gravity="center_horizontal"
+                                android:padding="5dp" />
 
                         </LinearLayout>
 
@@ -178,64 +178,64 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/policydetails"
-                            android:padding="5dp"
                             android:layout_marginTop="10dp"
-                            android:textStyle="bold"
+                            android:gravity="center_horizontal"
+                            android:padding="5dp"
+                            android:text="@string/policydetails"
                             android:textSize="16sp"
-                            android:gravity="center_horizontal" />
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
                     <RadioGroup
                         android:id="@+id/policyRadioGroup"
-                        android:layout_marginTop="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
                         android:orientation="horizontal"
                         android:weightSum="2">
 
                         <RadioButton
                             android:id="@+id/solo"
-                            android:layout_weight="1"
                             android:layout_width="0dp"
-                            android:layout_marginLeft="10dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
                             android:text="Request as Solo" />
 
                         <RadioButton
                             android:id="@+id/group"
-                            android:layout_weight="1"
                             android:layout_width="0dp"
-                            android:layout_marginLeft="10dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
                             android:text="Request as Group" />
                     </RadioGroup>
 
                     <LinearLayout
+                        android:id="@+id/lnrSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/lnrSpinner"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
                             android:padding="10dp"
                             android:text="Number of Friends for Tuition"
-                            android:textStyle="bold"
-                            android:layout_marginTop="10dp"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
 
                         <Spinner
                             android:id="@+id/policySpinner"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
-                            android:background="@drawable/edittext_shape"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="20dp"
                             android:layout_marginRight="10dp"
-                            android:padding="8dp"
-                            android:layout_marginTop="20dp" />
+                            android:background="@drawable/edittext_shape"
+                            android:padding="8dp" />
 
 
                     </LinearLayout>
@@ -243,22 +243,23 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/pricelnr"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginTop="30dp"
                     android:orientation="horizontal"
+                    android:visibility="invisible"
                     android:weightSum="3">
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="Pay :"
                         android:layout_weight="1"
-                        android:textSize="20sp"
+                        android:gravity="center"
                         android:padding="10dp"
-                        android:textStyle="bold"
+                        android:text="Pay :"
                         android:textColor="@color/black"
-                        android:gravity="center" />
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/policyPrice"
@@ -273,43 +274,61 @@
 
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:weightSum="2"
-                    android:padding="10dp">
+                    android:padding="10dp"
+                    android:weightSum="2">
 
                     <Button
                         android:id="@+id/demoBtn"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
                         android:layout_height="wrap_content"
-                        android:text="Demo Request"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
                         android:layout_marginEnd="15dp"
-                        android:clickable="true"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="2"
                         android:background="@drawable/edittext_shape"
                         android:backgroundTint="@color/colorPrimary"
+                        android:clickable="true"
                         android:focusable="true"
-                        android:layout_marginRight="15dp" />
+                        android:text="Demo Request"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
 
                     <Button
                         android:id="@+id/paymentBtn"
                         android:layout_width="0dp"
-                        android:layout_weight="0"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="0"
+                        android:background="@drawable/edittext_shape"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:clickable="true"
+                        android:focusable="true"
                         android:text="Pay Now"
                         android:textColor="@color/white"
                         android:textStyle="bold"
-                        android:visibility="gone"
-                        android:layout_marginEnd="15dp"
-                        android:clickable="true"
-                        android:background="@drawable/edittext_shape"
-                        android:backgroundTint="@color/colorPrimary"
-                        android:focusable="true"
-                        android:layout_marginRight="15dp" />
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/infotxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Selected Information"
+                        android:layout_marginTop="30dp"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:drawableLeft="@drawable/ic_info" />
 
                 </LinearLayout>
 

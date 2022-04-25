@@ -205,8 +205,7 @@ public class OTPLogin extends AppCompatActivity {
 //            dialogmethod();
 
             startActivity(new Intent(getApplicationContext(), OTPVerificationActivity.class).
-                    putExtra("number", number).
-                    putExtra("next", "login"));
+                    putExtra("number", number));
 
         }else{
             Toast.makeText(getApplicationContext(), "Enter Valid Mobile Number", Toast.LENGTH_SHORT).show();

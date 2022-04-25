@@ -22,7 +22,7 @@
                     android:textSize="18sp"
                     android:textColor="#000"
                     android:textStyle="bold"
-                    android:text="Your Selected Information"/>
+                    android:text="Student Basic Details"/>
 
         </LinearLayout>
 

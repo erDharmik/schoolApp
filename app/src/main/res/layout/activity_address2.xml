@@ -67,6 +67,8 @@
             android:id="@+id/lnrAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_below="@+id/imageView"
             android:orientation="vertical">
 
@@ -86,7 +88,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_shape"
-                    android:layout_margin="10dp"
                     android:maxLines="1"
                     android:layout_gravity="center"
                     android:minHeight="70dp"
@@ -99,69 +100,49 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="State"
-                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:textSize="15sp"/>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxStrokeColor="@color/colorPrimary"
-                app:boxStrokeWidth="2dp"
-                style="@style/Widget.AppCompat.Light.DropDownItem.Spinner">
 
                 <Spinner
                     android:id="@+id/stateEdit"
                     android:layout_width="match_parent"
                     android:layout_gravity="center"
                     android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/edittext_shape"
-                    android:layout_margin="10dp"
                     android:maxLines="1"
                     android:padding="6dp"
                     android:textSize="16sp" />
 
-            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="City"
-                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:textSize="15sp"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxStrokeColor="@color/colorPrimary"
-                app:boxStrokeWidth="2dp"
-                style="@style/Widget.AppCompat.Light.DropDownItem.Spinner">
 
                 <Spinner
                     android:id="@+id/cityEdit"
                     android:layout_width="match_parent"
                     android:layout_gravity="center"
                     android:layout_height="40dp"
-                    android:layout_margin="10dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/edittext_shape"
                     android:maxLines="1"
                     android:padding="6dp"
                     android:textSize="16sp" />
 
-            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:text="Landmark"
                 android:textSize="15sp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxStrokeColor="@color/colorPrimary"
-                app:boxStrokeWidth="2dp"
-                style="@style/Widget.AppCompat.Light.DropDownItem.Spinner">
+
 
                 <Spinner
                     android:id="@+id/landmarkEdit"
@@ -170,43 +151,36 @@
                     android:layout_gravity="center"
                     android:layout_height="40dp"
                     android:background="@drawable/edittext_shape"
-                    android:layout_margin="10dp"
+                    android:layout_marginTop="10dp"
                     android:hint="Landmark"
                     android:padding="6dp" />
 
-            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="Pincode"
-                android:layout_marginLeft="20dp"
-                android:textSize="15sp"/>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:textSize="15sp" />
 
                 <EditText
                     android:id="@+id/pinEdit"
                     android:layout_width="match_parent"
                     android:layout_gravity="center"
                     android:layout_height="40dp"
-                    android:layout_margin="10dp"
+                    android:maxLength="6"
+                    android:inputType="number"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/edittext_shape"
                     android:maxLines="1"
                     android:padding="6dp"
                     android:textSize="16sp" />
 
-            </com.google.android.material.textfield.TextInputLayout>
-
             <Button
                 android:id="@+id/submitInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="10dp"
                 android:background="@drawable/edittext_shape"
                 android:backgroundTint="@color/colorPrimary"
                 android:clickable="true"
