@@ -43,6 +43,9 @@
             android:name=".NotificationActivity"
             android:exported="false" />
         <activity
+            android:name=".notification"
+            android:exported="false" />
+        <activity
             android:name=".GMapLocationActivity"
             android:exported="false" />
         <activity
