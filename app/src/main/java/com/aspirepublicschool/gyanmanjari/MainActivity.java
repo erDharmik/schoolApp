@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //FirebaseInstanceId.getInstance().getToken();
 //        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
 
-        Toast.makeText(getApplicationContext(), number + " " + stu_id + " " + sc_id, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), number + " " + s_id + " " + sc_id, Toast.LENGTH_SHORT).show();
 
        /*  ActivityCompat.requestPermissions(
                 MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.CAMERA,

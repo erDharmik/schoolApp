@@ -13,6 +13,13 @@
         android:title="Logout"
         app:showAsAction="never" />
 
+  <item
+      android:id="@+id/action_image"
+      android:orderInCategory="100"
+      android:title="Profile"
+      app:actionLayout="@layout/toolbar_layout"
+      app:showAsAction="always" />
+
     <item
         android:id="@+id/action_notification"
         android:orderInCategory="100"
@@ -20,11 +27,6 @@
         app:actionLayout="@layout/notification_layout"
         app:showAsAction="always" />
 
-    <item
-        android:id="@+id/action_image"
-        android:orderInCategory="100"
-        android:title="Profile"
-        app:actionLayout="@layout/toolbar_layout"
-        app:showAsAction="always" />
+
 
 </menu>
