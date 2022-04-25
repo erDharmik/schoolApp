@@ -802,7 +802,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     String messsage = object.getString("message");
                     if (messsage.equals("Submitted"))
                     {
-                        startActivity(new Intent(MainActivity.this, Login.class));
+                        startActivity(new Intent(MainActivity.this, OTPLogin.class));
                         finish();
                         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
                         SharedPreferences.Editor editor = sharedPreferences.edit();
