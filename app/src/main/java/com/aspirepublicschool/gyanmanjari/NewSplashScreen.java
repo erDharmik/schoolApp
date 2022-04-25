@@ -23,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.aspirepublicschool.gyanmanjari.PayTM.DuePaymentActivity;
 import com.bumptech.glide.Glide;
 
 import org.apache.http.ContentTooLongException;
@@ -39,7 +40,7 @@ public class NewSplashScreen extends AppCompatActivity {
 
     ImageView imgsplash;
     //    TextView txtaspire;
-    String token ,stu_id, sc_id;
+    String token ,s_id, sc_id;
     int login;
     String currentDateTime, status, number;
 
@@ -54,7 +55,7 @@ public class NewSplashScreen extends AppCompatActivity {
         login = sharedPreferences.getInt("login",0);
         token = sharedPreferences.getString("token","none");
         number = sharedPreferences.getString("number","none");
-        stu_id = sharedPreferences.getString("stu_id","none");
+        s_id = sharedPreferences.getString("stu_id","none");
         sc_id = sharedPreferences.getString("sc_id","SCIDN1");
 
         Log.d("111",""+login);
@@ -80,8 +81,8 @@ public class NewSplashScreen extends AppCompatActivity {
                     Log.d("aaa", response);
                     JSONArray array = new JSONArray(response);
 
-                    if(array.getJSONObject(0).getString("message").equals("LoggedOut")){
-                        status = "LoggedOut";
+                    if(array.getJSONObject(0).getString("message").equals("Loggedout")){
+                        status = "Loggedout";
                         Glide.with(NewSplashScreen.this).load(R.drawable.logo).into(imgsplash);
                     }
 //                    else if (array.getJSONObject(1).getString("total").equals("1"))
@@ -89,9 +90,10 @@ public class NewSplashScreen extends AppCompatActivity {
 //                        imgsplash.setImageResource(R.mipmap.ic_launcher_round);
 //                    }
                     else {
+                        status = array.getJSONObject(0).getString("message");
                         for (int i = 2; i < array.length(); i++)
                         {
-                            status = "LoggedIn";
+
                             JSONObject object = array.getJSONObject(i);
                             String url = "https://mrawideveloper.com/gyanmanfarividyapith.net/zocarro/image/"+"splash/" + object.getString("sc_img");
 //                            String url = "https://mrawideveloper.com/gyanmanfarividyapith.net/zocarro/image/splash/1649231510354.png";
@@ -113,10 +115,10 @@ public class NewSplashScreen extends AppCompatActivity {
                                 
                                 checkPaymentStatus();
                                 
-                                Intent is = new Intent(NewSplashScreen.this , MainActivity.class);
-                                is.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(is);
-                                finish();
+//                                Intent is = new Intent(NewSplashScreen.this , MainActivity.class);
+//                                is.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                                startActivity(is);
+//                                finish();
                             }else{
                                 Intent is = new Intent(NewSplashScreen.this , OTPLogin.class);
                                 is.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -162,10 +164,10 @@ public class NewSplashScreen extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> data=new HashMap<>();
-//                data.put("sc_id", sc_id);
-//                data.put("token", token);
-//                data.put("stu_id", stu_id);
-//                data.put("number", number);
+                data.put("sc_id", sc_id);
+                data.put("token", token);
+                data.put("stu_id", s_id);
+                data.put("number", number);
                 return data;
             }
         };
@@ -175,6 +177,47 @@ public class NewSplashScreen extends AppCompatActivity {
 
     private void checkPaymentStatus() {
 
+        final String Webserviceurl = Common.GetWebServiceURL() + "checkFeeStatus.php";
+        StringRequest request = new StringRequest(StringRequest.Method.POST, Webserviceurl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    Log.d("aaa", response);
+                    JSONArray array = new JSONArray(response);
+
+                    String status = array.getJSONObject(0).getString("status");
+                    if (status.equals("continue")) {
+                       startActivity(new Intent(getApplicationContext(), MainActivity.class).
+                               setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                       finish();
+                    } else {
+                        startActivity(new Intent(getApplicationContext(), DuePaymentActivity.class).
+                                setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                        finish();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(NewSplashScreen.this, R.string.no_connection_toast, Toast.LENGTH_LONG).show();
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> data = new HashMap<>();
+                data.put("sc_id", sc_id);
+                data.put("stu_id", s_id);
+                data.put("number", number);
+                return data;
+            }
+        };
+        request.setRetryPolicy(new DefaultRetryPolicy(2000, 3, 1));
+        Volley.newRequestQueue(NewSplashScreen.this).add(request);
     }
 
     private void Logoutactivedevice() {
