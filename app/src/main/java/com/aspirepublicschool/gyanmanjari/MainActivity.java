@@ -263,7 +263,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         }
                         // Get new Instance ID token
                         final String token = task.getResult().getToken(); //return firebase id
-                        Toast.makeText(getApplicationContext(),token, Toast.LENGTH_LONG).show();
+
 //                        sendRegistrationToServer(token);
 
                         //FirebaseMessaging.getInstance().subscribeToTopic("global");
