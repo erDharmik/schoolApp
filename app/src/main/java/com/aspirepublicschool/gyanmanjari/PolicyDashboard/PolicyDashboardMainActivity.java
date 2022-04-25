@@ -34,6 +34,7 @@ import com.aspirepublicschool.gyanmanjari.JSONParser;
 import com.aspirepublicschool.gyanmanjari.MainActivity;
 import com.aspirepublicschool.gyanmanjari.NewRegister.DemoRequestDashboard.demoActivity;
 import com.aspirepublicschool.gyanmanjari.NewRegister.NewTimePrefActivity;
+import com.aspirepublicschool.gyanmanjari.OTPVerificationActivity;
 import com.aspirepublicschool.gyanmanjari.PayTM.DuePaymentActivity;
 import com.aspirepublicschool.gyanmanjari.PayTM.PaymentUtils;
 import com.aspirepublicschool.gyanmanjari.PayTM.checkSumActivity;
@@ -70,7 +71,7 @@ public class PolicyDashboardMainActivity extends AppCompatActivity implements Pa
     RadioGroup policyRadio;
     LinearLayout lnrSpinner;
 
-    String smed, sboard, sstd, sstream, sgroup;
+    String smed, sboard, sstd, sstream, stimeslot, sgroup;
 
     TextView infotxt;
     TextView mediumtxt;
@@ -82,7 +83,7 @@ public class PolicyDashboardMainActivity extends AppCompatActivity implements Pa
     LinearLayout lnrPrice;
 
     CheckBox materialFee;
-    TextView materialFeeText;
+    TextView materialFeeText, timetxt;
     String materialFeeString, finalmon, price, policyId;
     Dialog dialog;
     String mons;
@@ -100,12 +101,14 @@ public class PolicyDashboardMainActivity extends AppCompatActivity implements Pa
 
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        number = mPrefs.getString("number", "none").toUpperCase();
+        number = mPrefs.getString("number", "none");
 
         board = findViewById(R.id.board);
         medium = findViewById(R.id.medium);
         standard = findViewById(R.id.standard);
 
+
+        infotxt = findViewById(R.id.infotxt);
         lnrPrice = findViewById(R.id.pricelnr);
         policySpinner = findViewById(R.id.policySpinner);
         policyRadio = findViewById(R.id.policyRadioGroup);
@@ -141,7 +144,7 @@ public class PolicyDashboardMainActivity extends AppCompatActivity implements Pa
         demoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), demoActivity.class).putExtra("number", number));
+                demoRequestAdd();
             }
         });
 
@@ -153,39 +156,42 @@ public class PolicyDashboardMainActivity extends AppCompatActivity implements Pa
             }
         });
 
-//        infotxt.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dialog = new Dialog(PolicyDashboardMainActivity.this);
-//                dialog.setContentView(R.layout.selected_info_dialog);
-////                dialog.getWindow().setLayout(800, 1200);
-//                dialog.show();
-//
-//                mediumtxt = dialog.findViewById(R.id.mediumtxt);
-//                standardtxt = dialog.findViewById(R.id.standardtxt);
-//                boardtxt = dialog.findViewById(R.id.boardtxt);
-//                subjecttxt = dialog.findViewById(R.id.subjecttxt);
-//                dialogClose =dialog.findViewById(R.id.dialogClose);
-//
-//                dialogClose.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//
-//                mediumtxt.setText(smed);
-//                boardtxt.setText(sboard);
-//                if (sstream.contains("Select") || sstream.contains("set") || sstream.contains("Set")){
-//                    standardtxt.setText(sstd);
-//                }else if (sgroup.contains("Select") || sgroup.contains("set") || sgroup.contains("Set")){
-//                    standardtxt.setText(sstd +" "+ sstream);
-//                }else{
-//                    standardtxt.setText(sstd +" "+ sstream + " " + sgroup);
-//                }
-//
-//            }
-//        });
+        infotxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog = new Dialog(PolicyDashboardMainActivity.this);
+                dialog.setContentView(R.layout.selected_info_dialog);
+//                dialog.getWindow().setLayout(800, 1200);
+                dialog.show();
+
+                mediumtxt = dialog.findViewById(R.id.mediumtxt);
+                standardtxt = dialog.findViewById(R.id.standardtxt);
+                boardtxt = dialog.findViewById(R.id.boardtxt);
+                subjecttxt = dialog.findViewById(R.id.subjecttxt);
+                dialogClose =dialog.findViewById(R.id.dialogClose);
+                timetxt = dialog.findViewById(R.id.timetxt);
+
+                dialogClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                mediumtxt.setText(smed);
+                boardtxt.setText(sboard);
+                timetxt.setText(stimeslot);
+
+                if (sstream.contains("Select") || sstream.contains("set") || sstream.contains("Set")){
+                    standardtxt.setText(sstd);
+                }else if (sgroup.contains("Select") || sgroup.contains("set") || sgroup.contains("Set")){
+                    standardtxt.setText(sstd +" "+ sstream);
+                }else{
+                    standardtxt.setText(sstd +" "+ sstream + " " + sgroup);
+                }
+
+            }
+        });
 
         policyRadio.setOnCheckedChangeListener(
                 new RadioGroup
@@ -233,6 +239,60 @@ public class PolicyDashboardMainActivity extends AppCompatActivity implements Pa
                 });
     }
 
+    private void demoRequestAdd() {
+        String HOMEWORK_URL = Common.GetWebServiceURL()+"demoRequest.php";
+        Log.v("LINK",HOMEWORK_URL);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, HOMEWORK_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    Log.d("###",response );
+//                    conductedTestList.clear();
+                    JSONArray array = new JSONArray(response);
+
+                    String message = array.getJSONObject(0).getString("status");
+
+                    if (message.equals("true")){
+                        String status = "demo";
+                        Toast.makeText(getApplicationContext(), "Demo Request has been submitted successfully", Toast.LENGTH_SHORT).show();
+
+                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(PolicyDashboardMainActivity.this);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("status",status);
+                        editor.apply();
+
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.putExtra("status", status);
+                        startActivity(intent);
+                        finish();
+                    }else{
+                        Toast.makeText(getApplicationContext(), "Please try again", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),R.string.no_connection_toast,Toast.LENGTH_LONG).show();
+            }
+
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("number", number);
+                return params;
+            }
+        };
+        Volley.newRequestQueue(getApplicationContext()).add(stringRequest);
+
+    }
 
 
     private void loadStudentPolicywithDetails() {
@@ -256,6 +316,7 @@ public class PolicyDashboardMainActivity extends AppCompatActivity implements Pa
                         sstd = array.getJSONObject(4).getString("std");
                         sstream = array.getJSONObject(5).getString("stream");
                         sgroup = array.getJSONObject(6).getString("group");
+                        stimeslot = array.getJSONObject(7).getString("timeslot");
 
                         medium.setText(smed);
                         board.setText(sboard);
@@ -263,7 +324,7 @@ public class PolicyDashboardMainActivity extends AppCompatActivity implements Pa
 
                         if (total!=0){
 
-                            for (int i = 7; i < array.length() ; i++){
+                            for (int i = 8; i < array.length() ; i++){
                                 JSONObject jsonObject = array.getJSONObject(i);
                                 policyList.add(jsonObject.getString("stu_policy"));
                                 policyIdList.add(jsonObject.getString("pid"));

@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final String CHANNEL_ID = "101";
 
     DrawerLayout drawer;
+    String status = " ";
     NavigationView navigationView;
     BottomNavigationView navigation;
     SharedPreferences preferences;
@@ -135,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         trimCache(ctx);
 
         final SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+        status = mPrefs.getString("status", "none");
         s_id = mPrefs.getString("stu_id", "none");
         Log.d("s_id", s_id);
         sc_id = mPrefs.getString("sc_id", "none");
@@ -212,6 +214,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //String image_url=preferences.getString("st_dp","null");
         Log.d("nnnn", image_url);
 
+        Toast.makeText(getApplicationContext(), status, Toast.LENGTH_SHORT).show();
+        if (status.equals("demo")){
+            navigationView.setClickable(false);
+            navigationView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getApplicationContext(), "Demo Completion Pending", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
         //loadStudentData();
         RelativeLayout linearLayout = headerview.findViewById(R.id.lnrprofile);

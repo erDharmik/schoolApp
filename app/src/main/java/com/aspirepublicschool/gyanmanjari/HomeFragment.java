@@ -65,6 +65,10 @@ public class HomeFragment extends Fragment {
     List<Mainpage_design> lstMainpagedesign;
     String user,standard,div;
 
+    String sc_id;
+    String cid;
+    String status;
+
     private String mParam1;
     private String mParam2;
 
@@ -104,6 +108,20 @@ public class HomeFragment extends Fragment {
         /*recadv2 = v.findViewById(R.id.recadv2);*/
         rollno = v.findViewById(R.id.rollno);
 
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+        sc_id= mPrefs.getString("sc_id", "none").toUpperCase();
+        status = mPrefs.getString("status", "none");
+         stu_id = mPrefs.getString("stu_id", "none").toUpperCase();
+
+         if (status.equals("demo")){
+             recadv1.setEnabled(false);
+             recadv1.setOnClickListener(new View.OnClickListener() {
+                 @Override
+                 public void onClick(View v) {
+                     Toast.makeText(ctx, "Demo Completion Pending", Toast.LENGTH_SHORT).show();
+                 }
+             });
+         }
         feedbackStatus();
 
         lstMainpagedesign = new ArrayList<>();
@@ -157,10 +175,7 @@ public class HomeFragment extends Fragment {
 
     private void loadClassresult() {
 
-        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
-        final String sc_id = mPrefs.getString("sc_id", "none").toUpperCase();
-        final String cid = mPrefs.getString("class_id", "none").toUpperCase();
-        final String stu_id = mPrefs.getString("stu_id", "none").toUpperCase();
+
 
         String Webserviceurl = Common.GetWebServiceURL() + "latestclasstest.php";
         Log.d("@@@web", Webserviceurl);
