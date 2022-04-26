@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -70,6 +71,7 @@ public class PolicyDashboardMainActivity extends AppCompatActivity implements Pa
     RecyclerView recView;
     RadioGroup policyRadio;
     LinearLayout lnrSpinner;
+    String token;
 
     String smed, sboard, sstd, sstream, stimeslot, sgroup;
 
@@ -102,6 +104,9 @@ public class PolicyDashboardMainActivity extends AppCompatActivity implements Pa
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         number = mPrefs.getString("number", "none");
+
+        final SharedPreferences notification = PreferenceManager.getDefaultSharedPreferences(PolicyDashboardMainActivity.this);
+        token = notification.getString("regid", "none");
 
         board = findViewById(R.id.board);
         medium = findViewById(R.id.medium);
@@ -255,6 +260,8 @@ public class PolicyDashboardMainActivity extends AppCompatActivity implements Pa
                     if (message.equals("true")){
                         String status = "demo";
                         Toast.makeText(getApplicationContext(), "Demo Request has been submitted successfully", Toast.LENGTH_SHORT).show();
+                        sendNotification();
+                        sendTextMessage();
 
                         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(PolicyDashboardMainActivity.this);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -276,6 +283,8 @@ public class PolicyDashboardMainActivity extends AppCompatActivity implements Pa
                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
+
+
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
@@ -293,6 +302,79 @@ public class PolicyDashboardMainActivity extends AppCompatActivity implements Pa
         Volley.newRequestQueue(getApplicationContext()).add(stringRequest);
 
     }
+
+    public void sendNotification(){
+        String notification = Common.GetWebServiceURL() + "demoNotification.php";
+
+        StringRequest request = new StringRequest(Request.Method.POST, notification, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+
+            }
+        })
+            {
+                @Override
+
+                protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> param = new HashMap<String, String>();
+
+                param.put("token", token);
+
+
+                return param;
+            }
+        };
+
+
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        queue.add(request);
+
+
+    }
+
+    public void sendTextMessage(){
+        String notification = Common.GetWebServiceURL() + "demoTextMessage.php";
+
+        StringRequest request = new StringRequest(Request.Method.POST, notification, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+
+            }
+        })
+        {
+            @Override
+
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> param = new HashMap<String, String>();
+
+                param.put("cno", number);
+                return param;
+            }
+        };
+
+
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        queue.add(request);
+
+
+    }
+
 
 
     private void loadStudentPolicywithDetails() {
