@@ -40,14 +40,17 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".PayTM.PaymentsDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".NewRegister.OTPRegisterVerificationActivity"
             android:exported="false" />
         <activity
             android:name=".NotificationActivity"
             android:exported="false" />
-        <activity
-            android:name=".notification"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".notification"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".GMapLocationActivity"
             android:exported="false" />

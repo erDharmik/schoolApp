@@ -50,7 +50,7 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
 
     TextView board, medium, standard, subject, feeTxt,duePayment,materialstat;
     String expiryDate, subjectString, materialFeeString,finalmon, monthlyFee, pid;
-    String materialFeeStatus, price, class_id;
+    String materialFeeStatus, price, class_id, material;
 
     CheckBox materialFee;
     TextView materialFeeText;
@@ -85,6 +85,12 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
 
                 finalmon = String.valueOf(months.getSelectedItem());
                 price = totalfee.getText().toString();
+                if (materialFee.isChecked()){
+                    material = "material";
+                }else{
+                    material = "no";
+                }
+
                 runPaymentMethod();
 
             }
@@ -261,6 +267,8 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
                 Log.d("PAYMENTMODE", payment_mode);
                 Toast.makeText(DuePaymentActivity.this, "Payment Successful" + payment_mode, Toast.LENGTH_SHORT).show();
                 status = "Success";
+//                setSuccess(payment_mode, ORDERID, BANKNAME, "Success", TXNDATE, TXNIDPAYTM);
+                nextActivity(payment_mode, ORDERID, BANKNAME, "Success", TXNDATE, TXNIDPAYTM);
                 setSuccess(payment_mode, ORDERID, BANKNAME, "Success", TXNDATE, TXNIDPAYTM);
             } else {
                 Toast.makeText(DuePaymentActivity.this, "Please Try Again!", Toast.LENGTH_SHORT).show();
@@ -269,41 +277,85 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
         }
     }
 
+    private void nextActivity(final String paymentMode, final String orderid, final String BankName, final String Status, final String time, final String TXNIDPAYTM)
+    {
+
+        SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        final String uid = mPrefs.getString("stu_id", "none");
+
+        Intent intent = new Intent(getApplicationContext(), PaymentsDetailActivity.class);
+        intent.putExtra("payment_mode", paymentMode);
+        intent.putExtra("tran_id", orderid);
+        intent.putExtra("status", Status);
+        intent.putExtra("time", time);
+        intent.putExtra("BankName", BankName);
+        intent.putExtra("TXNIDPAYTM", TXNIDPAYTM);
+        intent.putExtra("user_id", uid);
+        intent.putExtra("course_id", pid);
+        intent.putExtra("price", price);
+        intent.putExtra("c_id", class_id);
+        intent.putExtra("board", board.getText().toString());
+        intent.putExtra("medium", medium.getText().toString());
+        intent.putExtra("standard", standard.getText().toString());
+        intent.putExtra("month", finalmon);
+        startActivity(intent);
+
+
+        finish();
+
+    }
+
     private void setSuccess(final String paymentMode, final String orderid, final String BankName, final String Status, final String time, final String TXNIDPAYTM)
     {
         String Webserviceurl = Common.GetWebServiceURL() + "insertPaidTransaction.php";
+
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        final String uid = mPrefs.getString("u_id", "none");
+        final String uid = mPrefs.getString("stu_id", "none");
         StringRequest request = new StringRequest(StringRequest.Method.POST, Webserviceurl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
                 Log.d("response", response);
 
-                if(response.equals("true")){
+                Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+                if(response.equals("true")) {
                     Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(DuePaymentActivity.this, MainActivity.class));
+                    Intent intent = new Intent(getApplicationContext(), PaymentsDetailActivity.class);
+                    intent.putExtra("payment_mode", paymentMode);
+                    intent.putExtra("tran_id", orderid);
+                    intent.putExtra("status", Status);
+                    intent.putExtra("time", time);
+                    intent.putExtra("BankName", BankName);
+                    intent.putExtra("TXNIDPAYTM", TXNIDPAYTM);
+                    intent.putExtra("user_id", uid);
+                    intent.putExtra("course_id", pid);
+                    intent.putExtra("number", number);
+                    intent.putExtra("price", price);
+                    intent.putExtra("c_id", class_id);
+                    intent.putExtra("board", board.getText().toString());
+                    intent.putExtra("medium", medium.getText().toString());
+                    intent.putExtra("standard", standard.getText().toString());
+                    intent.putExtra("month", finalmon);
+                    startActivity(intent);
                     finish();
-                }else{
-                    Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_SHORT).show();
-                }
 
+                }
             }
 
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), R.string.no_connection_toast, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         })
-
         {
             @Override
             protected Map<String, String> getParams () throws AuthFailureError
             {
                 Map<String, String> data = new HashMap<>();
-                data.put("payment_mode", paymentMode);
+                data.put("mode", paymentMode);
                 data.put("tran_id", orderid);
+                data.put("number", number);
                 data.put("status", Status);
                 data.put("time", time);
                 data.put("BankName", BankName);
@@ -311,6 +363,7 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
                 data.put("user_id", uid);
                 data.put("course_id", pid);
                 data.put("price", price);
+                data.put("material", material);
                 data.put("c_id", class_id);
                 data.put("board", board.getText().toString());
                 data.put("medium", medium.getText().toString());
@@ -442,5 +495,10 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
             Service.startPaymentTransaction(DuePaymentActivity.this, true, true,
                     DuePaymentActivity.this);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+
     }
 }

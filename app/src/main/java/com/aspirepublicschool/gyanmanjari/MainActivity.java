@@ -280,6 +280,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     JSONArray array = new JSONArray(response);
                     status = array.getJSONObject(0).getString("status");
 
+                    Toast.makeText(getApplicationContext(), status, Toast.LENGTH_SHORT).show();
                     if (status.equals("demo") || status.equals("continue") | status.equals("fee")){
                         txtNav.setVisibility(View.VISIBLE);
                     }

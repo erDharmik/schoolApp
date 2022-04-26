@@ -71,108 +71,143 @@ public class NewSplashScreen extends AppCompatActivity {
 
     private void SendRequest()
     {
-        //String Webserviceurl="http://www.zocarro.net/zocarro_mobile_app/ws/splashscreenimage.php";
-        String Webserviceurl=Common.GetWebServiceURL()+"newsplashscreenimagenew.php";
-        StringRequest request=new StringRequest(StringRequest.Method.POST,Webserviceurl, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response)
-            {
-                try {
-                    Log.d("aaa", response);
-                    JSONArray array = new JSONArray(response);
+        if(token.equals("none")){
 
-                    if(array.getJSONObject(0).getString("message").equals("Loggedout")){
-                        status = "Loggedout";
-                        Glide.with(NewSplashScreen.this).load(R.drawable.logo).into(imgsplash);
-                    }
+            Glide.with(NewSplashScreen.this).load(R.drawable.logo).into(imgsplash);
+
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                        Intent is = new Intent(NewSplashScreen.this , OTPLogin.class);
+                        is.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(is);
+                        finish();
+                }
+            },2000);
+
+            Animation myanim = AnimationUtils.loadAnimation(NewSplashScreen.this,R.anim.mysplashanimation);
+            myanim.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                    Animation bounce = AnimationUtils.loadAnimation(NewSplashScreen.this,R.anim.bounce);
+//                            txtaspire.startAnimation(bounce);
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
+
+            imgsplash.startAnimation(myanim);
+
+
+        }
+        else{
+            //String Webserviceurl="http://www.zocarro.net/zocarro_mobile_app/ws/splashscreenimage.php";
+            String Webserviceurl=Common.GetWebServiceURL()+"newsplashscreenimagenew.php";
+            StringRequest request=new StringRequest(StringRequest.Method.POST,Webserviceurl, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response)
+                {
+                    try {
+                        Log.d("aaa", response);
+                        JSONArray array = new JSONArray(response);
+
+                        if(array.getJSONObject(0).getString("message").equals("Loggedout")){
+                            status = "Loggedout";
+                            Glide.with(NewSplashScreen.this).load(R.drawable.logo).into(imgsplash);
+                        }
 //                    else if (array.getJSONObject(1).getString("total").equals("1"))
 //                    {
 //                        imgsplash.setImageResource(R.mipmap.ic_launcher_round);
 //                    }
-                    else {
-                        status = array.getJSONObject(0).getString("message");
-                        for (int i = 2; i < array.length(); i++)
-                        {
+                        else {
+                            status = array.getJSONObject(0).getString("message");
+                            for (int i = 2; i < array.length(); i++)
+                            {
 
-                            JSONObject object = array.getJSONObject(i);
-                            String url = "https://mrawideveloper.com/houseofknowledge.net/zocarro/image/"+"splash/" + object.getString("sc_img");
+                                JSONObject object = array.getJSONObject(i);
+                                String url = "https://mrawideveloper.com/houseofknowledge.net/zocarro/image/"+"splash/" + object.getString("sc_img");
 //                            String url = "https://mrawideveloper.com/gyanmanfarividyapith.net/zocarro/image/splash/1649231510354.png";
-                            Glide.with(NewSplashScreen.this).load(url).into(imgsplash);
+                                Glide.with(NewSplashScreen.this).load(url).into(imgsplash);
+                            }
                         }
+
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (status.equalsIgnoreCase("LoggedIn")){
+
+                                checkPaymentStatus();
+
+//                                    Intent is = new Intent(NewSplashScreen.this , MainActivity.class);
+//                                    is.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                                    startActivity(is);
+//                                    finish();
+                                }else{
+                                    Intent is = new Intent(NewSplashScreen.this , OTPLogin.class);
+                                    is.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(is);
+                                    finish();
+                                }
+
+                            }
+                        },2000);
+                        Animation myanim = AnimationUtils.loadAnimation(NewSplashScreen.this,R.anim.mysplashanimation);
+                        myanim.setAnimationListener(new Animation.AnimationListener() {
+                            @Override
+                            public void onAnimationStart(Animation animation) {
+                                Animation bounce = AnimationUtils.loadAnimation(NewSplashScreen.this,R.anim.bounce);
+//                            txtaspire.startAnimation(bounce);
+                            }
+
+                            @Override
+                            public void onAnimationEnd(Animation animation) {
+
+                            }
+
+                            @Override
+                            public void onAnimationRepeat(Animation animation) {
+
+                            }
+                        });
+
+                        imgsplash.startAnimation(myanim);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(NewSplashScreen.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(NewSplashScreen.this, "e.getMessage()", Toast.LENGTH_LONG).show();
                     }
 
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            if(token.equals("none")){
-                                Intent is = new Intent(NewSplashScreen.this , OTPLogin.class);
-                                is.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(is);
-                                finish();
-                            }
-                            else if (status.equalsIgnoreCase("LoggedIn")){
-                                
-//                                checkPaymentStatusntStatus();
-                                
-                                Intent is = new Intent(NewSplashScreen.this , MainActivity.class);
-                                is.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(is);
-                                finish();
-                            }else{
-                                Intent is = new Intent(NewSplashScreen.this , OTPLogin.class);
-                                is.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(is);
-                                finish();
-                            }
-
-                        }
-                    },2000);
-                    Animation myanim = AnimationUtils.loadAnimation(NewSplashScreen.this,R.anim.mysplashanimation);
-                    myanim.setAnimationListener(new Animation.AnimationListener() {
-                        @Override
-                        public void onAnimationStart(Animation animation) {
-                            Animation bounce = AnimationUtils.loadAnimation(NewSplashScreen.this,R.anim.bounce);
-//                            txtaspire.startAnimation(bounce);
-                        }
-
-                        @Override
-                        public void onAnimationEnd(Animation animation) {
-
-                        }
-
-                        @Override
-                        public void onAnimationRepeat(Animation animation) {
-
-                        }
-                    });
-
-                    imgsplash.startAnimation(myanim);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Toast.makeText(NewSplashScreen.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                    Toast.makeText(NewSplashScreen.this, "e.getMessage()", Toast.LENGTH_LONG).show();
                 }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(NewSplashScreen.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }){
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String,String> data=new HashMap<>();
+                    data.put("sc_id", sc_id);
+                    data.put("token", token);
+                    data.put("stu_id", s_id);
+                    data.put("number", number);
+                    return data;
+                }
+            };
+            request.setRetryPolicy(new DefaultRetryPolicy(2000,3,1));
+            Volley.newRequestQueue(NewSplashScreen.this).add(request);
+        }
 
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(NewSplashScreen.this, error.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> data=new HashMap<>();
-                data.put("sc_id", sc_id);
-                data.put("token", token);
-                data.put("stu_id", s_id);
-                data.put("number", number);
-                return data;
-            }
-        };
-        request.setRetryPolicy(new DefaultRetryPolicy(2000,3,1));
-        Volley.newRequestQueue(NewSplashScreen.this).add(request);
     }
 
     private void checkPaymentStatus() {

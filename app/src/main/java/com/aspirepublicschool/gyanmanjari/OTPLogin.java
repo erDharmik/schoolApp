@@ -201,11 +201,8 @@ public class OTPLogin extends AppCompatActivity {
 
     private void continueLogin() {
         if (number.length() == 10){
-//            sendOTP();
+            sendOTP();
 //            dialogmethod();
-
-            startActivity(new Intent(getApplicationContext(), OTPVerificationActivity.class).
-                    putExtra("number", number));
 
         }else{
             Toast.makeText(getApplicationContext(), "Enter Valid Mobile Number", Toast.LENGTH_SHORT).show();
@@ -221,6 +218,8 @@ public class OTPLogin extends AppCompatActivity {
             public void onResponse(String response) {
                 if (response.equalsIgnoreCase("true")){
                     Toast.makeText(getApplicationContext(), "OTP has been sent to your mobile number.", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), OTPVerificationActivity.class).
+                            putExtra("number", number));
                 }
                 else if (response.equalsIgnoreCase("nodata")){
                     Toast.makeText(getApplicationContext(), "Please Enter Registered Mobile Number", Toast.LENGTH_SHORT).show();
