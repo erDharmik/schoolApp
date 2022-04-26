@@ -38,7 +38,8 @@
                         android:id="@+id/profile_image"
                         android:layout_width="90dp"
                         android:layout_height="90dp"
-                        android:layout_gravity="center_horizontal" />
+                        android:layout_gravity="center_horizontal"
+                        android:src="@mipmap/ic_launcher_round" />
 
 
                     <TextView
@@ -143,23 +144,32 @@
 
                 </LinearLayout>
 
-               <!-- <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recadv2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/lnrdetails"
-                    android:background="@color/icons" />
-
-
                 <TextView
+                    android:id="@+id/textView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/recadv2"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/metropolis"
-                    android:text="Powered By:zocarro.com"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />-->
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="160dp" />
+
+                <!-- <androidx.recyclerview.widget.RecyclerView
+                     android:id="@+id/recadv2"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_below="@+id/lnrdetails"
+                     android:background="@color/icons" />
+
+
+                 <TextView
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_below="@+id/recadv2"
+                     android:layout_marginBottom="10dp"
+                     android:fontFamily="@font/metropolis"
+                     android:text="Powered By:zocarro.com"
+                     android:textAlignment="center"
+                     android:textSize="18sp" />-->
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>

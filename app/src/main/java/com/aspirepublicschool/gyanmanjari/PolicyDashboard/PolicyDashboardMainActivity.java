@@ -99,14 +99,12 @@ public class PolicyDashboardMainActivity extends AppCompatActivity implements Pa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pilicy_dashboard_main);
 
-
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         number = mPrefs.getString("number", "none");
 
         board = findViewById(R.id.board);
         medium = findViewById(R.id.medium);
         standard = findViewById(R.id.standard);
-
 
         infotxt = findViewById(R.id.infotxt);
         lnrPrice = findViewById(R.id.pricelnr);

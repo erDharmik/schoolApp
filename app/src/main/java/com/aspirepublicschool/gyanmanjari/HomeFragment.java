@@ -1,6 +1,7 @@
 package com.aspirepublicschool.gyanmanjari;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.aspirepublicschool.gyanmanjari.PayTM.DuePaymentActivity;
 import com.bumptech.glide.Glide;
 import com.aspirepublicschool.gyanmanjari.R;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -66,7 +68,8 @@ public class HomeFragment extends Fragment {
     String user,standard,div;
 
     String sc_id;
-    String cid;
+    String cid, number;
+    TextView txtView;
     String status;
 
     private String mParam1;
@@ -107,21 +110,19 @@ public class HomeFragment extends Fragment {
         recadv1 = v.findViewById(R.id.recadv1);
         /*recadv2 = v.findViewById(R.id.recadv2);*/
         rollno = v.findViewById(R.id.rollno);
+        txtView = v.findViewById(R.id.textView);
+        txtView.setVisibility(View.INVISIBLE);
+
+        statusGet();
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
         sc_id= mPrefs.getString("sc_id", "none").toUpperCase();
-        status = mPrefs.getString("status", "none");
+        number= mPrefs.getString("number", "none");
+//        status = mPrefs.getString("status", "none");
          stu_id = mPrefs.getString("stu_id", "none").toUpperCase();
 
-         if (status.equals("demo")){
-             recadv1.setEnabled(false);
-             recadv1.setOnClickListener(new View.OnClickListener() {
-                 @Override
-                 public void onClick(View v) {
-                     Toast.makeText(ctx, "Demo Completion Pending", Toast.LENGTH_SHORT).show();
-                 }
-             });
-         }
+
+
         feedbackStatus();
 
         lstMainpagedesign = new ArrayList<>();
@@ -171,6 +172,54 @@ public class HomeFragment extends Fragment {
             }
         });*/
         return v;
+    }
+
+    private void statusGet() {
+        String Webserviceurl = Common.GetWebServiceURL() + "getStatus.php";
+        Log.d("@@@web", Webserviceurl);
+        StringRequest request = new StringRequest(StringRequest.Method.POST, Webserviceurl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray array = new JSONArray(response);
+                    status = array.getJSONObject(0).getString("status");
+
+                    if (status.equals("demo") || status.equals("continue") | status.equals("fee")){
+                        txtView.setVisibility(View.VISIBLE);
+                    }
+
+                    txtView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (status.equalsIgnoreCase("demo")) {
+                                Toast.makeText(ctx, "Demo Request Pending", Toast.LENGTH_SHORT).show();
+                            }else if (status.equalsIgnoreCase("continue")){
+                                Toast.makeText(ctx, "We are adding you to the class shortly", Toast.LENGTH_SHORT).show();
+                            }else if (status.equalsIgnoreCase("fee")){
+                                startActivity(new Intent(ctx, DuePaymentActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                            }
+                        }
+                    });
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(ctx, R.string.no_connection_toast, Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> data = new HashMap<>();
+                data.put("number", number);
+                return data;
+            }
+        };
+        Volley.newRequestQueue(ctx).add(request);
     }
 
     private void loadClassresult() {

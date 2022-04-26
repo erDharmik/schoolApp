@@ -58,6 +58,7 @@ import com.aspirepublicschool.gyanmanjari.DoubtSolving.Utils;
 import com.aspirepublicschool.gyanmanjari.Homework.HomeworkActivity;
 import com.aspirepublicschool.gyanmanjari.NewTest.NewTestTab;
 import com.aspirepublicschool.gyanmanjari.NewTest.ViewNewTestToday;
+import com.aspirepublicschool.gyanmanjari.PayTM.DuePaymentActivity;
 import com.aspirepublicschool.gyanmanjari.Payment.PayTMActivity;
 import com.aspirepublicschool.gyanmanjari.Profile.ProfileMainActivity;
 import com.aspirepublicschool.gyanmanjari.Result.ClassResult;
@@ -102,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final String CHANNEL_ID = "101";
 
     DrawerLayout drawer;
+    TextView txtNav;
     String status = " ";
     NavigationView navigationView;
     BottomNavigationView navigation;
@@ -200,6 +202,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
         toolbar = findViewById(R.id.toolbar);
+        txtNav = findViewById(R.id.txtNav);
         toolbar.setTitle("Home");
         image_url = preferences.getString("st_dp", "null");
         final Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_arrow_drop_down);
@@ -214,16 +217,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //String image_url=preferences.getString("st_dp","null");
         Log.d("nnnn", image_url);
 
-        Toast.makeText(getApplicationContext(), status, Toast.LENGTH_SHORT).show();
-        if (status.equals("demo")){
-            navigationView.setClickable(false);
-            navigationView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(getApplicationContext(), "Demo Completion Pending", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
+        getStatus();
+//        Toast.makeText(getApplicationContext(), status, Toast.LENGTH_SHORT).show();
+//        if (status.equals("demo")){
+//            navigationView.setEnabled(false);
+//            navigationView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Toast.makeText(getApplicationContext(), "Demo Completion Pending", Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//        }
 
         //loadStudentData();
         RelativeLayout linearLayout = headerview.findViewById(R.id.lnrprofile);
@@ -262,6 +266,55 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigation.getMenu().findItem(R.id.navigation_home).setChecked(true);
         navigation.setItemIconTintList(null);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+    }
+
+    private void getStatus() {
+
+        String Webserviceurl = Common.GetWebServiceURL() + "getStatus.php";
+        Log.d("@@@web", Webserviceurl);
+        StringRequest request = new StringRequest(StringRequest.Method.POST, Webserviceurl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray array = new JSONArray(response);
+                    status = array.getJSONObject(0).getString("status");
+
+                    if (status.equals("demo") || status.equals("continue") | status.equals("fee")){
+                        txtNav.setVisibility(View.VISIBLE);
+                    }
+
+                    txtNav.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (status.equalsIgnoreCase("demo")) {
+                                Toast.makeText(ctx, "Demo Request Pending", Toast.LENGTH_SHORT).show();
+                            }else if (status.equalsIgnoreCase("continue")){
+                                Toast.makeText(ctx, "We are adding you to the class shortly", Toast.LENGTH_SHORT).show();
+                            }else if (status.equalsIgnoreCase("fee")){
+                                startActivity(new Intent(ctx, DuePaymentActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                            }
+                        }
+                    });
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(ctx,R.string.no_connection_toast, Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> data = new HashMap<>();
+                data.put("number", number);
+                return data;
+            }
+        };
+
+        Volley.newRequestQueue(ctx).add(request);
 
     }
 

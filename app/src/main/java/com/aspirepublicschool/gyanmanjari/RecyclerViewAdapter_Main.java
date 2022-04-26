@@ -3,6 +3,8 @@ package com.aspirepublicschool.gyanmanjari;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +32,11 @@ import java.util.List;
 
 public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewAdapter_Main.MyViewHolder>
 {
+//    SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+//    String sc_id= mPrefs.getString("sc_id", "none").toUpperCase();
+//    String status = mPrefs.getString("status", "none");
+//    String stu_id = mPrefs.getString("stu_id", "none").toUpperCase();
+
     private Context mContext;
     private List<Mainpage_design> mData;
     public RecyclerViewAdapter_Main(Context mContext, List<Mainpage_design> mData) {
@@ -53,6 +60,8 @@ public class RecyclerViewAdapter_Main extends RecyclerView.Adapter<RecyclerViewA
         @Override
         public void onClick(View v) {
             //Toast.makeText(mContext,mData.get(position).getTitle(),Toast.LENGTH_SHORT).show();
+
+//            if (status.e)
             Intent intent = null;
             switch (position){
 
