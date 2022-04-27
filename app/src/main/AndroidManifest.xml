@@ -40,6 +40,12 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name="com.aspirepublicschool.HelpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NewRegister.DemoRequestDashboard.AboutUs"
+            android:exported="false" />
+        <activity
             android:name=".PayTM.PaymentsDetailActivity"
             android:exported="false" />
         <activity
@@ -47,10 +53,9 @@
             android:exported="false" />
         <activity
             android:name=".NotificationActivity"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".notification"-->
-<!--            android:exported="false" />-->
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".notification" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".GMapLocationActivity"
             android:exported="false" />

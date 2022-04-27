@@ -356,7 +356,6 @@ public class PolicyDashboardMainActivity extends AppCompatActivity implements Pa
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
-
             }
         })
         {

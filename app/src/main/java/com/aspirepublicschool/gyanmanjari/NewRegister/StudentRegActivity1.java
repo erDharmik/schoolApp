@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import com.android.volley.toolbox.Volley;
 import com.aspirepublicschool.gyanmanjari.Common;
 import com.aspirepublicschool.gyanmanjari.EmptyActivity;
 import com.aspirepublicschool.gyanmanjari.Login;
+import com.aspirepublicschool.gyanmanjari.NewRegister.DemoRequestDashboard.AboutUs;
 import com.aspirepublicschool.gyanmanjari.OTPLogin;
 import com.aspirepublicschool.gyanmanjari.OTPVerificationActivity;
 import com.aspirepublicschool.gyanmanjari.PayTM.checkSumActivity;
@@ -42,6 +44,7 @@ public class StudentRegActivity1 extends AppCompatActivity {
     TextView txtSignIn, text_status,text_termsandcondition;
     Button btnGetOtp;
     CheckBox checkbox_TandC;
+    ImageView aboutUs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,7 @@ public class StudentRegActivity1 extends AppCompatActivity {
         btnGetOtp = findViewById(R.id.btnVerifyOtp);
         checkbox_TandC = findViewById(R.id.checkbox_TandC);
         text_status = findViewById(R.id.text_status);
+        aboutUs = findViewById(R.id.aboutUs);
         text_termsandcondition = findViewById(R.id.text_termsandcondition);
         text_status.setVisibility(View.INVISIBLE);
 
@@ -92,6 +96,13 @@ public class StudentRegActivity1 extends AppCompatActivity {
 
 
 
+            }
+        });
+
+        aboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext() , AboutUs.class));
             }
         });
     }

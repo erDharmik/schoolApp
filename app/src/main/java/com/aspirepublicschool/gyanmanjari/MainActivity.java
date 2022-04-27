@@ -217,11 +217,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //String image_url=preferences.getString("st_dp","null");
         Log.d("nnnn", image_url);
 
-        if (status.equalsIgnoreCase("none")){
             getStatus();
-        }else{
-            setAccordingTOStatus();
-        }
+
 
 //        Toast.makeText(getApplicationContext(), status, Toast.LENGTH_SHORT).show();
 //        if (status.equals("demo")){
@@ -305,6 +302,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     JSONArray array = new JSONArray(response);
                     status = array.getJSONObject(0).getString("status");
 
+                    SharedPreferences feeStatus = getSharedPreferences("status" , MODE_PRIVATE);
+                    SharedPreferences.Editor edit = feeStatus.edit();
+                    edit.putString("status" , status);
+                    edit.apply();
+
                     Toast.makeText(getApplicationContext(), status, Toast.LENGTH_SHORT).show();
                     if (status.equals("demo") || status.equals("continue") | status.equals("fee")){
                         txtNav.setVisibility(View.VISIBLE);
@@ -318,8 +320,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             }else if (status.equalsIgnoreCase("continue")){
                                 Toast.makeText(ctx, "We are adding you to the class shortly", Toast.LENGTH_SHORT).show();
                             }else if (status.equalsIgnoreCase("fee")){
-                                startActivity(new Intent(ctx, DuePaymentActivity.class).
-                                        putExtra("status", status));
+                                Intent intent = new Intent(getApplicationContext(), DuePaymentActivity.class);
+
+                                startActivity(intent);
+
+
                             }
                         }
                     });

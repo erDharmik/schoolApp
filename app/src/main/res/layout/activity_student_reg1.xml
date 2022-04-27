@@ -109,9 +109,13 @@
                     android:padding="6dp"
                     android:textSize="16sp" />
 
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     android:layout_below="@+id/lnrdata">
 
                     <CheckBox
@@ -129,9 +133,18 @@
                         android:fontFamily="@font/metropolis"
                         android:text="@string/termsandcondition"
                         android:textSize="12sp" />
-
                 </LinearLayout>
 
+                    <ImageView
+                        android:id="@+id/aboutUs"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="15dp"
+                        android:src="@drawable/ic_info"/>
+
+        </RelativeLayout>
                 <TextView
                     android:id="@+id/text_status"
                     android:layout_width="match_parent"

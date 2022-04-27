@@ -1,10 +1,12 @@
 package com.aspirepublicschool.gyanmanjari.PayTM;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -26,6 +28,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.aspirepublicschool.HelpActivity;
 import com.aspirepublicschool.gyanmanjari.Common;
 import com.aspirepublicschool.gyanmanjari.JSONParser;
 import com.aspirepublicschool.gyanmanjari.MainActivity;
@@ -39,6 +42,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -52,6 +56,7 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
     String expiryDate, subjectString, materialFeeString,finalmon, monthlyFee, pid;
     String materialFeeStatus, price, class_id, material, status;
 
+    CardView cardClick;
     CheckBox materialFee;
     TextView materialFeeText, msg;
     Dialog dialog;
@@ -70,7 +75,9 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
 
         getSupportActionBar().setTitle("Due Payment");
 
-        status = getIntent().getStringExtra("status");
+//        status = getIntent().getStringExtra("status");
+
+
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         number = mPrefs.getString("number", "none");
         stu_id = mPrefs.getString("stu_id", "none").toUpperCase();
@@ -80,6 +87,63 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
         loadPolicyData();
         setMonthSpinner();
 
+
+        SharedPreferences feeStatus = getSharedPreferences("status" , MODE_PRIVATE);
+        status = feeStatus.getString("status" , "none");
+        Toast.makeText(this, status, Toast.LENGTH_SHORT).show();
+
+
+
+        if (status.equalsIgnoreCase("fee")){
+            msg.setText("Demo Completed \n Pay now and Continue with Learning");
+        }else{
+            msg.setText("Your Payment is Due \n Pay now and Continue with Learning");
+        }
+
+        cardClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String WebServiceURL = Common.GetWebServiceURL() + "getAdmin.php";
+
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, WebServiceURL, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            Log.d("###",response );
+                            JSONArray array = new JSONArray(response);
+
+                            String number  = array.getJSONObject(0).getString("admin_cont");
+
+                            try {
+                                Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                                callIntent.setData(Uri.parse("tel:"+Uri.encode(number.trim())));
+                                Log.d("TAG", "onClick:Number" + number);
+                                callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(callIntent);
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(),R.string.no_connection_toast,Toast.LENGTH_LONG).show();
+                    }
+
+                });
+                Volley.newRequestQueue(getApplicationContext()).add(stringRequest);
+
+
+
+
+            }
+        });
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,11 +159,6 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
             }
         });
 
-        if (status.equalsIgnoreCase("fee")){
-            msg.setText("Demo Completed \\n Pay now and Continue with Learning");
-        }else{
-            msg.setText("Your Payment is Due \\n Pay now and Continue with Learning");
-        }
         months.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -108,7 +167,7 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
                     float mon = Float.parseFloat(String.valueOf(months.getSelectedItem()));
                     float total = monthlyFeeFloat * mon;
 
-                    String finalTotal = String.valueOf(total);
+                    String finalTotal = String.valueOf(new DecimalFormat(".##").format(total));
                     totalfee.setText(finalTotal);
 
                 }catch (Exception e){
@@ -131,7 +190,7 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
                         float temp = Float.parseFloat(totalfee.getText().toString());
                         float materials = Float.parseFloat(materialFeeString);
                         float total = temp + materials;
-                        String finalTotal = String.valueOf(total);
+                        String finalTotal = String.valueOf(new DecimalFormat(".##").format(total));
                         totalfee.setText(finalTotal);
                         }catch (Exception e){
                             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -141,11 +200,11 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
                             float temp = Float.parseFloat(totalfee.getText().toString());
                             float materials = Float.parseFloat(materialFeeString);
                             float total = temp - materials;
-                            String finalTotal = String.valueOf(total);
+                            String finalTotal = String.valueOf(new DecimalFormat(".##").format(total));
                             totalfee.setText(finalTotal);
                         }catch (Exception e){
                             Log.e("error", e.getMessage());
-                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "e.getMessage()", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -183,7 +242,8 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
                     feeTxt.setText("INR " + monthlyFee + "/month");
 
                     float finalFeeTemp = Float.parseFloat(monthlyFee);
-                    totalfee.setText(String.valueOf(finalFeeTemp));
+                    String finalTotal = String.valueOf(new DecimalFormat(".##").format(finalFeeTemp));
+                    totalfee.setText(finalTotal);
                     duePayment.setText(expiryDate);
                     materialFeeText.setText(materialFeeString);
 
@@ -202,7 +262,7 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "e.getMessage()", Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
@@ -232,6 +292,7 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
         feeTxt = findViewById(R.id.feeTxt);
         msg = findViewById(R.id.basic);
         duePayment = findViewById(R.id.duePayment);
+        cardClick = findViewById(R.id.cardClick);
 
         materialFee = findViewById(R.id.materialFee);
         subject = findViewById(R.id.subject);
@@ -322,7 +383,7 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
 
                 Log.d("response", response);
 
-                Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "response", Toast.LENGTH_SHORT).show();
                 if(response.equals("true")) {
                     Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), PaymentsDetailActivity.class);

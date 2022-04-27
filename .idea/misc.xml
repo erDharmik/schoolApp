@@ -3,15 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/HARD PATEL/AndroidStudioProjects/final/schoolApp/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.2703125" />
-        <entry key="..\:/Users/HARD PATEL/AndroidStudioProjects/final/schoolApp/app/src/main/res/layout/activity_address2.xml" value="0.25025641025641027" />
-        <entry key="..\:/Users/HARD PATEL/AndroidStudioProjects/final/schoolApp/app/src/main/res/layout/activity_address_update.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/HARD PATEL/AndroidStudioProjects/final/schoolApp/app/src/main/res/layout/activity_due_payment.xml" value="0.25025641025641027" />
+        <entry key="..\:/Users/HARD PATEL/AndroidStudioProjects/final/schoolApp/app/src/main/res/layout/activity_due_payment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/HARD PATEL/AndroidStudioProjects/final/schoolApp/app/src/main/res/layout/activity_main.xml" value="0.24444444444444444" />
-        <entry key="..\:/Users/HARD PATEL/AndroidStudioProjects/final/schoolApp/app/src/main/res/layout/activity_new_address_update.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/HARD PATEL/AndroidStudioProjects/final/schoolApp/app/src/main/res/layout/activity_otpregister_verification.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/HARD PATEL/AndroidStudioProjects/final/schoolApp/app/src/main/res/layout/activity_payments_detail.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/HARD PATEL/AndroidStudioProjects/final/schoolApp/app/src/main/res/layout/activity_personal_details.xml" value="0.25025641025641027" />
         <entry key="..\:/Users/HARD PATEL/AndroidStudioProjects/final/schoolApp/app/src/main/res/layout/activity_pilicy_dashboard_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/HARD PATEL/AndroidStudioProjects/final/schoolApp/app/src/main/res/layout/activity_student_reg1.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/HARD PATEL/AndroidStudioProjects/final/schoolApp/app/src/main/res/layout/activity_view_message.xml" value="0.25416666666666665" />
@@ -23,14 +18,17 @@
         <entry key="..\:/Users/HARD PATEL/AndroidStudioProjects/final/schoolApp/app/src/main/res/layout/selected_info_dialog.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/HARD PATEL/AndroidStudioProjects/final/schoolApp/app/src/main/res/layout/teacher_demo_row.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/HARD PATEL/AndroidStudioProjects/final/schoolApp/app/src/main/res/menu/activity_main_drawer.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/HARD PATEL/AndroidStudioProjects/final/schoolApp/app/src/main/res/menu/main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/HARD PATEL/AndroidStudioProjects/final/schoolApp/app/src/main/res/menu/profile_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/gitHub/app/src/main/res/drawable-v21/down.xml" value="0.1745" />
         <entry key="..\:/gitHub/app/src/main/res/drawable-v21/ic_baseline_notifications_24.xml" value="0.1745" />
+        <entry key="..\:/gitHub/app/src/main/res/layout/activity_about_us.xml" value="0.25416666666666665" />
         <entry key="..\:/gitHub/app/src/main/res/layout/activity_address2.xml" value="0.25416666666666665" />
         <entry key="..\:/gitHub/app/src/main/res/layout/activity_demo.xml" value="0.25416666666666665" />
+        <entry key="..\:/gitHub/app/src/main/res/layout/activity_due_payment.xml" value="0.25416666666666665" />
+        <entry key="..\:/gitHub/app/src/main/res/layout/activity_help.xml" value="0.25416666666666665" />
         <entry key="..\:/gitHub/app/src/main/res/layout/activity_homework.xml" value="0.25416666666666665" />
         <entry key="..\:/gitHub/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/gitHub/app/src/main/res/layout/activity_new_splash_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/gitHub/app/src/main/res/layout/activity_new_time_pref.xml" value="0.25416666666666665" />
         <entry key="..\:/gitHub/app/src/main/res/layout/activity_new_tution_details.xml" value="0.25416666666666665" />
         <entry key="..\:/gitHub/app/src/main/res/layout/activity_notification.xml" value="0.25416666666666665" />
