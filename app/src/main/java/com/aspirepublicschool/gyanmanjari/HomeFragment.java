@@ -26,6 +26,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.aspirepublicschool.gyanmanjari.PayTM.DuePaymentActivity;
+import com.aspirepublicschool.gyanmanjari.Profile.ProfileMainActivity;
 import com.bumptech.glide.Glide;
 import com.aspirepublicschool.gyanmanjari.R;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -456,6 +457,18 @@ public class HomeFragment extends Fragment {
                         Glide.with(getActivity()).load(new URL(DP_URL)).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)
                                 .into(profile_image);
                         classid = jsonObject.getString("cid");
+
+                        profile_image.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(ctx, StudentProfile.class);
+                                intent = new Intent(ctx, ProfileMainActivity.class);
+                                intent.putExtra("number", number);
+                                intent.putExtra("stu_id", s_id);
+                                intent.putExtra("sc_id", sc_id);
+                                startActivity(intent);
+                            }
+                        });
 
                         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(ctx);
                         SharedPreferences.Editor editor = sharedPreferences.edit();

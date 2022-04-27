@@ -50,10 +50,10 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
 
     TextView board, medium, standard, subject, feeTxt,duePayment,materialstat;
     String expiryDate, subjectString, materialFeeString,finalmon, monthlyFee, pid;
-    String materialFeeStatus, price, class_id, material;
+    String materialFeeStatus, price, class_id, material, status;
 
     CheckBox materialFee;
-    TextView materialFeeText;
+    TextView materialFeeText, msg;
     Dialog dialog;
     String mons;
     int tempmon;
@@ -70,6 +70,7 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
 
         getSupportActionBar().setTitle("Due Payment");
 
+        status = getIntent().getStringExtra("status");
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         number = mPrefs.getString("number", "none");
         stu_id = mPrefs.getString("stu_id", "none").toUpperCase();
@@ -90,12 +91,15 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
                 }else{
                     material = "no";
                 }
-
                 runPaymentMethod();
-
             }
         });
 
+        if (status.equalsIgnoreCase("fee")){
+            msg.setText("Demo Completed \\n Pay now and Continue with Learning");
+        }else{
+            msg.setText("Your Payment is Due \\n Pay now and Continue with Learning");
+        }
         months.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -226,6 +230,7 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
         medium = findViewById(R.id.medium);
         standard = findViewById(R.id.standard);
         feeTxt = findViewById(R.id.feeTxt);
+        msg = findViewById(R.id.basic);
         duePayment = findViewById(R.id.duePayment);
 
         materialFee = findViewById(R.id.materialFee);
@@ -497,8 +502,4 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
         }
     }
 
-    @Override
-    public void onBackPressed() {
-
-    }
 }

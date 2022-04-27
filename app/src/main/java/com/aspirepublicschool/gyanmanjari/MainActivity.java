@@ -217,7 +217,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //String image_url=preferences.getString("st_dp","null");
         Log.d("nnnn", image_url);
 
-        getStatus();
+        if (status.equalsIgnoreCase("none")){
+            getStatus();
+        }else{
+            setAccordingTOStatus();
+        }
+
 //        Toast.makeText(getApplicationContext(), status, Toast.LENGTH_SHORT).show();
 //        if (status.equals("demo")){
 //            navigationView.setEnabled(false);
@@ -269,6 +274,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    private void setAccordingTOStatus() {
+        if (status.equals("demo") || status.equals("continue") | status.equals("fee")){
+            txtNav.setVisibility(View.VISIBLE);
+        }
+
+        txtNav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (status.equalsIgnoreCase("demo")) {
+                    Toast.makeText(ctx, "Demo Request Pending", Toast.LENGTH_SHORT).show();
+                }else if (status.equalsIgnoreCase("continue")){
+                    Toast.makeText(ctx, "We are adding you to the class shortly", Toast.LENGTH_SHORT).show();
+                }else if (status.equalsIgnoreCase("fee")){
+                    startActivity(new Intent(ctx, DuePaymentActivity.class).
+                            putExtra("status", status));
+                }
+            }
+        });
+    }
+
     private void getStatus() {
 
         String Webserviceurl = Common.GetWebServiceURL() + "getStatus.php";
@@ -293,7 +318,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             }else if (status.equalsIgnoreCase("continue")){
                                 Toast.makeText(ctx, "We are adding you to the class shortly", Toast.LENGTH_SHORT).show();
                             }else if (status.equalsIgnoreCase("fee")){
-                                startActivity(new Intent(ctx, DuePaymentActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                                startActivity(new Intent(ctx, DuePaymentActivity.class).
+                                        putExtra("status", status));
                             }
                         }
                     });
@@ -672,18 +698,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
-        MenuItem menuItem = menu.findItem(R.id.action_image);
+//        MenuItem menuItem = menu.findItem(R.id.action_image);
         MenuItem notification = menu.findItem(R.id.action_notification);
-        View view = MenuItemCompat.getActionView(menuItem);
+//        View view = MenuItemCompat.getActionView(menuItem);
         View notify_view = MenuItemCompat.getActionView(notification);
-        CircleImageView profile_imageview = view.findViewById(R.id.toolbar_profile);
+//        CircleImageView profile_imageview = view.findViewById(R.id.toolbar_profile);
         CircleImageView notification_imageview = notify_view.findViewById(R.id.toolbar_notification);
-        try {
-            Glide.with(ctx).load(new URL(image_url)).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)
-                    .into(profile_imageview);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Glide.with(ctx).load(new URL(image_url)).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)
+//                    .into(profile_imageview);
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        }
         notification_imageview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -692,19 +718,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        profile_imageview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent;
-
-//                intent = new Intent(ctx, StudentProfile.class);
-                intent = new Intent(ctx, ProfileMainActivity.class);
-                intent.putExtra("number", number);
-                intent.putExtra("stu_id", s_id);
-                intent.putExtra("sc_id", sc_id);
-                startActivity(intent);
-            }
-        });
+//        profile_imageview.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent;
+//
+////                intent = new Intent(ctx, StudentProfile.class);
+//                intent = new Intent(ctx, ProfileMainActivity.class);
+//                intent.putExtra("number", number);
+//                intent.putExtra("stu_id", s_id);
+//                intent.putExtra("sc_id", sc_id);
+//                startActivity(intent);
+//            }
+//        });
 
         return true;
     }

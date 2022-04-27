@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="340dp"
     android:layout_height="500dp"
+    android:layout_gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
@@ -9,22 +11,40 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="10dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_horizontal">
+                android:minHeight="50dp"
+                android:gravity="center">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:textSize="18sp"
-                    android:textColor="#000"
+                    android:textColor="@color/colorPrimary"
                     android:textStyle="bold"
                     android:text="Student Basic Details"/>
 
         </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -54,7 +74,7 @@
             android:layout_marginTop="20dp"
             android:textSize="16sp"
             android:text="Medium :"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="20dp"/>
 
         <TextView
             android:id="@+id/mediumtxt"
@@ -63,7 +83,7 @@
             android:layout_marginTop="20dp"
             android:textSize="16sp"
             android:text=""
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="20dp"/>
 
     </LinearLayout>
 
@@ -78,7 +98,7 @@
             android:layout_marginTop="20dp"
             android:textSize="16sp"
             android:text="Board :"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="20dp"/>
 
         <TextView
             android:id="@+id/boardtxt"
@@ -87,13 +107,14 @@
             android:layout_marginTop="20dp"
             android:textSize="16sp"
             android:text=""
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="20dp"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -102,7 +123,7 @@
             android:layout_marginTop="20dp"
             android:textSize="16sp"
             android:text="Standard :"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="20dp"/>
 
         <TextView
             android:id="@+id/standardtxt"
@@ -111,9 +132,24 @@
             android:layout_marginTop="20dp"
             android:textSize="16sp"
             android:text=""
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="20dp"/>
 
     </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -135,6 +171,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -143,7 +180,7 @@
             android:layout_marginTop="20dp"
             android:textSize="16sp"
             android:text="Time :"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="20dp"/>
 
         <TextView
             android:id="@+id/timetxt"
@@ -152,9 +189,13 @@
             android:layout_marginTop="20dp"
             android:textSize="16sp"
             android:text="Not Selected Yet"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="20dp"/>
 
     </LinearLayout>
+
+        </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -165,11 +206,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:background="@color/heading"
+                android:background="@drawable/edittext_shape"
                 android:fontFamily="@font/metropolis"
+                android:backgroundTint="@color/colorPrimary"
                 android:src="@drawable/ic_cancel_black_24dp"
                 android:text="Close"
-                android:textColor="@color/icons"
+                android:textColor="@color/white"
                 android:textSize="15sp" />
 
         </LinearLayout>

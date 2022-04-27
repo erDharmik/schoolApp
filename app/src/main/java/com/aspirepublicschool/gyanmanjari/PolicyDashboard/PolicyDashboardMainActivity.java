@@ -71,7 +71,7 @@ public class PolicyDashboardMainActivity extends AppCompatActivity implements Pa
     RecyclerView recView;
     RadioGroup policyRadio;
     LinearLayout lnrSpinner;
-    String token;
+    String token, finalpid;
 
     String smed, sboard, sstd, sstream, stimeslot, sgroup;
 
@@ -133,6 +133,7 @@ public class PolicyDashboardMainActivity extends AppCompatActivity implements Pa
 
                 policyId = policyIdList.get(position);
                 monthlyprice = Float.parseFloat(policyPriceList.get(position));
+                finalpid = policyIdList.get(position);
                 String temp = "INR " + policyPriceList.get(position) + "/month";
                 materialFeeString = materialFeeList.get(position);
                 Toast.makeText(getApplicationContext(), materialFeeString, Toast.LENGTH_SHORT).show();
@@ -218,6 +219,7 @@ public class PolicyDashboardMainActivity extends AppCompatActivity implements Pa
                                     int position = policyList.indexOf("1");
 
                                     float temp = Float.parseFloat(policyPriceList.get(position));
+                                    finalpid = policyIdList.get(Integer.parseInt(policyPriceList.get(position)));
                                     monthlyprice = temp;
                                     String finalSinglePrice = "INR " +String.valueOf(temp) + "/month";
                                     policyPrice.setText(finalSinglePrice);
@@ -232,9 +234,10 @@ public class PolicyDashboardMainActivity extends AppCompatActivity implements Pa
                                 String item = policySpinner.getSelectedItem().toString();
                                 int position = policyList.indexOf(item);
                                 float temp = Float.parseFloat(policyPriceList.get(position));
+                                finalpid = policyIdList.get(position);
                                 String finalSinglePrice = "INR " +String.valueOf(temp) + "/month";
-                                Toast.makeText(getApplicationContext(),
-                                        String.valueOf(temp) + " " +String.valueOf(position) + " "+ finalSinglePrice, Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(getApplicationContext(),
+//                                        String.valueOf(temp) + " " +String.valueOf(position) + " "+ finalSinglePrice, Toast.LENGTH_SHORT).show();
                                 policyPrice.setText(finalSinglePrice);
                                 break;
                         }
@@ -294,6 +297,7 @@ public class PolicyDashboardMainActivity extends AppCompatActivity implements Pa
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
                 params.put("number", number);
+                params.put("pid", finalpid);
                 return params;
             }
         };

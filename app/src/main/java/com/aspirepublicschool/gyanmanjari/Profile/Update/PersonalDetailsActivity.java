@@ -95,6 +95,13 @@ public class PersonalDetailsActivity extends AppCompatActivity implements DatePi
         gender = findViewById(R.id.gender);
         updateBtn = findViewById(R.id.personalDetailUpdateBtn);
 
+        mobile.setEnabled(false);
+        mobile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "You can't edit mobile number! Contact Admin for same", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         Intent i = getIntent();
         fname.setText(i.getStringExtra("fname"));

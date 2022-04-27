@@ -203,7 +203,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
                             editor.putString("token",currentDateTime);
                             editor.apply();
 
-                            Intent intent = new Intent(getApplicationContext(), SimpleDashboardActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             finish();
@@ -223,8 +223,6 @@ public class OTPVerificationActivity extends AppCompatActivity {
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             finish();
-
-
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -334,4 +332,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+    }
 }

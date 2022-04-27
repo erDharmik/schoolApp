@@ -470,4 +470,8 @@ public class NewTutionDetailsActivity extends AppCompatActivity {
         request.setRetryPolicy(new DefaultRetryPolicy(2000,3,1));
         Volley.newRequestQueue(NewTutionDetailsActivity.this).add(request);
     }
+
+    @Override
+    public void onBackPressed() {
+    }
 }

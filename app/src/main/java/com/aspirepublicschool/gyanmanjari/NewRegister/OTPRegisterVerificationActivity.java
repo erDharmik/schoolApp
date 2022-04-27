@@ -247,4 +247,8 @@ public class OTPRegisterVerificationActivity extends AppCompatActivity {
         cTimer.start();
 
     }
+
+    @Override
+    public void onBackPressed() {
+    }
 }
