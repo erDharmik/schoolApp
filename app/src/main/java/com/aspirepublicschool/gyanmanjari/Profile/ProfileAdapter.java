@@ -60,6 +60,10 @@ public class ProfileAdapter extends FragmentPagerAdapter {
                 TutionDetailsFragment tutionDetailsFragment = new TutionDetailsFragment();
                 tutionDetailsFragment.setArguments(bundle);
                 return tutionDetailsFragment;
+            case 3:
+                PaymentDetails paymentDetails = new PaymentDetails();
+                paymentDetails.setArguments(bundle);
+                return paymentDetails;
 //            case 3:
 //                FacultyDetails facultyDetails = new FacultyDetails();
 //                return facultyDetails;

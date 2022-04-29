@@ -461,8 +461,8 @@ public class HomeFragment extends Fragment {
                         profile_image.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(ctx, StudentProfile.class);
-                                intent = new Intent(ctx, ProfileMainActivity.class);
+//                                Intent intent = new Intent(ctx, StudentProfile.class);
+                                Intent intent = new Intent(ctx, ProfileMainActivity.class);
                                 intent.putExtra("number", number);
                                 intent.putExtra("stu_id", s_id);
                                 intent.putExtra("sc_id", sc_id);

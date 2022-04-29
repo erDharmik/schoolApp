@@ -10,6 +10,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -52,7 +54,7 @@ import java.util.Map;
 
 public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymentTransactionCallback {
 
-    TextView board, medium, standard, subject, feeTxt,duePayment,materialstat;
+    TextView board, medium, standard, subject, feeTxt,duePayment,materialstat, finalPriceTxt, gstPerc;
     String expiryDate, subjectString, materialFeeString,finalmon, monthlyFee, pid;
     String materialFeeStatus, price, class_id, material, status;
 
@@ -99,6 +101,51 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
         }else{
             msg.setText("Your Payment is Due \n Pay now and Continue with Learning");
         }
+
+        totalfee.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                try{
+                    //  Total price Inclusive GST
+                    String t = totalfee.getText().toString();
+                    float temp = Float.parseFloat(t);
+                    double finalPrice = (temp * 1.18);
+
+                    String finalt = String.valueOf(finalPrice);
+                    String finalTotal = String.valueOf(new DecimalFormat(".##").format(finalt));
+                    Toast.makeText(getApplicationContext(), String.valueOf(finalTotal), Toast.LENGTH_SHORT).show();
+
+                    finalPriceTxt.setText(finalTotal);
+                }
+                catch (Exception e){
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
+                try{
+                    //  GST
+                    float temp1 = Float.parseFloat(totalfee.getText().toString());
+                    float finalPrice1 = (float) (temp1 * 0.18);
+
+                    String finalt1 = String.valueOf(finalPrice1);
+                    String finalTotal1 = String.valueOf(new DecimalFormat(".##").format(finalt1));
+                    finalPriceTxt.setText(finalTotal1);
+                }catch (Exception e){
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         cardClick.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -294,6 +341,8 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
         duePayment = findViewById(R.id.duePayment);
         cardClick = findViewById(R.id.cardClick);
 
+        gstPerc = findViewById(R.id.gstPerc);
+        finalPriceTxt = findViewById(R.id.finalPriceTxt);
         materialFee = findViewById(R.id.materialFee);
         subject = findViewById(R.id.subject);
         materialFeeText = findViewById(R.id.materialFeeText);
@@ -377,6 +426,8 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
 
         SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         final String uid = mPrefs.getString("stu_id", "none");
+        String date = new SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault()).format(new Date());
+        final String billId = date + number;
         StringRequest request = new StringRequest(StringRequest.Method.POST, Webserviceurl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -389,6 +440,7 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
                     Intent intent = new Intent(getApplicationContext(), PaymentsDetailActivity.class);
                     intent.putExtra("payment_mode", paymentMode);
                     intent.putExtra("tran_id", orderid);
+                    intent.putExtra("bill_id", billId);
                     intent.putExtra("status", Status);
                     intent.putExtra("time", time);
                     intent.putExtra("BankName", BankName);
@@ -421,6 +473,7 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
                 Map<String, String> data = new HashMap<>();
                 data.put("mode", paymentMode);
                 data.put("tran_id", orderid);
+                data.put("txn_id", TXNIDPAYTM);
                 data.put("number", number);
                 data.put("status", Status);
                 data.put("time", time);
@@ -431,6 +484,7 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
                 data.put("price", price);
                 data.put("material", material);
                 data.put("c_id", class_id);
+                data.put("stu_id", stu_id);
                 data.put("board", board.getText().toString());
                 data.put("medium", medium.getText().toString());
                 data.put("standard", standard.getText().toString());

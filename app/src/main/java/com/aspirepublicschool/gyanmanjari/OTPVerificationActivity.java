@@ -57,7 +57,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
 
         number = getIntent().getStringExtra("number");
 
-        sendOTP(number);
+//        sendOTP(number);
 
         otpEdit = findViewById(R.id.otpEdit);
         timer = findViewById(R.id.timer);

@@ -241,7 +241,7 @@ public class PersonalDetails extends Fragment {
                     email.setText(email12);
                     gender.setText(gender1);
 
-                    dp_url= "https://mrawideveloper.com/gyanmanfarividyapith.net/zocarro/image/student/" + jsonArray.getJSONObject(0).getString("stu_img");
+                    dp_url= "https://mrawideveloper.com/houseofknowledge.net/zocarro/image/student/" + jsonArray.getJSONObject(0).getString("stu_img");
 //                    Toast.makeText(ctx, dp_url, Toast.LENGTH_SHORT).show();
                     Picasso.get().load(dp_url).placeholder(R.mipmap.ic_launcher_round).into(profilePic);
 

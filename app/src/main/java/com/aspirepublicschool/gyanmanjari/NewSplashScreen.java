@@ -130,6 +130,7 @@ public class NewSplashScreen extends AppCompatActivity {
 //                    }
                         else {
                             status = array.getJSONObject(0).getString("message");
+                            Toast.makeText(getApplicationContext(), "status", Toast.LENGTH_SHORT).show();
                             for (int i = 2; i < array.length(); i++)
                             {
 
@@ -146,6 +147,7 @@ public class NewSplashScreen extends AppCompatActivity {
                             public void run() {
                                 if (status.equalsIgnoreCase("LoggedIn")){
 
+                                    Toast.makeText(getApplicationContext(), "Logged In", Toast.LENGTH_SHORT).show();
                                 checkPaymentStatus();
 
 //                                    Intent is = new Intent(NewSplashScreen.this , MainActivity.class);
@@ -153,6 +155,10 @@ public class NewSplashScreen extends AppCompatActivity {
 //                                    startActivity(is);
 //                                    finish();
                                 }else{
+
+//                                    Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_SHORT).show();
+
+
                                     Intent is = new Intent(NewSplashScreen.this , OTPLogin.class);
                                     is.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(is);
@@ -226,7 +232,7 @@ public class NewSplashScreen extends AppCompatActivity {
                                setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                        finish();
                     } else {
-                        startActivity(new Intent(getApplicationContext(), DuePaymentActivity.class).
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class).
                                 setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                         finish();
                     }
