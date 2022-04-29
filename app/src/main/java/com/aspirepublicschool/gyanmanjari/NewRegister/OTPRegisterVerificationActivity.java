@@ -147,10 +147,10 @@ public class OTPRegisterVerificationActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
 
-
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
 
             }

@@ -3,6 +3,7 @@ package com.aspirepublicschool.gyanmanjari;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -41,6 +42,7 @@ public class OTPLogin extends AppCompatActivity {
     Dialog dialog;
     EditText t1, otp_edittext;
     Button b1, otp_button;
+    ProgressDialog pd;
     String number, otp, sc_id, class_id, stu_id, currentDateTime;
     TextView otp_mobilenumber, warningMsg_otp, txtSignIn;
 
@@ -56,7 +58,9 @@ public class OTPLogin extends AppCompatActivity {
         class_id = preferences.getString("class_id", "none");
         stu_id = preferences.getString("stu_id", "none");
 
-
+        pd = new ProgressDialog(OTPLogin.this);
+        pd.setMessage("Processing...");
+        pd.setCancelable(false);
 
 //        isLoggedIn();
 
@@ -211,11 +215,13 @@ public class OTPLogin extends AppCompatActivity {
 
     private void sendOTP() {
 
+        pd.show();
         String Webserviceurl = Common.GetWebServiceURL() + "getotp.php";
         Log.d("@@@web", Webserviceurl);
         StringRequest request = new StringRequest(StringRequest.Method.POST, Webserviceurl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                pd.dismiss();
                 if (response.equalsIgnoreCase("true")){
                     Toast.makeText(getApplicationContext(), "OTP has been sent to your mobile number.", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(), OTPVerificationActivity.class).
@@ -233,6 +239,7 @@ public class OTPLogin extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                pd.dismiss();
                 Toast.makeText(getApplicationContext(), R.string.no_connection_toast, Toast.LENGTH_SHORT).show();
             }
         }) {

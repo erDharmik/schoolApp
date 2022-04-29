@@ -1,4 +1,4 @@
-package com.aspirepublicschool;
+package com.aspirepublicschool.gyanmanjari;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -40,7 +40,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name="com.aspirepublicschool.HelpActivity"
+            android:name=".HelpActivity"
             android:exported="false" />
         <activity
             android:name=".NewRegister.DemoRequestDashboard.AboutUs"
@@ -559,7 +559,6 @@
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
-
 
 
         <service android:name=".MyFirebaseMessagingService">

@@ -36,7 +36,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class NewSplashScreen extends AppCompatActivity {
+public class FinalSplashScreen extends AppCompatActivity {
 
     ImageView imgsplash;
     //    TextView txtaspire;
@@ -47,18 +47,16 @@ public class NewSplashScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_splash_screen);
+        setContentView(R.layout.activity_final_splash_screen);
 
         getSupportActionBar().hide();
 
-        final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(NewSplashScreen.this);
+        final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(FinalSplashScreen.this);
         login = sharedPreferences.getInt("login",0);
         token = sharedPreferences.getString("token","none");
         number = sharedPreferences.getString("number","none");
         s_id = sharedPreferences.getString("stu_id","none");
         sc_id = sharedPreferences.getString("sc_id","SCIDN1");
-
-        Toast.makeText(getApplicationContext(), s_id, Toast.LENGTH_SHORT).show();
 
         Log.d("111",""+login);
         imgsplash = findViewById(R.id.imgsplash);
@@ -75,20 +73,20 @@ public class NewSplashScreen extends AppCompatActivity {
     {
         if(token.equals("none")){
 
-            Glide.with(NewSplashScreen.this).load(R.drawable.logo).into(imgsplash);
+            Glide.with(FinalSplashScreen.this).load(R.drawable.logo).into(imgsplash);
 
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                        Intent is = new Intent(NewSplashScreen.this , OTPLogin.class);
-                        is.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(is);
-                        finish();
+                    Intent is = new Intent(FinalSplashScreen.this , OTPLogin.class);
+                    is.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(is);
+                    finish();
                 }
             },2000);
 
-           startAnim();
+            startAnim();
 
         }
         else{
@@ -104,7 +102,7 @@ public class NewSplashScreen extends AppCompatActivity {
 
                         if(array.getJSONObject(0).getString("message").equals("Loggedout")){
                             status = "Loggedout";
-                            Glide.with(NewSplashScreen.this).load(R.drawable.logo).into(imgsplash);
+                            Glide.with(FinalSplashScreen.this).load(R.drawable.logo).into(imgsplash);
                         }
 //                    else if (array.getJSONObject(1).getString("total").equals("1"))
 //                    {
@@ -119,7 +117,7 @@ public class NewSplashScreen extends AppCompatActivity {
                                 JSONObject object = array.getJSONObject(i);
                                 String url = "https://mrawideveloper.com/houseofknowledge.net/zocarro/image/"+"splash/" + object.getString("sc_img");
 //                            String url = "https://mrawideveloper.com/gyanmanfarividyapith.net/zocarro/image/splash/1649231510354.png";
-                                Glide.with(NewSplashScreen.this).load(url).into(imgsplash);
+                                Glide.with(FinalSplashScreen.this).load(url).into(imgsplash);
                             }
                         }
 
@@ -130,30 +128,25 @@ public class NewSplashScreen extends AppCompatActivity {
                                 if (status.equalsIgnoreCase("LoggedIn")){
 
                                     Toast.makeText(getApplicationContext(), "Logged In", Toast.LENGTH_SHORT).show();
-                                checkPaymentStatus();
+                                    checkPaymentStatus();
 
-//                                    Intent is = new Intent(NewSplashScreen.this , MainActivity.class);
-//                                    is.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                                    startActivity(is);
-//                                    finish();
                                 }else{
 
-//                                    Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_SHORT).show();
-
-
-                                    Intent is = new Intent(NewSplashScreen.this , OTPLogin.class);
+                                    Intent is = new Intent(FinalSplashScreen.this , OTPLogin.class);
                                     is.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(is);
                                     finish();
+
                                 }
 
                             }
                         },2000);
-                        Animation myanim = AnimationUtils.loadAnimation(NewSplashScreen.this,R.anim.mysplashanimation);
+
+                        Animation myanim = AnimationUtils.loadAnimation(FinalSplashScreen.this,R.anim.mysplashanimation);
                         myanim.setAnimationListener(new Animation.AnimationListener() {
                             @Override
                             public void onAnimationStart(Animation animation) {
-                                Animation bounce = AnimationUtils.loadAnimation(NewSplashScreen.this,R.anim.bounce);
+                                Animation bounce = AnimationUtils.loadAnimation(FinalSplashScreen.this,R.anim.bounce);
 //                            txtaspire.startAnimation(bounce);
                             }
 
@@ -169,17 +162,18 @@ public class NewSplashScreen extends AppCompatActivity {
                         });
 
                         imgsplash.startAnimation(myanim);
+
                     } catch (Exception e) {
                         e.printStackTrace();
-                        Toast.makeText(NewSplashScreen.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                        Toast.makeText(NewSplashScreen.this, "e.getMessage()", Toast.LENGTH_LONG).show();
+                        Toast.makeText(FinalSplashScreen.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(FinalSplashScreen.this, "e.getMessage()", Toast.LENGTH_LONG).show();
                     }
 
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(NewSplashScreen.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(FinalSplashScreen.this, error.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }){
                 @Override
@@ -193,17 +187,17 @@ public class NewSplashScreen extends AppCompatActivity {
                 }
             };
             request.setRetryPolicy(new DefaultRetryPolicy(2000,3,1));
-            Volley.newRequestQueue(NewSplashScreen.this).add(request);
+            Volley.newRequestQueue(FinalSplashScreen.this).add(request);
         }
 
     }
 
     private void startAnim() {
-        Animation myanim = AnimationUtils.loadAnimation(NewSplashScreen.this,R.anim.mysplashanimation);
+        Animation myanim = AnimationUtils.loadAnimation(FinalSplashScreen.this,R.anim.mysplashanimation);
         myanim.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-                Animation bounce = AnimationUtils.loadAnimation(NewSplashScreen.this,R.anim.bounce);
+                Animation bounce = AnimationUtils.loadAnimation(FinalSplashScreen.this,R.anim.bounce);
 //                            txtaspire.startAnimation(bounce);
             }
 
@@ -233,11 +227,11 @@ public class NewSplashScreen extends AppCompatActivity {
 
                     String status = array.getJSONObject(0).getString("status");
                     if (status.equals("continue")) {
-                       startActivity(new Intent(getApplicationContext(), MainActivity.class).
-                               setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-                       finish();
-                    } else {
                         startActivity(new Intent(getApplicationContext(), MainActivity.class).
+                                setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                        finish();
+                    } else {
+                        startActivity(new Intent(getApplicationContext(), DuePaymentActivity.class).
                                 setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                         finish();
                     }
@@ -249,7 +243,7 @@ public class NewSplashScreen extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(NewSplashScreen.this, R.string.no_connection_toast, Toast.LENGTH_LONG).show();
+                Toast.makeText(FinalSplashScreen.this, R.string.no_connection_toast, Toast.LENGTH_LONG).show();
 
             }
         }) {
@@ -263,7 +257,7 @@ public class NewSplashScreen extends AppCompatActivity {
             }
         };
         request.setRetryPolicy(new DefaultRetryPolicy(2000, 3, 1));
-        Volley.newRequestQueue(NewSplashScreen.this).add(request);
+        Volley.newRequestQueue(FinalSplashScreen.this).add(request);
     }
 
     private void Logoutactivedevice() {
@@ -293,11 +287,11 @@ public class NewSplashScreen extends AppCompatActivity {
                         editor.remove("mobile");
                         editor.remove("token");
                         editor.commit();
-                        Intent i = new Intent(NewSplashScreen.this, Login.class);
+                        Intent i = new Intent(FinalSplashScreen.this, Login.class);
                         startActivity(i);
                         finish();
                     } else {
-                        Toast.makeText(NewSplashScreen.this, R.string.no_connection_toast, Toast.LENGTH_LONG).show();
+                        Toast.makeText(FinalSplashScreen.this, R.string.no_connection_toast, Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -306,7 +300,7 @@ public class NewSplashScreen extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(NewSplashScreen.this, R.string.no_connection_toast, Toast.LENGTH_LONG).show();
+                Toast.makeText(FinalSplashScreen.this, R.string.no_connection_toast, Toast.LENGTH_LONG).show();
 
             }
         }) {
@@ -319,7 +313,7 @@ public class NewSplashScreen extends AppCompatActivity {
             }
         };
         request.setRetryPolicy(new DefaultRetryPolicy(2000, 3, 1));
-        Volley.newRequestQueue(NewSplashScreen.this).add(request);
+        Volley.newRequestQueue(FinalSplashScreen.this).add(request);
     }
 
 }

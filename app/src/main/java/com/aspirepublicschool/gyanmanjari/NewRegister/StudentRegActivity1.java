@@ -2,6 +2,7 @@ package com.aspirepublicschool.gyanmanjari.NewRegister;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -45,6 +46,7 @@ public class StudentRegActivity1 extends AppCompatActivity {
     Button btnGetOtp;
     CheckBox checkbox_TandC;
     ImageView aboutUs;
+    ProgressDialog progressdialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,12 +67,15 @@ public class StudentRegActivity1 extends AppCompatActivity {
         text_termsandcondition = findViewById(R.id.text_termsandcondition);
         text_status.setVisibility(View.INVISIBLE);
 
+        progressdialog = new ProgressDialog(StudentRegActivity1.this);
+        progressdialog.setMessage("Processing...");
+        progressdialog.setCancelable(false);
+
         btnGetOtp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 //Testing
-
                 getOTP();
             }
         });
@@ -111,6 +116,8 @@ public class StudentRegActivity1 extends AppCompatActivity {
         if (checkbox_TandC.isChecked()) {
             text_status.setVisibility(View.INVISIBLE);
             basicRegister();
+            progressdialog.show();
+
 
         } else {
             text_status.setVisibility(View.VISIBLE);
@@ -129,6 +136,7 @@ public class StudentRegActivity1 extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(StringRequest.Method.POST, WebserviceURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                progressdialog.dismiss();
                 try {
                     Log.d("%%%",response);
                     JSONArray array = new JSONArray(response);
@@ -148,8 +156,8 @@ public class StudentRegActivity1 extends AppCompatActivity {
 
                     }  else if(check.equals("fail")){
                         Toast.makeText(getApplicationContext()," Failed !", Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(getApplicationContext(), R.string.no_connection_toast, Toast.LENGTH_SHORT).show();
+                    }else if(check.equals("exist")){
+                        Toast.makeText(getApplicationContext(), "User Already Registered with this mobile number", Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -160,7 +168,8 @@ public class StudentRegActivity1 extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                progressdialog.dismiss();
+                Toast.makeText(getApplicationContext(), R.string.no_connection_toast, Toast.LENGTH_SHORT).show();
             }
         }) {
             @Override
