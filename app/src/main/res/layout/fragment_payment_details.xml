@@ -10,4 +10,15 @@
         android:id="@+id/invoicercl"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/nodata"
+        android:layout_width="216dp"
+        android:layout_height="121dp"
+        android:gravity="center"
+
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:text="No Data"
+        android:textSize="35sp" />
 </FrameLayout>

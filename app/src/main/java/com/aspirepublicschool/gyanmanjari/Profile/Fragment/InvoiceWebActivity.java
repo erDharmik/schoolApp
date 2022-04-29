@@ -41,7 +41,7 @@ public class InvoiceWebActivity extends AppCompatActivity {
         webView.getSettings().setJavaScriptEnabled(true);
 
         StringBuffer buffer=new StringBuffer(Common.GetWebServiceURL() +"invoice.php");
-        buffer.append("?bill_id="+ URLEncoder.encode(stu_id));
+        buffer.append("?stu_id="+ URLEncoder.encode(stu_id));
 //        buffer.append("&sh_id="+URLEncoder.encode(sh_id));
         webView.loadUrl(buffer.toString());
         Log.d(TAG, "onCreate: " + buffer);

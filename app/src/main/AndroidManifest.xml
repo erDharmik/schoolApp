@@ -542,6 +542,11 @@
             android:name=".ImageContainers"
             android:label="Gallery"
             android:parentActivityName=".Gallery" />
+
+        <activity
+            android:name=".Profile.Fragment.InvoiceWebActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".ViewMessage"
             android:label="Inbox"

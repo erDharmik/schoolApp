@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -31,6 +32,7 @@ public class PaymentDetails extends Fragment {
 
 String stu_id, sc_id, number;
 RecyclerView invoice;
+TextView nodata;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,6 +43,11 @@ RecyclerView invoice;
         stu_id = getArguments().getString("stu_id");
         sc_id = getArguments().getString("sc_id");
         number = getArguments().getString("number");
+
+        nodata = view.findViewById(R.id.nodata);
+
+
+        Toast.makeText(getContext(), stu_id, Toast.LENGTH_SHORT).show();
 
         invoice = view.findViewById(R.id.invoicercl);
         invoice.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -62,12 +69,24 @@ RecyclerView invoice;
             public void onResponse(String response) {
 
 
-                GsonBuilder builder = new GsonBuilder();
-                Gson gson =builder.create();
-                invoiceModel userdata[] = gson.fromJson(response,invoiceModel[].class);
+                if(response.equalsIgnoreCase("no data")){
 
-                invoiceAdapter adapter = new invoiceAdapter(userdata,getContext());
-                invoice.setAdapter(adapter);
+                    invoice.setVisibility(View.GONE);
+                    nodata.setVisibility(View.VISIBLE);
+
+                }
+
+                else {
+
+
+                    GsonBuilder builder = new GsonBuilder();
+                    Gson gson = builder.create();
+                    invoiceModel userdata[] = gson.fromJson(response, invoiceModel[].class);
+
+                    invoiceAdapter adapter = new invoiceAdapter(userdata, getContext());
+                    invoice.setAdapter(adapter);
+
+                }
 
             }}, new Response.ErrorListener() {
             @Override
