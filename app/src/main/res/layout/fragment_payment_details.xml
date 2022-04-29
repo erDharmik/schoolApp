@@ -6,5 +6,8 @@
     tools:context=".Profile.Fragment.PaymentDetails">
 
 
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/invoicercl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </FrameLayout>
