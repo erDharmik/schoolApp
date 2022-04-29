@@ -114,27 +114,46 @@ public class DuePaymentActivity extends AppCompatActivity implements PaytmPaymen
                 try{
                     //  Total price Inclusive GST
                     String t = totalfee.getText().toString();
-                    float temp = Float.parseFloat(t);
-                    double finalPrice = (temp * 1.18);
+                    float monthlyFeeFloat = Float.parseFloat(t);
+                    float gst = (float) 1.18;
+                    float total = monthlyFeeFloat * gst;
 
-                    String finalt = String.valueOf(finalPrice);
-                    String finalTotal = String.valueOf(new DecimalFormat(".##").format(finalt));
-                    Toast.makeText(getApplicationContext(), String.valueOf(finalTotal), Toast.LENGTH_SHORT).show();
-
+                    String finalTotal = String.valueOf(new DecimalFormat(".##").format(total));
                     finalPriceTxt.setText(finalTotal);
+
+
+
+//                    float temp = Float.parseFloat(t);
+//                    float finalPrice = (float) (temp * 1.18);
+//
+//                    String finalt = String.valueOf(finalPrice);
+//                    String finalTotal = String.valueOf(new DecimalFormat(".##").format(finalt));
+//                    Toast.makeText(getApplicationContext(), String.valueOf(finalPrice), Toast.LENGTH_SHORT).show();
+//
+//                    finalPriceTxt.setText(finalTotal);
                 }
                 catch (Exception e){
                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
 
                 try{
-                    //  GST
-                    float temp1 = Float.parseFloat(totalfee.getText().toString());
-                    float finalPrice1 = (float) (temp1 * 0.18);
 
-                    String finalt1 = String.valueOf(finalPrice1);
-                    String finalTotal1 = String.valueOf(new DecimalFormat(".##").format(finalt1));
-                    finalPriceTxt.setText(finalTotal1);
+                    // GST
+                    String t = totalfee.getText().toString();
+                    float monthlyFeeFloat = Float.parseFloat(t);
+                    float gst = (float) 0.18;
+                    float total = monthlyFeeFloat * gst;
+
+                    String finalTotal = String.valueOf(new DecimalFormat(".##").format(total));
+                    gstPerc.setText(finalTotal);
+
+                    //  GST
+//                    float temp1 = Float.parseFloat(totalfee.getText().toString());
+//                    float finalPrice1 = (float) (temp1 * 0.18);
+//
+//                    String finalt1 = String.valueOf(finalPrice1);
+//                    String finalTotal1 = String.valueOf(new DecimalFormat(".##").format(finalt1));
+//                    finalPriceTxt.setText(finalTotal1);
                 }catch (Exception e){
                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 }

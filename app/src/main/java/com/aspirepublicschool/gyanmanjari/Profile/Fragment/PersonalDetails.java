@@ -226,7 +226,7 @@ public class PersonalDetails extends Fragment {
                     JSONArray jsonArray = new JSONArray(response);
                     id = jsonArray.getJSONObject(0).getString("id");
                     String fname1 = jsonArray.getJSONObject(0).getString("st_fname");
-                    String lastname = jsonArray.getJSONObject(0).getString("st_sname");
+                    String lastname = jsonArray.getJSONObject(0).getString("st_lname");
                     String middlename = jsonArray.getJSONObject(0).getString("f_name");
                     String m_no = jsonArray.getJSONObject(0).getString("st_cno");
                     String dob12 = jsonArray.getJSONObject(0).getString("dob");
