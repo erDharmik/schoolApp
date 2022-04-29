@@ -129,8 +129,61 @@ public class NewTimePrefActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(NewTimePrefActivity.this, AddressActivity.class));
+                if(chzero.isChecked()){
+                    time.add("7.00SAM to 8.00AM");
+                }
+                if (chone.isChecked()){
+                    time.add("8:00 to 9:00 AM");
+                }
+                if(chtwo.isChecked()){
+                    time.add("9.00AM to 10.00AM");
+                }
+                if(chthree.isChecked()){
+                    time.add("10.00AM to 11.00AM");
+                }
+                if(chfour.isChecked()){
+                    time.add("11.00AM to 12.00PM");
+                }
+                if(chfive.isChecked()){
+                    time.add("12.00PM to 1.00PM");
+                }
+                if(chsix.isChecked()){
+                    time.add("1.00PM to 2.00PM");
+                }
+                if(chseven.isChecked()){
+                    time.add("2.00PM to 3.00PM");
+                }
+                if(cheight.isChecked()){
+                    time.add("3.00PM to 4.00PM");
+                }
+                if(chnine.isChecked()){
+                    time.add("4.00PM to 5.00PM");
+                }
+                if(chten.isChecked()){
+                    time.add("5.00PM to 6.00PM");
+                }
+                if(cheleven.isChecked()){
+                    time.add("6.00PM to 7.00PM");
+                }
+                if(chtwelve.isChecked()){
+                    time.add("7.00PM to 8.00PM");
+                }
+                if(chthirteen.isChecked()){
+                    time.add("8.00PM to 9.00PM");
+                }
+                if(chfourteen.isChecked()){
+                    time.add("9.00PM to 10.00PM");
+                }
+                timehashSet.addAll(time);
+                time.clear();
+                time.addAll(timehashSet);
+                if(time.isEmpty()){
+                    Toast.makeText(NewTimePrefActivity.this, "Please Select atleast one timeslot", Toast.LENGTH_SHORT).show();
+                }else{
+                    startActivity(new Intent(NewTimePrefActivity.this, AddressActivity.class)
+                            .putExtra("time", String.valueOf(time)));
 
+                }
             }
         });
     }

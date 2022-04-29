@@ -849,4 +849,8 @@ public class PolicyDashboardMainActivity extends AppCompatActivity implements Pa
         }
     }
 
+    @Override
+    public void onBackPressed() {
+
+    }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,201 +8,207 @@
     android:background="@drawable/registration"
     tools:context="com.aspirepublicschool.gyanmanjari.NewRegister.NewTutionDetailsActivity">
 
-    <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="90dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center"
-            android:text="Registration"
-            android:textColor="@color/primary_text"
-            android:textSize="25sp"
-            android:textStyle="bold" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView8"
-                android:layout_width="wrap_content"
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="90dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
                 android:text="Student Basic Detail"
                 android:textColor="@color/primary_text"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.046"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
-
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8">
+                android:layout_marginTop="10dp">
 
-                <TextView
+
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Medium"
-                    android:layout_marginLeft="20dp"
-                    android:textSize="15sp"/>
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView8"
+                    app:layout_constraintVertical_bias="1.0">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:boxStrokeColor="@color/colorPrimary"
-                    style="@style/Widget.AppCompat.Light.DropDownItem.Spinner">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Medium"
+                        android:textSize="15sp" />
 
-                    <Spinner
-                        android:id="@+id/mediumSpinner"
-                        android:layout_width="370dp"
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.AppCompat.Light.DropDownItem.Spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:boxStrokeColor="@color/colorPrimary">
+
+                        <Spinner
+                            android:id="@+id/mediumSpinner"
+                            android:layout_width="370dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/edittext_shape"
+                            android:maxLines="1"
+                            android:padding="6dp"
+                            android:textSize="16sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="Board"
+                        android:textSize="15sp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.AppCompat.Light.DropDownItem.Spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:boxStrokeColor="@color/colorPrimary">
+
+                        <Spinner
+                            android:id="@+id/boardSpinner"
+                            android:layout_width="370dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/edittext_shape"
+                            android:maxLines="1"
+                            android:padding="6dp"
+                            android:textSize="16sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="Standard"
+                        android:textSize="15sp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.AppCompat.Light.DropDownItem.Spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:boxStrokeColor="@color/colorPrimary">
+
+                        <Spinner
+                            android:id="@+id/standardSpinner"
+                            android:layout_width="370dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/edittext_shape"
+                            android:maxLines="1"
+                            android:padding="6dp"
+                            android:textSize="16sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/strTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="Stream"
+                        android:textSize="15sp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.AppCompat.Light.DropDownItem.Spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:boxStrokeColor="@color/colorPrimary">
+
+                        <Spinner
+                            android:id="@+id/streamSpinner"
+                            android:layout_width="370dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/edittext_shape"
+                            android:maxLines="1"
+                            android:padding="6dp"
+                            android:textSize="16sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/grpTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="Group"
+                        android:textSize="15sp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.AppCompat.Light.DropDownItem.Spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:boxStrokeColor="@color/colorPrimary">
+
+                        <Spinner
+                            android:id="@+id/groupSpinner"
+                            android:layout_width="370dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/edittext_shape"
+                            android:maxLines="1"
+                            android:padding="6dp"
+                            android:textSize="16sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/btncont"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_height="40dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="10dp"
                         android:background="@drawable/edittext_shape"
-                        android:layout_margin="10dp"
-                        android:maxLines="1"
-                        android:padding="6dp"
-                        android:textSize="16sp" />
+                        android:backgroundTint="@color/colorPrimary"
+                        android:text="Continue"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
 
-                </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Board"
-                    android:layout_marginLeft="20dp"
-                    android:textSize="15sp"/>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:boxStrokeColor="@color/colorPrimary"
-                    style="@style/Widget.AppCompat.Light.DropDownItem.Spinner">
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <Spinner
-                        android:id="@+id/boardSpinner"
-                        android:layout_width="370dp"
-                        android:layout_gravity="center"
-                        android:layout_height="40dp"
-                        android:background="@drawable/edittext_shape"
-                        android:layout_margin="10dp"
-                        android:maxLines="1"
-                        android:padding="6dp"
-                        android:textSize="16sp" />
+        </LinearLayout>
 
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Standard"
-                    android:layout_marginLeft="20dp"
-                    android:textSize="15sp"/>
-
-        <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxStrokeColor="@color/colorPrimary"
-                style="@style/Widget.AppCompat.Light.DropDownItem.Spinner">
-
-                <Spinner
-                    android:id="@+id/standardSpinner"
-                    android:layout_width="370dp"
-                    android:layout_gravity="center"
-                    android:layout_height="40dp"
-                    android:background="@drawable/edittext_shape"
-                    android:layout_margin="10dp"
-                    android:maxLines="1"
-                    android:padding="6dp"
-                    android:textSize="16sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-                <TextView
-                    android:id="@+id/strTxt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Stream"
-                    android:layout_marginLeft="20dp"
-                    android:textSize="15sp"/>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:boxStrokeColor="@color/colorPrimary"
-                    style="@style/Widget.AppCompat.Light.DropDownItem.Spinner">
-
-                    <Spinner
-                        android:id="@+id/streamSpinner"
-                        android:layout_width="370dp"
-                        android:layout_gravity="center"
-                        android:layout_height="40dp"
-                        android:background="@drawable/edittext_shape"
-                        android:layout_margin="10dp"
-                        android:maxLines="1"
-                        android:padding="6dp"
-                        android:textSize="16sp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <TextView
-                    android:id="@+id/grpTxt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Group"
-                    android:layout_marginLeft="20dp"
-                    android:textSize="15sp"/>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:boxStrokeColor="@color/colorPrimary"
-                    style="@style/Widget.AppCompat.Light.DropDownItem.Spinner">
-
-                    <Spinner
-                        android:id="@+id/groupSpinner"
-                        android:layout_width="370dp"
-                        android:layout_gravity="center"
-                        android:layout_height="40dp"
-                        android:background="@drawable/edittext_shape"
-                        android:layout_margin="10dp"
-                        android:maxLines="1"
-                        android:padding="6dp"
-                        android:textSize="16sp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <Button
-                    android:id="@+id/btncont"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/edittext_shape"
-                    android:text="Continue"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:textColor="@color/white"
-                    android:textSize="17sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </LinearLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

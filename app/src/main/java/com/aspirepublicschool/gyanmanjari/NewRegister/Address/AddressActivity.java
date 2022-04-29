@@ -47,7 +47,7 @@ public class AddressActivity extends AppCompatActivity {
     Spinner cityEdit;
     Spinner stateEdit, landmarkEdit;
     EditText pinEdit, addressEdit;
-    String address, city, pin, state, landmark,number, latitude, longitude;
+    String address, city, pin, state, landmark,time, number, latitude, longitude;
     ImageView locationImg;
     Button submit;
     TextView locationStatus;
@@ -73,6 +73,8 @@ public class AddressActivity extends AppCompatActivity {
         setContentView(R.layout.activity_address2);
 
         getSupportActionBar().hide();
+
+        time = getIntent().getStringExtra("time");
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         number = preferences.getString("number", null);
@@ -179,6 +181,7 @@ public class AddressActivity extends AppCompatActivity {
                 data.put("state", stateEdit.getSelectedItem().toString());
                 data.put("city", cityEdit.getSelectedItem().toString());
                 data.put("landmark", landmarkEdit.getSelectedItem().toString());
+                data.put("time", time);
                 data.put("number", number);
                 return data;
             }
